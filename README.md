@@ -1,61 +1,72 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🐾 Local Pet Adoption & Rescue Map
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A web application that connects local pet rescue organizations and individual rescuers with potential adopters through an interactive map-based platform. It simplifies the pet adoption process and fosters community-based rescue efforts.
 
-## About Laravel
+## 🌟 Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### 🔐 User Authentication & Roles
+- **User Registration** as:
+    - 🏡 Potential Adopter
+    - 🐶 Rescue Organization / Individual Rescuer
+    - 🔧 Admin (predefined)
+- Secure Login/Logout
+- Session Management
+- Role-based Authorization
+- User Profile Management (including location)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### 🐕 Pet Listing & Management (Rescuers)
+- Create detailed pet profiles:
+    - Species, breed, age, gender, size, color
+    - Health info (vaccination, spay/neuter)
+    - Temperament, description, photos
+    - **Exact location** for map visualization
+- Set and update pet status (Available, On Hold, Adopted)
+- Edit or delete existing listings
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 🔍 Pet Discovery & Adoption (Adopters)
+- Browse all adoptable pets in a gallery
+- **Search by location** (address or current location)
+- **Advanced Filters**: species, breed, size, temperament, etc.
+- Interactive map with pet and shelter markers
+- View full pet profiles and photo galleries
+- Save pets to a personal **Favorites** list
+- Submit multi-step **Adoption Applications**
+- Track application status
 
-## Learning Laravel
+### 📥 Adoption Workflow (Rescue Organizations)
+- Review incoming adoption applications
+- Update application status (Received, Under Review, Approved, Denied)
+- (Optional) Basic messaging with adopters
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 🗺️ Mapping API Integration
+- Use **Leaflet.js / OpenStreetMap**, or Google Maps / Mapbox (free tier)
+- Geocoding & reverse geocoding
+- Distance calculation and directions
+- Map visualization of pets and shelters
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### 🔧 Technical Requirements
+- **MVC Architecture**
+- **Dynamic & Responsive** web pages
+- Full **CRUD** functionality for:
+    - Users
+    - Pet listings
+    - Adoption applications
+    - Favorites
+- Form validation (client + server)
+- Optional external APIs:
+    - Breed Data (Dog API, Cat API, API Ninjas)
+    - Image Hosting (Cloudinary, Imgur)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## 🛠 Tech Stack 
+- **Frontend**: HTML5, CSS3, JavaScript (React), Bootstrap/Tailwind
+- **Backend**: PHP + Laravel
+- **Database**: MySQL
+- **Mapping API**: Leaflet.js (OpenStreetMap), Google Maps API, or Mapbox
+- **Authentication**: JWT / Sessions
+- **Optional APIs**:
+    - [Dog API](https://thedogapi.com)
+    - [Cloudinary](https://cloudinary.com)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
 
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
