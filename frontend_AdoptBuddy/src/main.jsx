@@ -8,16 +8,26 @@ import {
 import Root from './routes/Root/Root';
 import ErrorPage from './routes/ErrorPage/ErrorPage';
 import HomePage from './routes/HomePage/HomePage';
+import Login from './routes/Login/Login';
+import Register from './routes/Register/Register';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
-    errorElement : <ErrorPage></ErrorPage>,
-    children : [
+    errorElement: <ErrorPage></ErrorPage>,
+    children: [
       {
-        path : '/',
-        element : <HomePage></HomePage>
+        path: '/',
+        element: <HomePage></HomePage>
+      },
+      {
+        path: '/login',
+        element: <Login></Login>
+      },
+      {
+        path: '/register',
+        element: <Register></Register>
       }
     ]
   },
