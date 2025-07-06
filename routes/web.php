@@ -4,6 +4,12 @@ use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\SessionController;
 use Illuminate\Support\Facades\Route;
 
+
+Route::get("/home", function () {
+    return inertia('Home');
+});
+
+
 Route::view('/', 'welcome');
 Route::view('/register', 'auth.register');
 
