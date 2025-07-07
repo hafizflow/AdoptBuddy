@@ -39,7 +39,7 @@ const Navbar = () => {
                         }
                     </ul>
                 </div>
-                <Link to='/'><a className="text-2xl font-semibold text-amber-950">AdoptBuddy</a></Link>
+                <Link to='/' className="text-2xl font-semibold text-amber-950">AdoptBuddy</Link>
             </div>
             <div className="navbar-end hidden lg:flex">
                 <ul className="menu  menu-horizontal px-1 text-amber-950 font-semibold">
@@ -50,7 +50,7 @@ const Navbar = () => {
             </div>
             <div className="navbar-end">
                 <Link to='/login'>
-                    <a href="">Profile/Login</a>
+                    Profile/Login
                 </Link>
             </div>
         </div>
