@@ -7,7 +7,7 @@ const Navbar = () => {
         { name: "Home", path: "/" },
         { name: "About", path: "/about" },
         { name: "Adopt", path: "/adopt" },
-        { name: "Donate", path: "/donate" },
+        { name: "Admin", path: "/admin" },
         { name: "Contact", path: "/contact" },
     ];
 
@@ -25,7 +25,7 @@ const Navbar = () => {
         </li>
     ));
     return (
-        <div className="navbar mx-auto md:px-5 lg:px-20 absolute z-10">
+        <div className="navbar mx-auto md:px-5 lg:px-20 bg-[#f9f8eb]  z-10">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

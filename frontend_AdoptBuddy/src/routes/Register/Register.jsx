@@ -31,12 +31,18 @@ const Register = () => {
                     <div className="card bg-base-100 w-full max-w-full shrink-0 shadow">
                         <div className="card-body">
                             <fieldset className="fieldset">
+                                <label className="label">Name</label>
+                                <input type="text" name="name" id="name" className="input  w-full" placeholder="Name" />
+                                <label className="label">Phone</label>
+                                <input type="phone" name="phone" id="phone" className="input  w-full" placeholder="Phone" />
+                                <label className="label">Address</label>
+                                <input type="text" name="address" id="address" className="input  w-full" placeholder="Address" />
                                 <label className="label">Email</label>
-                                <input type="email" className="input  w-full" placeholder="Email" />
+                                <input type="email" name="email" id="email" className="input  w-full" placeholder="Email" />
                                 <label className="label">Password</label>
                                 <div className="relative w-full">
                                     <input
-                                        type={showPassword ? "text" : "password"} className="input w-full pr-10"
+                                        type={showPassword ? "text" : "password"} name="password" id="password" className="input w-full pr-10"
                                         placeholder="Password" />
                                     <button
                                         type="button"
