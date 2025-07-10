@@ -8,6 +8,7 @@ const PetCard = () => {
 
     const handlecardClick = () => {
         navigate('/details');
+        window.scrollTo(0, 0);
     }
     return (
         <div>

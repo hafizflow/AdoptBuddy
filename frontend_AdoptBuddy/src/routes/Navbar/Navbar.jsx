@@ -1,3 +1,4 @@
+import { FiHeart } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 
@@ -48,7 +49,10 @@ const Navbar = () => {
                     }
                 </ul>
             </div>
-            <div className="navbar-end">
+            <div className="navbar-end flex gap-2 items-center">
+                <Link to='/favouritelist'>
+                    <FiHeart className="text-xl font-bold hover:text-2xl hover:text-red-600"></FiHeart>
+                </Link>
                 <Link to='/login'>
                     Profile/Login
                 </Link>

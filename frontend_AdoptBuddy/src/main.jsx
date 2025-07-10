@@ -15,6 +15,8 @@ import AllPets from './routes/AllPets/AllPets';
 import PetDetails from './routes/PetDetails/PetDetails';
 import UserProfile from './routes/UserProfile/UserProfile';
 import Contact from './routes/Contact/Contact';
+import FavouriteList from './routes/FavouriteList/FavouriteList';
+import About from './routes/About/About';
 
 const router = createBrowserRouter([
   {
@@ -53,6 +55,14 @@ const router = createBrowserRouter([
       {
         path: '/contact',
         element: <Contact></Contact>
+      },
+      {
+        path: '/favouritelist',
+        element: <FavouriteList></FavouriteList>
+      },
+      {
+        path: '/about',
+        element: <About></About>
       },
     ]
   },
