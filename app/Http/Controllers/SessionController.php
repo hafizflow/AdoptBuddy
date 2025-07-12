@@ -27,6 +27,11 @@ class SessionController extends Controller
         // store session
         request()->session()->regenerate();
         // redirect
-        return redirect('/');
+        return redirect('/adopt');
+    }
+
+    public function destroy(){
+        Auth::logout();
+        return redirect('/login');
     }
 }
