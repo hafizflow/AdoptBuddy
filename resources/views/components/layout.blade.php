@@ -35,9 +35,9 @@
                 </button>
             </div>
             <div class="hidden lg:flex lg:gap-x-12">
+                <a href="/admin/pets" class="text-sm/6 font-semibold text-gray-900">All Pets</a>
+                <a href="/admin" class="text-sm/6 font-semibold text-gray-900">Admin</a>
                 <a href="/adopt" class="text-sm/6 font-semibold text-gray-900">Adopt</a>
-                <a href="#" class="text-sm/6 font-semibold text-gray-900">Features</a>
-                <a href="#" class="text-sm/6 font-semibold text-gray-900">Marketplace</a>
                 <a href="#" class="text-sm/6 font-semibold text-gray-900">Company</a>
             </div>
             <div class="hidden lg:flex lg:flex-1 lg:justify-end">

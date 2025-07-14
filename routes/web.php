@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminPostController;
 use App\Http\Controllers\AdoptController;
 use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\SessionController;
@@ -23,5 +24,15 @@ Route::post('/register', [RegisterUserController::class, 'store']);
 // Adoption Form
 Route::get('/adopt', [AdoptController::class, 'create'])->middleware('auth');
 Route::post('/adopt', [AdoptController::class, 'store'])->middleware('auth');
+
+
+// Admin Form
+Route::get('/admin', [AdminPostController::class, 'create']);
+Route::post('/admin', [AdminPostController::class, 'store']);
+Route::get('/admin/pets', [AdminPostController::class, 'index'])->name('admin.pets.index');
+
+Route::get('/admin/pets/{pet}/edit', [AdminPostController::class, 'edit'])->name('admin.pets.edit');
+Route::put('/admin/pets/{pet}', [AdminPostController::class, 'update'])->name('admin.pets.update');
+Route::delete('/admin/pets/{pet}', [AdminPostController::class, 'destroy'])->name('admin.pets.destroy');
 
 
