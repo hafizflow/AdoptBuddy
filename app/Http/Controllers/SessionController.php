@@ -27,7 +27,7 @@ class SessionController extends Controller
         // store session
         request()->session()->regenerate();
         // redirect
-        return redirect('/adopt');
+        return redirect('/pets');
     }
 
     public function destroy(){

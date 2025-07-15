@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('adopts', function (Blueprint $table) {
-            $table->id();
+        Schema::create('post_users', function (Blueprint $table) {
+            $table->foreignId('post_id')->constrained('posts')->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->string('name');
             $table->string('email');
             $table->string('phone');
             $table->string('address');
             $table->string('isPrevious');
-            $table->string('message');
+            $table->string('message')->nullable();
             $table->enum('status', ['pending', 'accepted', 'rejected'])->default('pending');
             $table->timestamps();
         });
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('adopts');
+        Schema::dropIfExists('post_users');
     }
 };

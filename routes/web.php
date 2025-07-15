@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\AdminPostController;
-use App\Http\Controllers\AdoptController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\PostUserController;
 use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\SessionController;
+use App\Http\Middleware\IsAdmin;
 use Illuminate\Support\Facades\Route;
 
 
@@ -22,17 +23,17 @@ Route::post('/register', [RegisterUserController::class, 'store']);
 
 
 // Adoption Form
-Route::get('/adopt', [AdoptController::class, 'create'])->middleware('auth');
-Route::post('/adopt', [AdoptController::class, 'store'])->middleware('auth');
+Route::get('/adopt/{post}', [PostUserController::class, 'create'])->name('adopt.create')->middleware('auth');
+Route::post('/adopt/{post}', [PostUserController::class, 'store'])->name('adopt.store')->middleware('auth');
 
 
 // Admin Form
-Route::get('/admin', [AdminPostController::class, 'create']);
-Route::post('/admin', [AdminPostController::class, 'store']);
-Route::get('/admin/pets', [AdminPostController::class, 'index'])->name('admin.pets.index');
+Route::get('/admin', [PostController::class, 'create'])->middleware(IsAdmin::class);
+Route::post('/admin', [PostController::class, 'store'])->middleware(IsAdmin::class);
+Route::get('/pets', [PostController::class, 'index'])->name('pets.index');
 
-Route::get('/admin/pets/{pet}/edit', [AdminPostController::class, 'edit'])->name('admin.pets.edit');
-Route::put('/admin/pets/{pet}', [AdminPostController::class, 'update'])->name('admin.pets.update');
-Route::delete('/admin/pets/{pet}', [AdminPostController::class, 'destroy'])->name('admin.pets.destroy');
+Route::get('/posts/{post}', [PostController::class, 'edit'])->name('post.edit')->middleware(IsAdmin::class);
+Route::put('/posts/{post}', [PostController::class, 'update'])->name('post.update')->middleware(IsAdmin::class);
+Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('post.destroy')->middleware(IsAdmin::class);
 
 

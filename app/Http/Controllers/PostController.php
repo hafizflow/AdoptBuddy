@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AdminPost;
-use App\Models\PetImage;
+use App\Models\Post;
+use App\Models\PostImage;
 use Illuminate\Http\Request;
 
-class AdminPostController extends Controller
+class PostController extends Controller
 {
 
     public function index()
     {
-        $pets = AdminPost::with('images')->latest()->get();
-        return view('admin.all-pets', compact('pets'));
+        $pets = Post::with('images')->latest()->get();
+        return view('admin.all-post', compact('pets'));
     }
 
     public function create() {
-        return view('admin.adopt-post');
+        return view('admin.post');
     }
 
     public function store() {
@@ -31,7 +31,7 @@ class AdminPostController extends Controller
             'status' => 'required',
         ]);
 
-        $pet = AdminPost::create([
+        $pet = Post::create([
             'name' => $data['name'],
             'age' => $data['age'],
             'description' => $data['description'],
@@ -45,46 +45,45 @@ class AdminPostController extends Controller
             foreach(request()->file('images') as $image) {
                 $path = $image->store('pets', 'public');
 
-                PetImage::create([
-                    'admin_post_id' => $pet->id,
+                PostImage::create([
+                    'post_id' => $pet->id,
                     'image' => $path,
                 ]);
             }
         }
 
-        return redirect()->back()->with('success', 'Pet posted!');
+        return redirect()->route('pets.index')->with('success', 'Pet posted!');
     }
 
-
-    public function edit(AdminPost $pet)
+    public function edit(Post $post)
     {
-        $pet->load('images');
-        return view('admin.edit-pet', compact('pet'));
+        $post->load('images');
+        return view('admin.edit-post', compact('post'));
     }
 
-    public function update(Request $request, AdminPost $pet)
+    public function update(Post $post)
     {
-        $request->validate([
+        request()->validate([
             'status' => 'required|in:Available,On Hold,Adopted',
         ]);
 
-        $pet->update([
-            'status' => $request->status,
+        $post->update([
+            'status' => request()->status,
         ]);
 
-        return redirect()->route('admin.pets.index')->with('success', 'Pet status updated!');
+        return redirect()->route('pets.index')->with('success', 'Pet status updated!');
     }
 
-    public function destroy(AdminPost $pet)
+    public function destroy(Post $post)
     {
         // Delete related images from storage
-        foreach ($pet->images as $image) {
+        foreach ($post->images as $image) {
             \Storage::disk('public')->delete($image->image);
             $image->delete();
         }
 
-        $pet->delete();
+        $post->delete();
 
-        return redirect()->route('admin.pets.index')->with('success', 'Pet deleted!');
+        return redirect()->route('pets.index')->with('success', 'Pet deleted!');
     }
 }

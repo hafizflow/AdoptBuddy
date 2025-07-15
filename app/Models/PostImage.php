@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class PetImage extends Model
+class PostImage extends Model
 {
     protected $guarded = [];
 
     public function post(): BelongsTo
     {
-        return $this->belongsTo(AdminPost::class);
+        return $this->belongsTo(Post::class);
     }
 }
