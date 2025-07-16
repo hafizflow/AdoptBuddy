@@ -11,12 +11,12 @@ const UserProfile = () => {
     };
 
     return (
-        <div className="min-h-screen bg-[#f9f8eb] px-5 lg:px-20 py-8 space-y-10 flex items-center justify-center">
-            <div className="bg-white rounded-3xl shadow-md w-full max-w-4xl p-6 md:p-10 flex flex-col md:flex-row gap-8">
+        <div className="min-h-screen px-5 lg:px-20 py-8 space-y-10 flex items-center justify-center">
+            <div className="bg-white rounded-3xl shadow w-full max-w-4xl p-6 md:p-10 flex flex-col md:flex-row gap-8">
                 <div className="flex flex-col items-center md:items-start md:w-1/3">
                     <img
                         src={user.avatar}
-                        alt="User Avatar"
+                        alt={user.name}
                         className="w-40 h-40 rounded-full border-4 border-gray-300 object-cover mb-4"
                     />
                     <h2 className="text-xl font-semibold text-center md:text-left">{user.name}</h2>

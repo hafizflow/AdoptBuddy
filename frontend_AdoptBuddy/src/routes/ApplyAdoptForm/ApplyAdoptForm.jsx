@@ -42,7 +42,7 @@ const ApplyAdoptForm = () => {
                             required
                             value={formData.name}
                             onChange={handleChange}
-                            className="input input-bordered w-full"
+                            className="input input-bordered w-full focus:outline-none focus:ring-0 focus:border-indigo-900"
                         />
 
 
@@ -53,7 +53,7 @@ const ApplyAdoptForm = () => {
                             required
                             value={formData.email}
                             onChange={handleChange}
-                            className="input input-bordered w-full"
+                            className="input input-bordered w-full focus:outline-none focus:ring-0 focus:border-indigo-900"
                         />
 
 
@@ -64,7 +64,7 @@ const ApplyAdoptForm = () => {
                             required
                             value={formData.phone}
                             onChange={handleChange}
-                            className="input input-bordered w-full"
+                            className="input input-bordered w-full focus:outline-none focus:ring-0 focus:border-indigo-900"
                         />
 
 
@@ -75,7 +75,7 @@ const ApplyAdoptForm = () => {
                             rows={2}
                             value={formData.address}
                             onChange={handleChange}
-                            className="textarea textarea-bordered w-full"
+                            className="textarea textarea-bordered w-full focus:outline-none focus:ring-0 focus:border-indigo-900"
                         />
 
 
@@ -115,16 +115,16 @@ const ApplyAdoptForm = () => {
                             rows={3}
                             value={formData.reason}
                             onChange={handleChange}
-                            className="textarea textarea-bordered w-full"
+                            className="textarea textarea-bordered w-full focus:outline-none focus:ring-0 focus:border-indigo-900"
                             required
                         />
 
                         <div className="modal-action">
-                            <button type="submit" className="btn bg-green-600 text-white">Submit</button>
+                            <button type="submit" className="btn bg-green-700 text-white">Submit</button>
                             <button
                                 type="button"
                                 onClick={() => document.getElementById("my_modal_5").close()}
-                                className="btn bg-red-600 text-white"
+                                className="btn bg-red-700 text-white"
                             >
                                 Cancel
                             </button>

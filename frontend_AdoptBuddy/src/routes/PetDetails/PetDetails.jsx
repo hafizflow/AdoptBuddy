@@ -42,7 +42,7 @@ const PetDetails = () => {
 
     return (
         <div
-            className="min-h-screen bg-cover bg-center flex items-center justify-center px-4"
+            className="min-h-screen bg-cover bg-center mt-16 flex items-center justify-center px-4"
             style={{
                 backgroundImage:
                     'url("https://i.pinimg.com/736x/12/f4/91/12f49100389a8cdde0cb745d5d79ddcf.jpg")',
@@ -97,6 +97,7 @@ const PetDetails = () => {
 
                     <div className="w-full flex items-center gap-3 mt-4">
                         <Button>Apply to Adopt</Button>
+                        <Button>Distance from me</Button>
                         <button className="bg-white/20 text-white p-3 rounded-full hover:bg-white/30">
                             <FaHeart />
                         </button>

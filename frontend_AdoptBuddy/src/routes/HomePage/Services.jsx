@@ -32,7 +32,7 @@ const Services = () => {
                     {services.map((service, idx) => (
                         <div
                             key={idx}
-                            className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition duration-300"
+                            className="bg-white p-6 rounded-xl shadow-md hover:shadow-indigo-500/50 transition duration-300"
                         >
                             <div className="mb-4 flex justify-center">{service.icon}</div>
                             <h3 className="text-xl font-semibold text-gray-700 mb-2">
