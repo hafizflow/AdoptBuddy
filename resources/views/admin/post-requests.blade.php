@@ -224,4 +224,62 @@
             @endif
         </div>
     </div>
+
+
+
+
+
+
+    <div class="min-h-screen">
+        <div class="max-w-5xl mx-auto py-8 px-4">
+            <!-- Header Section -->
+            <div class="text-center mb-8">
+                <h1 class="text-4xl font-bold text-gray-900 mb-2">User Post Requests</h1>
+                <p class="text-gray-600 text-lg">Accept or Delete the post</p>
+            </div>
+
+        @if($posts->isEmpty())
+            <p>No invisible posts found.</p>
+        @else
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                @foreach($posts as $post)
+                    <div class="bg-white rounded-xl shadow p-4">
+                        @if($post->images->first())
+                            <img src="{{ asset('storage/' . $post->images->first()->image) }}" class="w-full h-48 object-cover rounded-md mb-3" alt="{{ $post->name }}">
+                        @else
+                            <div class="w-full h-48 bg-gray-200 flex items-center justify-center text-gray-500 rounded-md mb-3">No Image</div>
+                        @endif
+
+                        <h2 class="text-xl font-semibold mb-2">{{ $post->name }}</h2>
+                        <div class="text-sm text-gray-600">{{ $post->breed }} • {{ $post->age }} years</div>
+                        <p class="text-sm mt-2">{{ $post->description }}</p>
+                            {{-- Delete Button --}}
+                            <form action="{{ route('post.destroy', $post->id) }}" method="POST"
+                                  onsubmit="return confirm('Are you sure you want to delete this pet?');"
+                                  class="flex-1 mt-3">
+                                @csrf
+                                @method('DELETE')
+
+                                <button type="submit"
+                                        class="w-full h-12 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg shadow-md transition">
+                                    Delete Pet
+                                </button>
+                            </form>
+
+                            <form action="{{ route('post.request', $post->id) }}" method="POST"
+                                  class="flex-1 mt-3">
+                                @csrf
+                                @method('PATCH')
+
+                                <button type="submit"
+                                        class="w-full h-12 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg shadow-md transition">
+                                    Accept Request
+                                </button>
+                            </form>
+                    </div>
+                @endforeach
+            </div>
+        @endif
+        </div>
+    </div>
 </x-layout>

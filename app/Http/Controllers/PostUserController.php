@@ -12,8 +12,9 @@ class PostUserController extends Controller
     public function index()
     {
         $requests = PostUser::with('post', 'user')->latest()->get();
+        $posts = Post::where('isVisible', 'Invisible')->with('images')->get();
 
-        return view('admin.post-requests', compact('requests'));
+        return view('admin.post-requests', compact('requests', 'posts'));
     }
 
 

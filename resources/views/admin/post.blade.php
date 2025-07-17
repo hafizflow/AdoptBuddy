@@ -2,9 +2,8 @@
     <div class="mt-12 sm:mx-auto sm:w-full sm:max-w-md bg-white p-8 shadow-lg rounded-xl">
         <h2 class="text-2xl font-bold text-center text-gray-800 mb-8">Add New Pet</h2>
 
-        <form class="space-y-6" action="/admin" method="POST" enctype="multipart/form-data" aria-label="Create new item">
+        <form class="space-y-6" action="/post" method="POST" enctype="multipart/form-data" aria-label="Create new item">
             @csrf
-
             {{-- Name --}}
             <x-form-field>
                 <x-form-label for="name">Name</x-form-label>

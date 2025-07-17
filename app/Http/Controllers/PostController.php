@@ -86,4 +86,12 @@ class PostController extends Controller
 
         return redirect()->route('pets.index')->with('success', 'Pet deleted!');
     }
+
+    public function postRequest(Post $post){
+        $post->update([
+            'isVisible' => 'Visible',
+        ]);
+
+        return back();
+    }
 }

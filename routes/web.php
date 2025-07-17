@@ -42,9 +42,8 @@ Route::get('/pets', [PostController::class, 'index'])->name('pets.index');
 Route::get('/posts/{post}', [PostController::class, 'edit'])->name('post.edit')->middleware(IsAdmin::class);
 Route::put('/posts/{post}', [PostController::class, 'update'])->name('post.update')->middleware(IsAdmin::class);
 Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('post.destroy')->middleware(IsAdmin::class);
+Route::patch('/postRequest{post}', [PostController::class, 'postRequest'])->name('post.request')->middleware(IsAdmin::class)    ;
 
 
 Route::post('/posts/{post}/like', [LikeController::class, 'toggle'])->name('posts.like')->middleware('auth');
-
-
 Route::get('/likes', [LikeController::class, 'index'])->name('likes')->middleware('auth');
