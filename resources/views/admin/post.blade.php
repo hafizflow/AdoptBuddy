@@ -70,20 +70,6 @@
                 <x-form-error name="breed" />
             </x-form-field>
 
-            {{-- Pet Status --}}
-            <x-form-field>
-                <x-form-label for="status">Pet Status</x-form-label>
-                <div class="flex gap-4 mt-2">
-                    @foreach (['Available', 'On Hold', 'Adopted'] as $status)
-                        <label class="flex items-center gap-2 px-4 py-2 bg-gray-100 rounded-md shadow-sm hover:bg-gray-200 transition cursor-pointer">
-                            <input type="radio" id="{{ strtolower($status) }}" name="status" value="{{ $status }}">
-                            <span class="text-gray-700">{{ $status }}</span>
-                        </label>
-                    @endforeach
-                </div>
-                <x-form-error name="status" />
-            </x-form-field>
-
             {{-- Gender --}}
             <x-form-field>
                 <x-form-label for="gender">Gender</x-form-label>

@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('size');
             $table->string('breed');
             $table->string('description');
-            $table->string('status');
+            $table->enum('status', ['Available', 'On Hold', 'Adopted'])->default('Available');
+            $table->enum('isVisible', ['Visible', 'Invisible'])->default('Invisible');
             $table->timestamps();
         });
     }

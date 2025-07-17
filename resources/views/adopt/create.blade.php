@@ -35,7 +35,7 @@
             {{-- Message --}}
             <x-form-field>
                 <x-form-label for="message">Message</x-form-label>
-                <textarea name="message" id="message" rows="2" class="w-full rounded-lg border border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500">{{ old('message') }}</textarea>
+                <x-form-input :value="old('message')" type="text" name="message" id="message" />
                 <x-form-error name="message" />
             </x-form-field>
 

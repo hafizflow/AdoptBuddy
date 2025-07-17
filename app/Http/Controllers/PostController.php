@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\IsAdmin;
 use App\Models\Post;
 use App\Models\PostImage;
 use Illuminate\Http\Request;
@@ -28,8 +29,7 @@ class PostController extends Controller
             'size' => 'required',
             'breed' => 'required',
             'gender' => 'required',
-            'status' => 'required',
-        ]);
+            ]);
 
         $pet = Post::create([
             'name' => $data['name'],
@@ -38,7 +38,7 @@ class PostController extends Controller
             'size' => $data['size'],
             'breed' => $data['breed'],
             'gender' => $data['gender'],
-            'status' => $data['status'],
+            'isVisible' => auth()->user()->role === 'admin' ? 'Visible' : 'Invisible',
         ]);
 
         if(request()->hasFile('images')) {

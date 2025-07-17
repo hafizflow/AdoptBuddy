@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('post_users', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('post_id')->constrained('posts')->cascadeOnDelete();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->string('name');
@@ -22,6 +23,9 @@ return new class extends Migration
             $table->string('message')->nullable();
             $table->enum('status', ['pending', 'accepted', 'rejected'])->default('pending');
             $table->timestamps();
+
+            // Prevent duplicate post-user entries
+            $table->unique(['post_id', 'user_id']);
         });
     }
 
