@@ -24,7 +24,7 @@ const Facilities = () => {
                 {/* Image Section */}
                 <div className="flex-1">
                     <img
-                        src="https://i.pinimg.com/736x/79/6e/ae/796eae0c81dd5795b54e9d38cbd35c66.jpg"
+                        src="https://i.pinimg.com/1200x/f0/e6/db/f0e6db9c07ceeb998bd4da3444f3f895.jpg"
                         alt="Happy pet"
                         className="rounded-xl h-1/3 object-cover shadow-md"
                     />

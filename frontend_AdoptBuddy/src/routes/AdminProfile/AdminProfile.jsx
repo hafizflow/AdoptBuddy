@@ -34,11 +34,10 @@ const AdminProfile = () => {
                     {/* Applications */}
                     <button
                         onClick={() => setActiveSection("applications")}
-                        className={`flex items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${
-                            activeSection === "applications"
+                        className={`flex items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "applications"
                                 ? "bg-primary text-white"
                                 : "hover:bg-gray-100"
-                        }`}
+                            }`}
                     >
                         <MdSettingsApplications size={24} />
                         <span className="hidden md:inline">Applications</span>
@@ -47,11 +46,10 @@ const AdminProfile = () => {
                     {/* Upload */}
                     <button
                         onClick={() => setActiveSection("upload")}
-                        className={`flex items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${
-                            activeSection === "upload"
+                        className={`flex items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "upload"
                                 ? "bg-primary text-white"
                                 : "hover:bg-gray-100"
-                        }`}
+                            }`}
                     >
                         <IoCloudUploadOutline size={24} />
                         <span className="hidden md:inline">Upload Pet</span>
@@ -60,11 +58,10 @@ const AdminProfile = () => {
                     {/* Manage */}
                     <button
                         onClick={() => setActiveSection("manage")}
-                        className={`flex items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${
-                            activeSection === "manage"
+                        className={`flex items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "manage"
                                 ? "bg-primary text-white"
                                 : "hover:bg-gray-100"
-                        }`}
+                            }`}
                     >
                         <MdManageHistory size={24} />
                         <span className="hidden md:inline">Manage Pets</span>
@@ -119,7 +116,19 @@ const AdminProfile = () => {
                     <section className="bg-white shadow rounded-xl p-6">
                         <h2 className="text-xl text-center font-semibold mb-4">Upload New Pet</h2>
                         <form className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <input type="file" className="file-input file-input-bordered focus:outline-none focus:ring-0 focus:border-indigo-900" />
+                            <div className="md:col-span-2">
+                                <label
+                                    htmlFor="fileUpload"
+                                    className="flex flex-col items-center justify-center w-full border-2 border-dashed border-indigo-300 rounded-xl p-6 cursor-pointer hover:border-indigo-500 transition"
+                                >
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-indigo-400 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16V4m0 0L3.5 7.5M7 4l3.5 3.5M7 20h10M17 16v4M17 20l3.5-3.5M17 20l-3.5-3.5" />
+                                    </svg>
+                                    <p className="text-gray-600 text-sm mb-1">Drag & drop <span className="text-indigo-600 font-medium">images or any file</span></p>
+                                    <p className="text-gray-400 text-xs">or <span className="underline text-indigo-500">browse files</span> on your computer</p>
+                                    <input id="fileUpload" type="file" className="hidden" />
+                                </label>
+                            </div>
                             <input type="text" placeholder="Breed" className="input input-bordered focus:outline-none focus:ring-0 focus:border-indigo-900" />
                             <input type="number" placeholder="Age" className="input input-bordered focus:outline-none focus:ring-0 focus:border-indigo-900" />
                             <input type="text" placeholder="Gender" className="input input-bordered focus:outline-none focus:ring-0 focus:border-indigo-900" />

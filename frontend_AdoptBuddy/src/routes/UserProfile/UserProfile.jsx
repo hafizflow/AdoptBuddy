@@ -1,3 +1,4 @@
+import { IoMdNotificationsOutline } from "react-icons/io";
 
 
 const UserProfile = () => {
@@ -6,13 +7,13 @@ const UserProfile = () => {
         email: "hafiz@5678.com",
         location: "Savar, Bangladesh",
         phone: "01700610483",
-        avatar: "https://scontent.fdac174-1.fna.fbcdn.net/v/t39.30808-6/485799207_632430909579629_5235868226780574381_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=101&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=iYa3Fx18urQQ7kNvwFxpYXv&_nc_oc=AdlmOHPl71BB6R543BgMKFhlNa8IPl7bSAp6JBOXWsuvtQyWunlvkEUKwZhqgl7J0ko&_nc_zt=23&_nc_ht=scontent.fdac174-1.fna&_nc_gid=ts4_KdNxcB8urYu28TeK9A&oh=00_AfTaEc1LASKC_m4M2OKJyP8UKCJY8Y_Ayp2o83symbaKyA&oe=687319BB",
+        avatar: "https://i.pinimg.com/736x/eb/76/a4/eb76a46ab920d056b02d203ca95e9a22.jpg",
         bio: "Pet lover and frequent adopter. Passionate about animals and their well-being."
     };
 
     return (
-        <div className="min-h-screen px-5 lg:px-20 py-8 space-y-10 flex items-center justify-center">
-            <div className="bg-white rounded-3xl shadow w-full max-w-4xl p-6 md:p-10 flex flex-col md:flex-row gap-8">
+        <div className="min-h-screen mt-12 px-5 lg:px-20 py-8 space-y-10 flex gap-5 items-center justify-center">
+            <div className="bg-indigo-50 rounded-3xl shadow w-full max-w-4xl p-6 md:p-10 flex flex-col gap-8">
                 <div className="flex flex-col items-center md:items-start md:w-1/3">
                     <img
                         src={user.avatar}
@@ -38,10 +39,26 @@ const UserProfile = () => {
                             <p className="text-gray-800">{user.phone}</p>
                         </div>
                     </div>
-
-                    <div className="mt-6">
+                </div>
+            </div>
+            <div className="flex flex-col gap-8 w-full max-w-4xl">
+                <div className="bg-indigo-50 rounded-3xl shadow w-full max-w-4xl p-6 md:p-10 space-y-6">
+                    {/* My Adopt Request Update*/}
+                    <h3 className="text-lg font-bold flex items-center text-gray-800 mb-4"><IoMdNotificationsOutline className="text-xl" /> &nbsp;
+                        My Adopt Request</h3>
+                    <div className="bg-white rounded-xl shadow p-6">
+                        <p>Accepted the  pet id : 2</p>
+                    </div>
+                </div>
+                <div className="bg-indigo-50 rounded-3xl shadow w-full max-w-4xl p-6 md:p-10 space-y-6">
+                    {/* Manage my profile*/}
+                    <h3 className="text-lg font-bold text-gray-800 mb-4">Manage My Profile</h3>
+                    <div className="rounded-xl flex flex-col gap-4">
                         <button className="bg-blue-600 text-white px-6 py-2 rounded-xl hover:bg-blue-700 transition duration-300">
                             Edit Profile
+                        </button>
+                        <button className="bg-red-600 text-white px-6 py-2 rounded-xl hover:bg-red-700 transition duration-300">
+                            Delete Profile
                         </button>
                     </div>
                 </div>

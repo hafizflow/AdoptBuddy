@@ -33,10 +33,10 @@ const Register = () => {
                             <fieldset className="fieldset">
                                 <label className="label font-bold">Name</label>
                                 <input type="text" name="name" id="name" className="input focus:outline-none focus:ring-0 focus:border-indigo-900  w-full" placeholder="Name" />
-                                <label className="label font-bold">Phone</label>
+                                {/* <label className="label font-bold">Phone</label>
                                 <input type="phone" name="phone" id="phone" className="input focus:outline-none focus:ring-0 focus:border-indigo-900  w-full" placeholder="Phone" />
                                 <label className="label font-bold">Address</label>
-                                <input type="text" name="address" id="address" className="input focus:outline-none focus:ring-0 focus:border-indigo-900  w-full" placeholder="Address" />
+                                <input type="text" name="address" id="address" className="input focus:outline-none focus:ring-0 focus:border-indigo-900  w-full" placeholder="Address" /> */}
                                 <label className="label font-bold">Email</label>
                                 <input type="email" name="email" id="email" className="input focus:outline-none focus:ring-0 focus:border-indigo-900  w-full" placeholder="Email" />
                                 <label className="label font-bold">Password</label>
@@ -44,6 +44,19 @@ const Register = () => {
                                     <input
                                         type={showPassword ? "text" : "password"} name="password" id="password" className="input w-full focus:outline-none focus:ring-0 focus:border-indigo-900 pr-10"
                                         placeholder="Password" />
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowPassword(!showPassword)}
+                                        className="absolute top-1/2 right-3 transform  -translate-y-1/2 text-gray-500 cursor-pointer z-10"
+                                    >
+                                        {showPassword ? <FiEyeOff size={20} /> : <FiEye size={20} />}
+                                    </button>
+                                </div>
+                                <label className="label font-bold">Confirm Password</label>
+                                <div className="relative w-full">
+                                    <input
+                                        type={showPassword ? "text" : "password"} name="confirmPassword" id="confirmPassword" className="input w-full focus:outline-none focus:ring-0 focus:border-indigo-900 pr-10"
+                                        placeholder="Confirm Password" />
                                     <button
                                         type="button"
                                         onClick={() => setShowPassword(!showPassword)}

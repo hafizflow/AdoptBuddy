@@ -23,7 +23,7 @@ const PetCard = () => {
                             e.stopPropagation();
                             setLiked(!liked)
                         }}
-                        className={`text-xl ${liked ? "text-red-500" : "text-gray-400"}`}
+                        className={`text-xl ${liked ? "text-red-500" : "text-gray-300"}`}
                     >
                         <FaHeart />
                     </button>

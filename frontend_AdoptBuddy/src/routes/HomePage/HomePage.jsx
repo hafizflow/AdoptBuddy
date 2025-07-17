@@ -1,6 +1,5 @@
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 import { motion } from "framer-motion";
-// import pet from '../../assets/banner.png';
 import Button from '../Button/Button';
 import Services from "./Services";
 import Facilities from "./Facilities";
@@ -43,15 +42,15 @@ const HomePage = () => {
                 </div>
             </div> */}
 
-            {/* hg d */}
+            {/* Banner Content */}
             <div
                 style={{ backgroundImage: `url(${dog})` }}
-                className="flex flex-col min-h-screen bg-cover bg-center bg-no-repeat justify-center items-center px-5 lg:px-20 relative"
+                className="flex flex-col min-h-screen mt-15 bg-cover bg-center bg-no-repeat justify-center items-center px-5 lg:px-20 relative"
             >
-                <div className="absolute bg-black/50 inset-0 bg-opacity-40"></div>
+                <div className="absolute bg-black/20 inset-0 bg-opacity-40"></div>
 
                 {/* Main Content */}
-                <div className="relative z-10 flex flex-col md:flex-row justify-between items-center gap-10 md:gap-20 w-full">
+                <div className="relative z-10 flex flex-col md:flex-row justify-between md:items-end md:top-10 gap-10 md:gap-20 w-full">
 
                     {/* Social Icons */}
                     <div className="flex text-2xl cursor-pointer flex-row md:flex-col justify-center items-center text-white gap-5">
@@ -59,21 +58,6 @@ const HomePage = () => {
                         <FaInstagram className="hover:border rounded-full hover:bg-red-600 p-1 hover:text-white transition" />
                         <FaTwitter className="hover:border rounded-full hover:bg-blue-600 p-1 hover:text-white transition" />
                     </div>
-
-                    {/* Pet Image */}
-                    {/* <motion.div
-                        className="w-full md:w-1/3 flex justify-center items-center"
-                        initial={{ x: -200, opacity: 0 }}
-                        animate={{ x: 0, opacity: 1 }}
-                        transition={{ duration: 1 }}
-                    >
-                        <img
-                            src={pet}
-                            alt="Pet"
-                            className="max-w-xs md:max-w-sm"
-                            style={{ filter: "drop-shadow(1px 1px 20px gray)" }}
-                        />
-                    </motion.div> */}
 
                     {/* Text & Buttons */}
                     <motion.div
@@ -84,7 +68,7 @@ const HomePage = () => {
                     >
                         <TypeAnimation
                             sequence={[
-                                'Rescue, Adopt, Love – Connecting Pets with Their Forever Homes!',
+                                'Rescue. Adopt. Love. Find their forever home!',
                                 2000,
                                 '', // clear
                                 500,
@@ -92,13 +76,8 @@ const HomePage = () => {
                             wrapper="h1"
                             cursor={true}
                             repeat={Infinity}
-                            className="text-3xl md:text-5xl lg:text-4xl leading-tight font-bold text-white"
+                            className="text-2xl md:text-3xl lg:text-5xl leading-tight font-bold text-white barriecito-regular"
                         />
-
-                        {/* <div className="flex flex-col md:flex-row gap-4 w-full md:w-auto justify-center md:justify-start">
-                            <Button>Adopt Now</Button>
-                            <Button>Learn More</Button>
-                        </div> */}
                     </motion.div>
                 </div>
                 <h1 className="text-white absolute left-12 bottom-12 pb-4 animate-bounce">Scroll Down ↓</h1>
