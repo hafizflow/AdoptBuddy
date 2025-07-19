@@ -30,6 +30,10 @@ Route::get("/details", function () {
     return Inertia::render('petDetails/petDetails');
 });
 
+Route::get("/profile", function () {
+    return Inertia::render('userProfile/userProfile');
+});
+
 
 
 //Auth
