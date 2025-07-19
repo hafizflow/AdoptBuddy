@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaHeart } from "react-icons/fa";
 
-const PetCard = () => {
+const PetCard = ({ pet }) => {
     const [liked, setLiked] = useState(false);
 
     const handlecardClick = () => {
@@ -16,7 +16,7 @@ const PetCard = () => {
             >
                 <div className="flex justify-between items-start mb-4">
                     <span className="bg-gray-100 text-green-600 text-sm font-medium px-3 py-1 rounded-full">
-                        Available
+                        {pet.status}
                     </span>
                     <button
                         onClick={(e) => {
@@ -38,10 +38,10 @@ const PetCard = () => {
                     />
                 </div>
 
-                <p className="text-sm text-green-600 font-medium">Cat</p>
-                <h3 className="text-lg font-semibold">Persian ketty</h3>
+                <p className="text-sm text-green-600 font-medium">{pet.name}</p>
+                <h3 className="text-lg font-semibold">{pet.breed}</h3>
                 <p className="text-md text-gray-700 mb-4">
-                    Breed : Persian Cat | Age : 8 months
+                    Breed : {pet.breed} | Age : {pet.age} months
                 </p>
 
                 <button

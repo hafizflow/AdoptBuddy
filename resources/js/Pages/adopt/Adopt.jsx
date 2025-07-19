@@ -1,7 +1,7 @@
 import ApplyAdoptForm from "../../components/ApplyAdoptForm/ApplyAdoptForm";
 import PetCard from "../../components/PetCard/PetCard";
 
-const AllPets = () => {
+const AllPets = ({ pets }) => {
     return (
         <div className="min-h-screen mt-12 px-5 lg:px-20 py-8 space-y-10">
             <div className="">
@@ -25,14 +25,9 @@ const AllPets = () => {
                 </span>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-                <PetCard></PetCard>
-                <PetCard></PetCard>
-                <PetCard></PetCard>
-                <PetCard></PetCard>
-                <PetCard></PetCard>
-                <PetCard></PetCard>
-                <PetCard></PetCard>
-                <PetCard></PetCard>
+                {pets.map((pet) => (
+                    <PetCard key={pet.id} pet={pet} />
+                ))}
             </div>
             <ApplyAdoptForm></ApplyAdoptForm>
         </div>

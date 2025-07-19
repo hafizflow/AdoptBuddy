@@ -55,7 +55,7 @@ Route::delete('/requests/{postUser}', [PostUserController::class, 'destroy'])->n
 
 Route::get('/post', [PostController::class, 'create'])->middleware('auth');
 Route::post('/post', [PostController::class, 'store'])->middleware('auth');
-Route::get('/pets', [PostController::class, 'index'])->name('pets.index');
+Route::get('/adopt', [PostController::class, 'index'])->name('pets.index');
 
 Route::get('/posts/{post}', [PostController::class, 'edit'])->name('post.edit')->middleware(IsAdmin::class);
 Route::put('/posts/{post}', [PostController::class, 'update'])->name('post.update')->middleware(IsAdmin::class);
