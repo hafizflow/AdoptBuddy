@@ -12,6 +12,9 @@ Route::get('/anjumHome', function () {
 Route::get("/contact", function () {
     return Inertia::render('contact/contact');
 });
+Route::get("/about", function () {
+    return Inertia::render('about/About');
+});
 
 
 Route::view('/', 'welcome');
