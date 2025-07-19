@@ -10,18 +10,27 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 
-Route::get("/riyad", function () {
-    return inertia('Home');
-});
-Route::get('/anjumHome', function () {
+Route::get('/', function () {
     return Inertia::render('home/Home');
 });
+
 Route::get("/contact", function () {
-    return Inertia::render('contact/contact');
+    return Inertia::render('contact/Contact');
 });
 Route::get("/about", function () {
     return Inertia::render('about/About');
 });
+Route::get("/adopt", function () {
+    return Inertia::render('adopt/Adopt');
+});
+Route::get("/admin", function () {
+    return Inertia::render('admin/Admin');
+});
+Route::get("/details", function () {
+    return Inertia::render('petDetails/petDetails');
+});
+
+
 
 
 //Auth

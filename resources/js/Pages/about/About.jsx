@@ -13,12 +13,12 @@ const About = () => {
         {
             name: "Mithila Farzana",
             role: "Co-Founder & CTO",
-            image: "https://scontent.fdac174-1.fna.fbcdn.net/v/t39.30808-6/495086455_2095470380877807_1111959068454000522_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=3KjwOBveAVYQ7kNvwE4FZ-b&_nc_oc=AdkNB9PEEgkaFnoOdm6jm3SK98LtXDDqVb5oWEKQQwe9Bmsqwjbok-7FuM5IphqwQhY&_nc_zt=23&_nc_ht=scontent.fdac174-1.fna&_nc_gid=0dZapIULJo9GOQXUWTo8Gg&oh=00_AfSlJ7bgIlO5HIR_CVEXtWGOXpI8Coqp45NtHoh4isGz8g&oe=687524B1",
+            image: "https://scontent.fdac174-1.fna.fbcdn.net/v/t39.30808-6/495086455_2095470380877807_1111959068454000522_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=qLnc6Y88di8Q7kNvwF1AdCX&_nc_oc=AdnIO2VmZYBS4UsFh2UnwRYhvGmUcnGjwM2rjTTVJsPql3q0RmOJRrPspIJ8Tytdn70&_nc_zt=23&_nc_ht=scontent.fdac174-1.fna&_nc_gid=ykzIWYKkYHHaqa7KbQTrNA&oh=00_AfSXZl2GDNxWykwP2Mb6oQ4G7PLWDWnAT5BM48aqoNMWfw&oe=687DB671",
         },
         {
             name: "Salaha Ummey Suzana",
             role: "Vice President",
-            image: "https://scontent.fdac174-1.fna.fbcdn.net/v/t39.30808-6/511010491_743687928328874_343137926828696210_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=98dxamiheXAQ7kNvwF4G_wG&_nc_oc=Adn3dglaq7xZO0ddRCZ_7GFQ-NRmUvsdSisNdgKrj8mhQRK88KFuG1_Kv06-T94UrBE&_nc_zt=23&_nc_ht=scontent.fdac174-1.fna&_nc_gid=atWS-5XEzLfeE6A5sMX9tQ&oh=00_AfS285t_09Q49ge7x8se8RgDXJ5rnMGI_WUHMOj7uzAHyQ&oe=687531D4",
+            image: "https://scontent.fdac174-1.fna.fbcdn.net/v/t39.30808-6/475989973_637503445613990_3704680377221540817_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=a5f93a&_nc_ohc=DCdBeJJv2mYQ7kNvwEKnDeQ&_nc_oc=AdkSZqab2OMyrWVbUn11SxrU8MEP2oB6SW0GziOLj4giak2qe5pXB3yZOK87Ynzbib4&_nc_zt=23&_nc_ht=scontent.fdac174-1.fna&_nc_gid=kjkiNpxdJWiFcrFiJUczCA&oh=00_AfTljV9Tk0YuKEoXtJVOKvDe1_mdDvShJRWkX-rFoZD3hQ&oe=687DB2F3",
         },
         {
             name: "Shakil Ahmed",
@@ -28,21 +28,27 @@ const About = () => {
     ];
 
     return (
-        <div className="bg-[#f9f8eb]">
-            {/* About Intro + Stats Section */}
+        <div className="mt-10">
             <div className="min-h-screen px-5 lg:px-20 py-8 flex flex-col lg:flex-row items-center justify-center gap-10">
                 <div className="flex-1 max-w-xl">
-                    <p className="text-amber-950 font-semibold mb-2">How It Started</p>
+                    <p className="text-primary font-semibold mb-2">
+                        How It Started
+                    </p>
                     <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
                         Our Dream is <br /> A Loving Home for <br /> Every Pet
                     </h2>
                     <p className="text-gray-700 text-base leading-relaxed">
-                        AdoptBuddy was founded by animal lovers with a shared dream — to make pet adoption easier,
-                        safer, and more compassionate. What started as a simple idea soon evolved into a mission-driven
-                        platform connecting homeless pets with loving families. United by a belief in second chances,
-                        the AdoptBuddy team built a space where adopters and rescues could come together with trust.
-                        Through continuous innovation and heartfelt dedication, AdoptBuddy now supports a growing
-                        community of pet lovers, all driven by the desire to give every animal a forever home.
+                        AdoptBuddy was founded by animal lovers with a shared
+                        dream — to make pet adoption easier, safer, and more
+                        compassionate. What started as a simple idea soon
+                        evolved into a mission-driven platform connecting
+                        homeless pets with loving families. United by a belief
+                        in second chances, the AdoptBuddy team built a space
+                        where adopters and rescues could come together with
+                        trust. Through continuous innovation and heartfelt
+                        dedication, AdoptBuddy now supports a growing community
+                        of pet lovers, all driven by the desire to give every
+                        animal a forever home.
                     </p>
                 </div>
 
@@ -55,29 +61,46 @@ const About = () => {
 
                     <div className="grid grid-cols-2 gap-4">
                         <div className="bg-gray-100 p-6 rounded-xl shadow">
-                            <p className="text-2xl font-bold text-gray-900">4+</p>
-                            <p className="text-gray-600 text-sm">Years of Trusted Service</p>
+                            <p className="text-2xl font-bold text-gray-900">
+                                4+
+                            </p>
+                            <p className="text-gray-600 text-sm">
+                                Years of Trusted Service
+                            </p>
                         </div>
                         <div className="bg-gray-100 p-6 rounded-xl shadow">
-                            <p className="text-2xl font-bold text-gray-900">5,200+</p>
-                            <p className="text-gray-600 text-sm">Pets Successfully Adopted</p>
+                            <p className="text-2xl font-bold text-gray-900">
+                                5,200+
+                            </p>
+                            <p className="text-gray-600 text-sm">
+                                Pets Successfully Adopted
+                            </p>
                         </div>
                         <div className="bg-gray-100 p-6 rounded-xl shadow">
-                            <p className="text-2xl font-bold text-gray-900">2,800+</p>
-                            <p className="text-gray-600 text-sm">Happy Pet Parents</p>
+                            <p className="text-2xl font-bold text-gray-900">
+                                2,800+
+                            </p>
+                            <p className="text-gray-600 text-sm">
+                                Happy Pet Parents
+                            </p>
                         </div>
                         <div className="bg-gray-100 p-6 rounded-xl shadow">
-                            <p className="text-2xl font-bold text-gray-900">300+</p>
-                            <p className="text-gray-600 text-sm">Partner Shelters</p>
+                            <p className="text-2xl font-bold text-gray-900">
+                                300+
+                            </p>
+                            <p className="text-gray-600 text-sm">
+                                Partner Shelters
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
 
-
             <div className="py-16 px-4 md:px-10">
                 <div className="max-w-7xl mx-auto text-center">
-                    <p className="text-sm uppercase text-gray-500 font-medium mb-2">Our Team</p>
+                    <p className="text-sm uppercase text-gray-500 font-medium mb-2">
+                        Our Team
+                    </p>
                     <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-3">
                         Meet our Team
                     </h2>
@@ -85,7 +108,8 @@ const About = () => {
                         Passionate. Proactive. Expert.
                     </p>
                     <p className="text-gray-600 max-w-2xl mx-auto mb-12">
-                        We lead with care — our core value — and a shared passion for connecting the world.
+                        We lead with care — our core value — and a shared
+                        passion for connecting the world.
                     </p>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-6">
                         {teamMembers.map((member, index) => (
@@ -95,8 +119,12 @@ const About = () => {
                                     alt={member.name}
                                     className="w-full h-[320px] object-cover rounded-xl shadow-md"
                                 />
-                                <h4 className="mt-4 text-lg font-semibold text-gray-800">{member.name}</h4>
-                                <p className="text-sm text-gray-500">{member.role}</p>
+                                <h4 className="mt-4 text-lg font-semibold text-gray-800">
+                                    {member.name}
+                                </h4>
+                                <p className="text-sm text-gray-500">
+                                    {member.role}
+                                </p>
                             </div>
                         ))}
                     </div>

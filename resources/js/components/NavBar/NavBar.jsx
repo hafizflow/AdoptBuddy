@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 import { FiHeart } from "react-icons/fi";
-import { Link, NavLink } from "react-router-dom";
 import { MdLogin } from "react-icons/md";
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
-    // const location = useLocation();
-    // const isHomepage = location.pathname === "/";
+
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 20);
@@ -25,8 +23,8 @@ const Navbar = () => {
 
     const links = navItems.map(({ name, path }) => (
         <li key={name}>
-            <NavLink
-                to={path}
+            <a
+                href={path}
                 className={({ isActive }) =>
                     `hover:underline hover:bg-transparent underline-offset-8 decoration-white transition ${
                         isActive ? "underline" : ""
@@ -34,7 +32,7 @@ const Navbar = () => {
                 }
             >
                 {name}
-            </NavLink>
+            </a>
         </li>
     ));
 
@@ -73,17 +71,17 @@ const Navbar = () => {
                         {links}
                     </ul>
                 </div>
-                <Link
+                <a
                     onClick={() => {
                         window.scrollTo(0, 0);
                     }}
-                    to="/"
+                    href="/"
                     className={`${
                         isScrolled ? "text-indigo-900" : "text-white"
                     } text-2xl font-semibold`}
                 >
                     AdoptBuddy
-                </Link>
+                </a>
             </div>
 
             <div className="navbar-end hidden lg:flex">
@@ -101,13 +99,13 @@ const Navbar = () => {
                     isScrolled ? "text-indigo-900" : "text-white"
                 } navbar-end flex gap-2 items-center`}
             >
-                <Link to="/favouritelist">
+                <a href="/favouritelist">
                     <FiHeart className="text-xl font-bold hover:text-2xl hover:text-red-600" />
-                </Link>
-                <Link className="flex items-center" to="/login">
+                </a>
+                <a className="flex items-center" to="/login">
                     Login
                     <MdLogin className="text-xl" />
-                </Link>
+                </a>
             </div>
         </div>
     );
