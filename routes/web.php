@@ -32,7 +32,6 @@ Route::get("/details", function () {
 
 
 
-
 //Auth
 Route::get('/login', [SessionController::class, 'create'])->name('login');
 Route::post('/login', [SessionController::class, 'store']);

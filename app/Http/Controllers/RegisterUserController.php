@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
-
+use Inertia\Inertia;
 class RegisterUserController extends Controller
 {
     public function create()
     {
-        return view('auth.register');
+        return Inertia::render('register/Register');
     }
 
     public function store()
@@ -25,6 +26,6 @@ class RegisterUserController extends Controller
         // login the user
         Auth::login($user);
         // redirect
-        return redirect('/pets');
+        return Inertia::location('/');
     }
 }

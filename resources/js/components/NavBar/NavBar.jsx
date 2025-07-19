@@ -102,7 +102,7 @@ const Navbar = () => {
                 <a href="/favouritelist">
                     <FiHeart className="text-xl font-bold hover:text-2xl hover:text-red-600" />
                 </a>
-                <a className="flex items-center" to="/login">
+                <a className="flex items-center cursor-pointer" href="/login">
                     Login
                     <MdLogin className="text-xl" />
                 </a>

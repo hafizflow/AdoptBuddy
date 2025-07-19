@@ -3,7 +3,14 @@ import oneSide from "../../../assets/oneSideDog.png";
 import Button from "../../components/Button/Button";
 import { useState } from "react";
 import { FiEye, FiEyeOff } from "react-icons/fi";
+import { useForm } from "@inertiajs/react";
 const Register = () => {
+    const { data, setData, post, processing, errors } = useForm({
+        name: "",
+        email: "",
+        password: "",
+        password_confirmation: "",
+    });
     const MotionDiv = motion.div;
     const [showPassword, setShowPassword] = useState(false);
     return (
@@ -34,12 +41,22 @@ const Register = () => {
                     </div>
                     <div className="card bg-indigo-50 w-full max-w-full shrink-0 shadow">
                         <div className="card-body">
-                            <fieldset className="fieldset">
+                            <form
+                                className="fieldset"
+                                onSubmit={(e) => {
+                                    e.preventDefault();
+                                    post("/register");
+                                }}
+                            >
                                 <label className="label font-bold">Name</label>
                                 <input
                                     type="text"
                                     name="name"
                                     id="name"
+                                    value={data.name}
+                                    onChange={(e) =>
+                                        setData("name", e.target.value)
+                                    }
                                     className="input focus:outline-none focus:ring-0 focus:border-indigo-900  w-full"
                                     placeholder="Name"
                                 />
@@ -52,6 +69,10 @@ const Register = () => {
                                     type="email"
                                     name="email"
                                     id="email"
+                                    value={data.email}
+                                    onChange={(e) =>
+                                        setData("email", e.target.value)
+                                    }
                                     className="input focus:outline-none focus:ring-0 focus:border-indigo-900  w-full"
                                     placeholder="Email"
                                 />
@@ -65,6 +86,10 @@ const Register = () => {
                                         }
                                         name="password"
                                         id="password"
+                                        value={data.password}
+                                        onChange={(e) =>
+                                            setData("password", e.target.value)
+                                        }
                                         className="input w-full focus:outline-none focus:ring-0 focus:border-indigo-900 pr-10"
                                         placeholder="Password"
                                     />
@@ -90,8 +115,15 @@ const Register = () => {
                                         type={
                                             showPassword ? "text" : "password"
                                         }
-                                        name="confirmPassword"
-                                        id="confirmPassword"
+                                        value={data.password_confirmation}
+                                        onChange={(e) =>
+                                            setData(
+                                                "password_confirmation",
+                                                e.target.value
+                                            )
+                                        }
+                                        name="password_confirmation"
+                                        id="password_confirmation"
                                         className="input w-full focus:outline-none focus:ring-0 focus:border-indigo-900 pr-10"
                                         placeholder="Confirm Password"
                                     />
@@ -109,17 +141,19 @@ const Register = () => {
                                         )}
                                     </button>
                                 </div>
-                                <Button className="mt-3">Register</Button>
+                                <Button type="submit" className="mt-3">
+                                    Register
+                                </Button>
                                 <div className="flex gap-5 my-2 mx-auto">
                                     <a className="">Already have an account?</a>
-                                    <Link
-                                        to="/login"
+                                    <a
+                                        href="/login"
                                         className="link link-hover text-indigo-900"
                                     >
                                         Login
-                                    </Link>
+                                    </a>
                                 </div>
-                            </fieldset>
+                            </form>
                         </div>
                     </div>
                 </MotionDiv>
