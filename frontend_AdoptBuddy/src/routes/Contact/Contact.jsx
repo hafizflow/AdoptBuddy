@@ -22,7 +22,7 @@ const Contact = () => {
     };
     return (
         <div
-            className="min-h-screen bg-cover bg-center flex flex-col gap-5 md:flex-row  items-center justify-center px-4 py-10"
+            className="min-h-screen mt-16 bg-cover bg-center flex flex-col gap-5 md:flex-row  items-center justify-center px-4 py-10"
             style={{
                 backgroundImage: `url('https://cdn.pixabay.com/photo/2022/10/28/10/22/cat-7552840_1280.jpg')`,
             }}
@@ -33,7 +33,7 @@ const Contact = () => {
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ duration: 1 }}
             >
-                <h1 className="text-center text-xl underline">Contact Us</h1>
+                <h1 className="text-center text-xl">Contact Us</h1>
                 <p>
                     Not sure what you need? The team at AdoptBuddy will be happy to listen to you and suggest event ideas you hadnt considered.
                 </p>
@@ -47,7 +47,7 @@ const Contact = () => {
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ duration: 1 }}
             >
-                <h1 className="text-center text-xl underline">Lets have a chat</h1>
+                <h1 className="text-center text-xl">Lets have a chat</h1>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <label className="text-sm">First name</label>

@@ -9,7 +9,7 @@ const Register = () => {
     const MotionDiv = motion.div;
     const [showPassword, setShowPassword] = useState(false);
     return (
-        <div className="bg-[#f9f8eb] min-h-screen flex overflow-hidden">
+        <div className="min-h-screen flex mt-10 overflow-hidden">
             <MotionDiv className="relative w-1/2 hidden lg:block"
                 initial={{ x: -200, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
@@ -26,24 +26,37 @@ const Register = () => {
                     animate={{ x: 0, opacity: 1 }}
                     transition={{ duration: 1 }}>
                     <div className="text-center lg:text-left">
-                        <h1 className="text-5xl font-bold">Register now!</h1>
+                        <h1 className="text-5xl text-indigo-900 font-bold">Register now!</h1>
                     </div>
-                    <div className="card bg-base-100 w-full max-w-full shrink-0 shadow">
+                    <div className="card bg-indigo-50 w-full max-w-full shrink-0 shadow">
                         <div className="card-body">
                             <fieldset className="fieldset">
-                                <label className="label">Name</label>
-                                <input type="text" name="name" id="name" className="input  w-full" placeholder="Name" />
-                                <label className="label">Phone</label>
-                                <input type="phone" name="phone" id="phone" className="input  w-full" placeholder="Phone" />
-                                <label className="label">Address</label>
-                                <input type="text" name="address" id="address" className="input  w-full" placeholder="Address" />
-                                <label className="label">Email</label>
-                                <input type="email" name="email" id="email" className="input  w-full" placeholder="Email" />
-                                <label className="label">Password</label>
+                                <label className="label font-bold">Name</label>
+                                <input type="text" name="name" id="name" className="input focus:outline-none focus:ring-0 focus:border-indigo-900  w-full" placeholder="Name" />
+                                {/* <label className="label font-bold">Phone</label>
+                                <input type="phone" name="phone" id="phone" className="input focus:outline-none focus:ring-0 focus:border-indigo-900  w-full" placeholder="Phone" />
+                                <label className="label font-bold">Address</label>
+                                <input type="text" name="address" id="address" className="input focus:outline-none focus:ring-0 focus:border-indigo-900  w-full" placeholder="Address" /> */}
+                                <label className="label font-bold">Email</label>
+                                <input type="email" name="email" id="email" className="input focus:outline-none focus:ring-0 focus:border-indigo-900  w-full" placeholder="Email" />
+                                <label className="label font-bold">Password</label>
                                 <div className="relative w-full">
                                     <input
-                                        type={showPassword ? "text" : "password"} name="password" id="password" className="input w-full pr-10"
+                                        type={showPassword ? "text" : "password"} name="password" id="password" className="input w-full focus:outline-none focus:ring-0 focus:border-indigo-900 pr-10"
                                         placeholder="Password" />
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowPassword(!showPassword)}
+                                        className="absolute top-1/2 right-3 transform  -translate-y-1/2 text-gray-500 cursor-pointer z-10"
+                                    >
+                                        {showPassword ? <FiEyeOff size={20} /> : <FiEye size={20} />}
+                                    </button>
+                                </div>
+                                <label className="label font-bold">Confirm Password</label>
+                                <div className="relative w-full">
+                                    <input
+                                        type={showPassword ? "text" : "password"} name="confirmPassword" id="confirmPassword" className="input w-full focus:outline-none focus:ring-0 focus:border-indigo-900 pr-10"
+                                        placeholder="Confirm Password" />
                                     <button
                                         type="button"
                                         onClick={() => setShowPassword(!showPassword)}
@@ -55,7 +68,7 @@ const Register = () => {
                                 <Button className="mt-3">Register</Button>
                                 <div className="flex gap-5 my-2 mx-auto">
                                     <a className="">Already have an account?</a>
-                                    <Link to='/login' className="link link-hover text-amber-950">Login</Link>
+                                    <Link to='/login' className="link link-hover text-indigo-900">Login</Link>
                                 </div>
                             </fieldset>
                         </div>
