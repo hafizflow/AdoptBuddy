@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Nunito&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Walter+Turncoat&display=swap');
 @import "tailwindcss";
 @source "../views";
 @plugin "daisyui";
@@ -16,6 +17,7 @@
 
 html {
     scroll-behavior: smooth;
+
 }
 
 h1,
@@ -26,6 +28,7 @@ h5,
 h6 {
     font-family: "Montserrat", sans-serif;
 }
+
 .custom-banner-font {
-    font-family: "Bebas Neue", sans-serif !important;
+    font-family: "Walter Turncoat", cursive !important;
 }

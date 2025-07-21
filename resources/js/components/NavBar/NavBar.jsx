@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { FiHeart } from "react-icons/fi";
 import { MdLogin } from "react-icons/md";
 
-const Navbar = () => {
+const Navbar = ({ user }) => {
     const [isScrolled, setIsScrolled] = useState(false);
 
     useEffect(() => {
@@ -21,26 +21,26 @@ const Navbar = () => {
         { name: "Contact", path: "/contact" },
     ];
 
-    const links = navItems.map(({ name, path }) => (
-        <li key={name}>
-            <a
-                href={path}
-                className={({ isActive }) =>
-                    `hover:underline hover:bg-transparent underline-offset-8 decoration-white transition ${
-                        isActive ? "underline" : ""
-                    }`
-                }
-            >
-                {name}
-            </a>
-        </li>
-    ));
+    const links = navItems.map(({ name, path }) => {
+        const isActive = window.location.pathname === path;
+
+        return (
+            <li key={name}>
+                <a
+                    href={path}
+                    className={`hover:underline hover:bg-transparent underline-offset-8 decoration-white transition ${isActive ? "underline" : ""}`}
+                >
+                    {name}
+                </a>
+            </li>
+        );
+    });
+
 
     return (
         <div
-            className={`navbar bg-[#1b1a1b] fixed top-0 w-full z-50 md:px-20 mx-auto transition-all duration-300 ${
-                isScrolled ? "bg-white/30 backdrop-blur-md shadow-md" : ""
-            }`}
+            className={`navbar bg-[#1b1a1b] fixed top-0 w-full z-50 md:px-20 mx-auto transition-all duration-300 ${isScrolled ? "bg-white/30 backdrop-blur-md shadow-md" : ""
+                }`}
         >
             <div className="navbar-start">
                 <div className="dropdown">
@@ -76,9 +76,8 @@ const Navbar = () => {
                         window.scrollTo(0, 0);
                     }}
                     href="/"
-                    className={`${
-                        isScrolled ? "text-indigo-900" : "text-white"
-                    } text-2xl font-semibold`}
+                    className={`${isScrolled ? "text-indigo-900" : "text-white"
+                        } text-2xl font-semibold`}
                 >
                     AdoptBuddy
                 </a>
@@ -86,27 +85,43 @@ const Navbar = () => {
 
             <div className="navbar-end hidden lg:flex">
                 <ul
-                    className={`${
-                        isScrolled ? "text-indigo-900" : "text-white"
-                    } menu menu-horizontal px-1 font-semibold`}
+                    className={`${isScrolled ? "text-indigo-900" : "text-white"
+                        } menu menu-horizontal px-1 font-semibold`}
                 >
                     {links}
                 </ul>
             </div>
 
             <div
-                className={`${
-                    isScrolled ? "text-indigo-900" : "text-white"
-                } navbar-end flex gap-2 items-center`}
+                className={`${isScrolled ? "text-indigo-900" : "text-white"
+                    } navbar-end flex gap-6 items-center`}
             >
-                <a href="/favouritelist">
-                    <FiHeart className="text-xl font-bold hover:text-2xl hover:text-red-600" />
-                </a>
-                <a className="flex items-center cursor-pointer" href="/login">
-                    Login
-                    <MdLogin className="text-xl" />
-                </a>
+                <div className="relative group inline-block">
+                    <a href="/favouritelist">
+                        <FiHeart className="text-xl font-bold group-hover:text-red-600" />
+                        <span className="absolute left-1/2 -translate-x-1/2 bottom-full mb-1 px-2 py-1 text-xs text-white rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                            Favourite
+                        </span>
+                    </a>
+                </div>
+
+                <div className="relative group inline-block">
+                    <a className="flex items-center cursor-pointer" href="/login">
+                        {user ? (
+                            user.name
+                        ) : (
+                            <>
+                                <MdLogin className="text-xl" />
+                                <span className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 px-2 py-1 text-xs text-white bg-gray-800 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                                    Login
+                                </span>
+                            </>
+                        )}
+                    </a>
+                </div>
+
             </div>
+
         </div>
     );
 };

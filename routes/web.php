@@ -6,6 +6,8 @@ use App\Http\Controllers\PostUserController;
 use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\SessionController;
 use App\Http\Middleware\IsAdmin;
+use Illuminate\Routing\Route as RoutingRoute;
+use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -29,10 +31,13 @@ Route::get("/admin", function () {
 Route::get("/details", function () {
     return Inertia::render('petDetails/petDetails');
 });
-
 Route::get("/profile", function () {
     return Inertia::render('userProfile/userProfile');
 });
+Route::get("/favouritelist", function () {
+    return Inertia::render('favouriteList/FavouriteList');
+});
+
 
 
 

@@ -21,7 +21,6 @@ const ApplyAdoptForm = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // send data to backend here
         document.getElementById("my_modal_5").close();
     };
 
@@ -31,8 +30,8 @@ const ApplyAdoptForm = () => {
                 id="my_modal_5"
                 className="modal modal-bottom sm:modal-middle"
             >
-                <div className="modal-box max-w-2xl">
-                    <h3 className="font-bold text-xl mb-4">Apply To Adopt</h3>
+                <div className="modal-box bg-indigo-50 text-black max-w-2xl">
+                    <h3 className="font-bold text-xl text-center mb-4">Apply To Adopt</h3>
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <input
                             type="text"
@@ -71,7 +70,7 @@ const ApplyAdoptForm = () => {
                             rows={2}
                             value={formData.address}
                             onChange={handleChange}
-                            className="textarea textarea-bordered w-full focus:outline-none focus:ring-0 focus:border-indigo-900"
+                            className="textarea textarea-bordered w-full h-20 resize-none focus:outline-none focus:ring-0 focus:border-indigo-900"
                         />
 
                         <div>
@@ -113,7 +112,7 @@ const ApplyAdoptForm = () => {
                             rows={3}
                             value={formData.reason}
                             onChange={handleChange}
-                            className="textarea textarea-bordered w-full focus:outline-none focus:ring-0 focus:border-indigo-900"
+                            className="textarea textarea-bordered w-full h-20 resize-none focus:outline-none focus:ring-0 focus:border-indigo-900"
                             required
                         />
 

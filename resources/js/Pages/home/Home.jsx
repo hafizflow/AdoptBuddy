@@ -7,7 +7,7 @@ import PetCard from "../../components/PetCard/PetCard";
 import ApplyAdoptForm from "../../components/ApplyAdoptForm/ApplyAdoptForm";
 import Testimonials from "./Testimonials";
 import CareAboutPets from "./CareAboutPet";
-import dog from "../../../assets/dog.png";
+import dog from "../../../assets/bannerDog.png";
 import { TypeAnimation } from "react-type-animation";
 const HomePage = () => {
     const MotionDiv = motion.div;
@@ -52,9 +52,9 @@ const HomePage = () => {
                 <div className="relative z-10 flex flex-col md:flex-row justify-between md:items-end md:top-10 gap-10 md:gap-20 w-full">
                     {/* Social Icons */}
                     <div className="flex text-2xl cursor-pointer flex-row md:flex-col justify-center items-center text-white gap-5">
-                        <FaFacebookF className="hover:border rounded-full hover:bg-blue-600 p-1 hover:text-white transition" />
-                        <FaInstagram className="hover:border rounded-full hover:bg-red-600 p-1 hover:text-white transition" />
-                        <FaTwitter className="hover:border rounded-full hover:bg-blue-600 p-1 hover:text-white transition" />
+                        <FaFacebookF className="hover:border border-blue-600 rounded-full hover:bg-blue-600 p-1 hover:text-white transition" />
+                        <FaInstagram className="hover:border border-red-600 rounded-full hover:bg-red-600 p-1 hover:text-white transition" />
+                        <FaTwitter className="hover:border border-blue-600 rounded-full hover:bg-blue-600 p-1 hover:text-white transition" />
                     </div>
 
                     {/* Text & Buttons */}
@@ -74,7 +74,7 @@ const HomePage = () => {
                             wrapper="h1"
                             cursor={true}
                             repeat={Infinity}
-                            className="text-2xl md:text-3xl lg:text-5xl leading-tight font-bold text-white barriecito-regular"
+                            className="text-2xl md:text-3xl lg:text-4xl leading-tight font-bold text-white custom-banner-font"
                         />
                     </motion.div>
                 </div>
@@ -84,12 +84,12 @@ const HomePage = () => {
             </div>
             {/* hjfk */}
 
-            <div className="">
+            <div className="py-12">
                 <h2 className="text-3xl font-bold text-gray-800 text-center">
                     Pets you can Adpot
                 </h2>
             </div>
-            <div className="flex flex-col md:flex-row justify-between gap-3 mx-auto px-4">
+            <div className="flex flex-col md:flex-row justify-between gap-5 mx-auto px-4">
                 <PetCard></PetCard>
                 <PetCard></PetCard>
                 <PetCard></PetCard>

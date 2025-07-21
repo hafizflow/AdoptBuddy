@@ -13,6 +13,7 @@ const Register = () => {
     });
     const MotionDiv = motion.div;
     const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
     return (
         <div className="min-h-screen flex mt-10 overflow-hidden">
             <MotionDiv
@@ -60,10 +61,7 @@ const Register = () => {
                                     className="input focus:outline-none focus:ring-0 focus:border-indigo-900  w-full"
                                     placeholder="Name"
                                 />
-                                {/* <label className="label font-bold">Phone</label>
-                                <input type="phone" name="phone" id="phone" className="input focus:outline-none focus:ring-0 focus:border-indigo-900  w-full" placeholder="Phone" />
-                                <label className="label font-bold">Address</label>
-                                <input type="text" name="address" id="address" className="input focus:outline-none focus:ring-0 focus:border-indigo-900  w-full" placeholder="Address" /> */}
+
                                 <label className="label font-bold">Email</label>
                                 <input
                                     type="email"
@@ -130,11 +128,11 @@ const Register = () => {
                                     <button
                                         type="button"
                                         onClick={() =>
-                                            setShowPassword(!showPassword)
+                                            setShowConfirmPassword(!showConfirmPassword)
                                         }
                                         className="absolute top-1/2 right-3 transform  -translate-y-1/2 text-gray-500 cursor-pointer z-10"
                                     >
-                                        {showPassword ? (
+                                        {showConfirmPassword ? (
                                             <FiEyeOff size={20} />
                                         ) : (
                                             <FiEye size={20} />
