@@ -10,7 +10,6 @@ import CareAboutPets from "./CareAboutPet";
 import dog from "../../../assets/bannerDog.png";
 import { TypeAnimation } from "react-type-animation";
 const HomePage = ({ pets }) => {
-    console.log(pets);
     const MotionDiv = motion.div;
     return (
         <div className="flex flex-col space-y-10">

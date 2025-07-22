@@ -2,9 +2,23 @@ import { useState } from "react";
 import Button from "../../components/Button/Button";
 import { MdSettingsApplications, MdManageHistory } from "react-icons/md";
 import { IoCloudUploadOutline } from "react-icons/io5";
+import { useForm } from "@inertiajs/react";
 
 const AdminProfile = () => {
     const [activeSection, setActiveSection] = useState("applications");
+    const { data, setData, post, processing, errors } = useForm({
+        name: "",
+        breed: "",
+        age: "",
+        gender: "",
+        size: "",
+        color: "",
+        status: "",
+        location: "",
+        description: "",
+        images: null,
+    });
+
     const [applications, setApplications] = useState([
         { id: 1, name: "John Doe", petName: "Milo", status: "Available" },
         { id: 2, name: "Jane Smith", petName: "Luna", status: "Available" },
@@ -38,10 +52,11 @@ const AdminProfile = () => {
                     {/* Applications */}
                     <button
                         onClick={() => setActiveSection("applications")}
-                        className={`flex cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "applications"
+                        className={`flex cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${
+                            activeSection === "applications"
                                 ? "bg-primary text-white"
                                 : "hover:bg-gray-100"
-                            }`}
+                        }`}
                     >
                         <MdSettingsApplications size={24} />
                         <span className="hidden md:inline">Applications</span>
@@ -50,10 +65,11 @@ const AdminProfile = () => {
                     {/* Upload */}
                     <button
                         onClick={() => setActiveSection("upload")}
-                        className={`flex  cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "upload"
+                        className={`flex  cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${
+                            activeSection === "upload"
                                 ? "bg-primary text-white"
                                 : "hover:bg-gray-100"
-                            }`}
+                        }`}
                     >
                         <IoCloudUploadOutline size={24} />
                         <span className="hidden md:inline">Upload Pet</span>
@@ -62,10 +78,11 @@ const AdminProfile = () => {
                     {/* Manage */}
                     <button
                         onClick={() => setActiveSection("manage")}
-                        className={`flex cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "manage"
+                        className={`flex cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${
+                            activeSection === "manage"
                                 ? "bg-primary text-white"
                                 : "hover:bg-gray-100"
-                            }`}
+                        }`}
                     >
                         <MdManageHistory size={24} />
                         <span className="hidden md:inline">Manage Pets</span>
@@ -140,7 +157,15 @@ const AdminProfile = () => {
                         <h2 className="text-xl text-center font-semibold mb-4">
                             Upload New Pet
                         </h2>
-                        <form className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <form
+                            className="grid grid-cols-1 md:grid-cols-2 gap-4"
+                            onSubmit={(e) => {
+                                e.preventDefault();
+                                post("/post", {
+                                    forceFormData: true,
+                                });
+                            }}
+                        >
                             <div className="md:col-span-2">
                                 <label
                                     htmlFor="fileUpload"
@@ -177,53 +202,102 @@ const AdminProfile = () => {
                                         id="fileUpload"
                                         type="file"
                                         className="hidden"
+                                        multiple
+                                        onChange={(e) =>
+                                            setData("images", e.target.files)
+                                        }
                                     />
                                 </label>
                             </div>
                             <input
+                                value={data.name}
+                                onChange={(e) =>
+                                    setData("name", e.target.value)
+                                }
+                                type="text"
+                                placeholder="Name"
+                                className="input input-bordered focus:outline-none focus:ring-0 focus:border-indigo-900"
+                            />
+                            <input
+                                value={data.breed}
+                                onChange={(e) =>
+                                    setData("breed", e.target.value)
+                                }
                                 type="text"
                                 placeholder="Breed"
                                 className="input input-bordered focus:outline-none focus:ring-0 focus:border-indigo-900"
                             />
                             <input
-                                type="number"
+                                value={data.age}
+                                onChange={(e) => setData("age", e.target.value)}
+                                type="text"
                                 placeholder="Age"
                                 className="input input-bordered focus:outline-none focus:ring-0 focus:border-indigo-900"
                             />
                             <input
+                                value={data.gender}
+                                onChange={(e) =>
+                                    setData("gender", e.target.value)
+                                }
                                 type="text"
                                 placeholder="Gender"
                                 className="input input-bordered focus:outline-none focus:ring-0 focus:border-indigo-900"
                             />
                             <input
+                                value={data.size}
+                                onChange={(e) =>
+                                    setData("size", e.target.value)
+                                }
                                 type="text"
                                 placeholder="Size"
                                 className="input input-bordered focus:outline-none focus:ring-0 focus:border-indigo-900"
                             />
                             <input
+                                value={data.color}
+                                onChange={(e) =>
+                                    setData("color", e.target.value)
+                                }
                                 type="text"
                                 placeholder="Color"
                                 className="input input-bordered focus:outline-none focus:ring-0 focus:border-indigo-900"
                             />
-                            <select className="select select-bordered focus:outline-none focus:ring-0 focus:border-indigo-900">
-                                <option disabled selected>
+                            <select
+                                value={data.status}
+                                onChange={(e) =>
+                                    setData("status", e.target.value)
+                                }
+                                className="select select-bordered focus:outline-none focus:ring-0 focus:border-indigo-900"
+                            >
+                                <option value="" disabled>
                                     Pet Status
                                 </option>
-                                <option>Available</option>
-                                <option>On Hold</option>
-                                <option>Adopted</option>
+                                <option value="Available">Available</option>
+                                <option value="On Hold">On Hold</option>
+                                <option value="Adopted">Adopted</option>
                             </select>
                             <input
+                                value={data.location}
+                                onChange={(e) =>
+                                    setData("location", e.target.value)
+                                }
                                 type="text"
                                 placeholder="Location"
                                 className="input input-bordered focus:outline-none focus:ring-0 focus:border-indigo-900"
                             />
                             <textarea
+                                value={data.description}
+                                onChange={(e) =>
+                                    setData("description", e.target.value)
+                                }
                                 placeholder="Description"
                                 className="textarea textarea-bordered md:col-span-2 focus:outline-none focus:ring-0 focus:border-indigo-900"
                                 rows={4}
                             ></textarea>
-                            <Button className="col-span-full">
+                            <Button
+                                className="col-span-full"
+                                type="submit"
+                                disabled={processing}
+                            >
                                 Upload Pet
                             </Button>
                         </form>
