@@ -61,4 +61,4 @@ Route::get('/likes', [LikeController::class, 'index'])->name('likes')->middlewar
 
 
 
-Route::get('/profile', [ProfileController::class, 'profile']);
+Route::get('/profile', [ProfileController::class, 'show']);

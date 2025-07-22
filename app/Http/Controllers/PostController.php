@@ -29,15 +29,18 @@ class PostController extends Controller
             'size' => 'required',
             'breed' => 'required',
             'gender' => 'required',
+            'location' => 'required',
             ]);
 
         $pet = Post::create([
+            'user_id' => auth()->id(),
             'name' => $data['name'],
             'age' => $data['age'],
             'description' => $data['description'],
             'size' => $data['size'],
             'breed' => $data['breed'],
             'gender' => $data['gender'],
+            'location' => $data['location'],
             'isVisible' => auth()->user()->role === 'admin' ? 'Visible' : 'Invisible',
         ]);
 

@@ -83,6 +83,14 @@
                 <x-form-error name="description" />
             </x-form-field>
 
+
+            {{-- Location --}}
+            <x-form-field>
+                <x-form-label for="location">Location</x-form-label>
+                <x-form-input :value="old('location')" type="text" name="location" id="location" aria-describedby="location-error" />
+                <x-form-error name="description" />
+            </x-form-field>
+
             {{-- Submit Button --}}
             <x-form-button class="w-full">Submit</x-form-button>
         </form>
