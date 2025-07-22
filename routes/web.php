@@ -3,6 +3,7 @@
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PostUserController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\SessionController;
 use App\Http\Middleware\IsAdmin;
@@ -57,3 +58,7 @@ Route::patch('/postRequest{post}', [PostController::class, 'postRequest'])->name
 
 Route::post('/posts/{post}/like', [LikeController::class, 'toggle'])->name('posts.like')->middleware('auth');
 Route::get('/likes', [LikeController::class, 'index'])->name('likes')->middleware('auth');
+
+
+
+Route::get('/profile', [ProfileController::class, 'profile']);

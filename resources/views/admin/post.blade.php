@@ -32,8 +32,6 @@
                 </button>
             </div>
 
-            // New Branch
-
             {{-- Upload Image --}}
             <x-form-field>
                 <x-form-label for="images">Upload Images</x-form-label>
