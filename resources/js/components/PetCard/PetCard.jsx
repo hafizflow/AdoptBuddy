@@ -15,17 +15,16 @@ const PetCard = ({ pet }) => {
                 className="bg-white border border-indigo-100 rounded-3xl shadow-md p-4 w-80 mx-auto hover:shadow-indigo-500/50 transition-shadow duration-300 cursor-pointer"
             >
                 <div className="flex justify-between items-start mb-4">
-                    <span className="bg-gray-100 text-green-600 text-sm font-medium px-3 py-1 rounded-full">
-                        {pet.status}
+                    <span className={`${pet?.status === 'Available' ? "text-green-600" : "text-red-600"}  bg-gray-100 text-sm font-medium px-3 py-1 rounded-full`}>
+                        {pet?.status}
                     </span>
                     <button
                         onClick={(e) => {
                             e.stopPropagation();
                             setLiked(!liked);
                         }}
-                        className={`text-xl ${
-                            liked ? "text-red-500" : "text-gray-300"
-                        }`}
+                        className={`text-xl ${liked ? "text-red-500" : "text-gray-300"
+                            }`}
                     >
                         <FaHeart />
                     </button>
@@ -38,10 +37,10 @@ const PetCard = ({ pet }) => {
                     />
                 </div>
 
-                <p className="text-sm text-green-600 font-medium">{pet.name}</p>
-                <h3 className="text-lg font-semibold">{pet.breed}</h3>
+                <p className="text-sm text-green-600 font-medium">{ }</p>
+                <h3 className="text-lg font-semibold">{pet?.name}</h3>
                 <p className="text-md text-gray-700 mb-4">
-                    Breed : {pet.breed} | Age : {pet.age} months
+                    Breed : {pet?.breed} | Age : {pet?.age}
                 </p>
 
                 <button
