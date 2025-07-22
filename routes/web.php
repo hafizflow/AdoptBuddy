@@ -37,6 +37,9 @@ Route::get("/profile", function () {
 Route::get("/favouritelist", function () {
     return Inertia::render('favouriteList/FavouriteList');
 });
+Route::get("/userupload", function () {
+    return Inertia::render('userUpload/UserUpload');
+});
 
 
 

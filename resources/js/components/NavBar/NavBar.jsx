@@ -18,12 +18,12 @@ const Navbar = ({ user }) => {
         { name: "About", path: "/about" },
         { name: "Adopt", path: "/adopt" },
         { name: "Admin", path: "/admin" },
+        { name: "Be a saver", path: "/userupload" },
         { name: "Contact", path: "/contact" },
     ];
 
     const links = navItems.map(({ name, path }) => {
         const isActive = window.location.pathname === path;
-
         return (
             <li key={name}>
                 <a
