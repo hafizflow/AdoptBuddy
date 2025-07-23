@@ -9,7 +9,7 @@ import Testimonials from "./Testimonials";
 import CareAboutPets from "./CareAboutPet";
 import dog from "../../../assets/bannerDog.png";
 import { TypeAnimation } from "react-type-animation";
-const HomePage = () => {
+const HomePage = ({ pets }) => {
     const MotionDiv = motion.div;
     return (
         <div className="flex flex-col space-y-10">
@@ -89,11 +89,10 @@ const HomePage = () => {
                     Pets you can Adpot
                 </h2>
             </div>
-            <div className="flex flex-col md:flex-row justify-between gap-5 mx-auto px-4">
-                <PetCard></PetCard>
-                <PetCard></PetCard>
-                <PetCard></PetCard>
-                <PetCard></PetCard>
+            <div className="flex flex-col md:flex-row justify-between gap-3 mx-auto px-4">
+                {pets?.map((pet) => (
+                    <PetCard key={pet.id} pet={pet} />
+                ))}
             </div>
             <div className="text-center">
                 <a

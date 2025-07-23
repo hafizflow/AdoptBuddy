@@ -8,6 +8,9 @@ const PetCard = ({ pet }) => {
         window.location.href = "/details";
         window.scrollTo(0, 0);
     };
+
+    console.log(pet);
+
     return (
         <div>
             <div
@@ -15,16 +18,16 @@ const PetCard = ({ pet }) => {
                 className="bg-indigo-50 border border-indigo-100 rounded-3xl shadow-md p-4 mx-auto transition-transform duration-500 transform cursor-pointer hover:scale-105 hover:shadow-lg"
             >
                 <div className="flex justify-between items-start mb-4">
-                    <span className={`${pet?.status === 'Available' ? "text-green-600" : "text-red-600"}  bg-white text-sm font-medium px-3 py-1 rounded-full`}>
-                        {pet ? pet.status : "Not Found"}
+                    <span className={`${pet?.status === 'Available' ? "text-green-600" : "text-red-600"}  bg-gray-100 text-sm font-medium px-3 py-1 rounded-full`}>
+                        {pet?.status}
                     </span>
                     <button
                         onClick={(e) => {
                             e.stopPropagation();
                             setLiked(!liked);
                         }}
-                        className={`text-xl ${liked ? "text-red-500" : "text-gray-400"
-                            } cursor-pointer`}
+                        className={`text-xl ${liked ? "text-red-500" : "text-gray-300"
+                            }`}
                     >
                         <FaHeart />
                     </button>
@@ -32,13 +35,12 @@ const PetCard = ({ pet }) => {
 
                 <div className="flex justify-center mb-4">
                     <img
-                        alt=""
-                        src="https://i.pinimg.com/736x/2a/79/a7/2a79a70afb442caf0823dc56c3faa242.jpg"
-                        className="w-full h-64 object-cover overflow-hidden rounded-xl"
+                        src="https://i.pinimg.com/736x/56/79/78/567978b483421cd99499956a5662ba3e.jpg"
+                        className="w-full h-36 object-contain rounded-xl"
                     />
                 </div>
 
-                <p className="text-sm text-green-600 font-medium">{ }</p>
+                <p className="text-sm text-green-600 font-medium">{}</p>
                 <h3 className="text-lg font-semibold">{pet?.name}</h3>
                 <p className="text-md text-gray-700 mb-4">
                     Breed : {pet ? pet.breed : "Not found"} | Age : {pet ? pet.age : "Not found"}

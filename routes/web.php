@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostUserController;
 use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\SessionController;
@@ -12,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 
-Route::get('/', function () {
-    return Inertia::render('home/Home');
-});
+Route::get('/', [HomeController::class, 'index']);
 
 Route::get("/contact", function () {
     return Inertia::render('contact/Contact');
