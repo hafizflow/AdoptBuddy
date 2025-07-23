@@ -89,7 +89,7 @@ const HomePage = ({ pets }) => {
                     Pets you can Adpot
                 </h2>
             </div>
-            <div className="flex flex-col md:flex-row justify-between gap-3 mx-auto px-4">
+            <div className="flex flex-col md:flex-row justify-between gap-5 mx-auto px-20">
                 {pets?.map((pet) => (
                     <PetCard key={pet.id} pet={pet} />
                 ))}

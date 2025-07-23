@@ -8,7 +8,7 @@ import ApplyAdoptForm from "../../components/ApplyAdoptForm/ApplyAdoptForm";
 const PetDetails = () => {
     const pet = {
         name: "Awame Legue Dog",
-        location: "Khagan, Dattapara", // Location as string
+        location: "Savar, Dhaka", // Location as string
     };
 
     const [coords, setCoords] = useState(null);
