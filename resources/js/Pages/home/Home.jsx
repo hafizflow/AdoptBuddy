@@ -90,9 +90,12 @@ const HomePage = ({ pets }) => {
                 </h2>
             </div>
             <div className="flex flex-col md:flex-row justify-between gap-5 mx-auto px-20">
-                {pets?.map((pet) => (
-                    <PetCard key={pet.id} pet={pet} />
-                ))}
+                {pets
+                    ?.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+                    .slice(0, 3)
+                    .map((pet) => (
+                        <PetCard key={pet.id} pet={pet} />
+                    ))}
             </div>
             <div className="text-center">
                 <a

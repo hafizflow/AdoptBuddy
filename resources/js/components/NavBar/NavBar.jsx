@@ -66,7 +66,7 @@ const Navbar = ({ user }) => {
                     </div>
                     <ul
                         tabIndex={0}
-                        className="menu menu-sm dropdown-content rounded-box z-10 mt-3 w-52 p-2 bg-white/30 backdrop-blur-md"
+                        className="menu menu-sm dropdown-content rounded-box z-10 mt-3 w-36 p-2 bg-black/50 backdrop-blur-md text-white"
                     >
                         {links}
                     </ul>
@@ -86,7 +86,7 @@ const Navbar = ({ user }) => {
             <div className="navbar-end hidden lg:flex">
                 <ul
                     className={`${isScrolled ? "text-indigo-900" : "text-white"
-                        } menu menu-horizontal px-1 font-semibold`}
+                        } menu menu-horizontal px-1 font-semibold text-lg`}
                 >
                     {links}
                 </ul>

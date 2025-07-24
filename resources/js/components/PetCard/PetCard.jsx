@@ -66,17 +66,17 @@ const PetCard = ({ pet }) => {
 
 
         // new card
-        <div className="">
+        <div className="md:w-sm">
             <div
                 onClick={handlecardClick}
                 className="bg-white  relative rounded-xl shadow-lg overflow-hidden   cursor-pointer hover:shadow-xl"
             >
                 {/* Image Section with Name Overlay */}
                 <div className="relative">
-                    <div className="relative">
+                    <div className="relative overflow-hidden">
                         <img
-                            src={`http://localhost:8000/storage/${pet.images?.[0]?.image || 'default.jpg'}`}
-                            alt={pet.name}
+                            src={`http://localhost:8000/storage/${pet?.images?.[0]?.image || 'default.jpg'}`}
+                            alt={pet?.name}
                             className="w-full relative h-[330px] object-cover transition-transform duration-500 transform hover:scale-105"
                         />
 
@@ -104,7 +104,7 @@ const PetCard = ({ pet }) => {
                 <div className="p-6 relative">
                     {/* Breed and Age */}
                     <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                        {pet?.breed}
+                        {"Breed : " + pet?.breed}
                         <span className="text-gray-600 font-normal"> - (Age: {pet?.age})</span>
                     </h2>
 
@@ -118,7 +118,7 @@ const PetCard = ({ pet }) => {
                     <button
                         onClick={(e) => {
                             e.stopPropagation();
-                            console.log("Adopt button clicked");
+                            document.getElementById("my_modal_5").showModal();
                         }}
                         className=" bg-[#fab74c] hover:bg-[#fa7070] text-black hover:text-white py-3 px-6 rounded-2xl font-semibold text-lg transition-colors duration-200 cursor-pointer"
                     >
