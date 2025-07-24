@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostUserController;
 use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\AdminController;
 use App\Http\Middleware\IsAdmin;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Routing\Router;
@@ -21,12 +22,12 @@ Route::get("/contact", function () {
 Route::get("/about", function () {
     return Inertia::render('about/About');
 });
+
 Route::get("/adopt", function () {
     return Inertia::render('adopt/Adopt');
 });
-Route::get("/admin", function () {
-    return Inertia::render('admin/Admin');
-});
+
+Route::get("/admin", [AdminController::class, 'index'])->middleware(IsAdmin::class);
 Route::get("/details", function () {
     return Inertia::render('petDetails/petDetails');
 });

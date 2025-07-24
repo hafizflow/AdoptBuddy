@@ -3,8 +3,9 @@ import Button from "../../components/Button/Button";
 import { MdSettingsApplications, MdManageHistory } from "react-icons/md";
 import { IoCloudUploadOutline } from "react-icons/io5";
 import { useForm } from "@inertiajs/react";
+import ManageCard from "../../components/ManageCard/ManageCard";
 
-const AdminProfile = () => {
+const AdminProfile = ({ pets }) => {
     const [activeSection, setActiveSection] = useState("applications");
     const { data, setData, post, processing, errors } = useForm({
         name: "",
@@ -309,25 +310,7 @@ const AdminProfile = () => {
                         <h2 className="text-xl text-center font-semibold mb-4">
                             Manage Pets
                         </h2>
-                        <div className="space-y-4">
-                            <div className="p-4 border border-indigo-100 rounded-xl flex justify-between items-center">
-                                <div>
-                                    <h3 className="font-bold">Milo</h3>
-                                    <p className="text-sm">
-                                        Breed: Golden Retriever
-                                    </p>
-                                    <p className="text-sm">Status: Available</p>
-                                </div>
-                                <div className="flex gap-2">
-                                    <button className="btn btn-sm bg-yellow-700 text-white">
-                                        Update
-                                    </button>
-                                    <button className="btn btn-sm bg-red-700 text-white">
-                                        Delete
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                        <ManageCard />
                     </section>
                 )}
             </main>
