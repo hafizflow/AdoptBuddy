@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FaHeart } from "react-icons/fa";
-import { FaPaw } from 'react-icons/fa';
+import { FaPaw } from "react-icons/fa";
 
 const PetCard = ({ pet }) => {
     const [liked, setLiked] = useState(false);
@@ -63,8 +63,6 @@ const PetCard = ({ pet }) => {
 
         // </div>
 
-
-
         // new card
         <div className="">
             <div
@@ -75,7 +73,9 @@ const PetCard = ({ pet }) => {
                 <div className="relative">
                     <div className="relative">
                         <img
-                            src={`http://localhost:8000/storage/${pet.images?.[0]?.image || 'default.jpg'}`}
+                            src={`http://localhost:8000/storage/${
+                                pet.images?.[0]?.image || "default.jpg"
+                            }`}
                             alt={pet.name}
                             className="w-full relative h-[330px] object-cover transition-transform duration-500 transform hover:scale-105"
                         />
@@ -94,7 +94,9 @@ const PetCard = ({ pet }) => {
                             e.stopPropagation();
                             setLiked(!liked);
                         }}
-                        className={`absolute top-4 right-4 text-2xl ${liked ? "text-red-500" : "text-white"} hover:scale-110 transition-transform`}
+                        className={`absolute top-4 right-4 text-2xl ${
+                            liked ? "text-red-500" : "text-white"
+                        } hover:scale-110 transition-transform`}
                     >
                         <FaHeart className="drop-shadow-lg" />
                     </button>
@@ -105,7 +107,10 @@ const PetCard = ({ pet }) => {
                     {/* Breed and Age */}
                     <h2 className="text-2xl font-bold text-gray-900 mb-2">
                         {pet?.breed}
-                        <span className="text-gray-600 font-normal"> - (Age: {pet?.age})</span>
+                        <span className="text-gray-600 font-normal">
+                            {" "}
+                            - (Age: {pet?.age})
+                        </span>
                     </h2>
 
                     {/* Description */}
@@ -118,7 +123,7 @@ const PetCard = ({ pet }) => {
                     <button
                         onClick={(e) => {
                             e.stopPropagation();
-                            console.log("Adopt button clicked");
+                            document.getElementById("my_modal_5").showModal();
                         }}
                         className=" bg-[#fab74c] hover:bg-[#fa7070] text-black hover:text-white py-3 px-6 rounded-2xl font-semibold text-lg transition-colors duration-200 cursor-pointer"
                     >

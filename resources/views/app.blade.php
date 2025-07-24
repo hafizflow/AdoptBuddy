@@ -8,7 +8,6 @@
   <title>AdoptBuddy</title>
   @vite('resources/css/app.css')
   @viteReactRefresh
-  @routes
   @vite('resources/js/app.jsx')
   @inertiaHead
 
