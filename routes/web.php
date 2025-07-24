@@ -58,11 +58,10 @@ Route::get('/adopt/{post}', [PostUserController::class, 'create'])->name('adopt.
 Route::post('/adopt/{post}', [PostUserController::class, 'store'])->name('adopt.store')->middleware('auth');
 
 
-
 // Admin Form
 Route::get('/requests', [PostUserController::class, 'index'])->middleware(IsAdmin::class);
 Route::patch('/requests/{postUser}', [PostUserController::class, 'update'])->name('requests.update')->middleware(IsAdmin::class);
-Route::delete('/requests/{postUser}', [PostUserController::class, 'destroy'])->name('requests.destroy')->middleware(IsAdmin::class);
+Route::delete('/requests/{postUser}', [PostUserController::class, 'destroy'])->middleware(IsAdmin::class);
 
 
 Route::get('/post', [PostController::class, 'create'])->middleware('auth');
