@@ -1,6 +1,7 @@
 import { FaChevronLeft } from "react-icons/fa";
 import CountUp from "react-countup";
 import { useInView } from "react-intersection-observer";
+import dogCat from "../../../assets/dogCat2.png";
 
 const stats = [
     { label: "RESCUED", value: 5786 },
@@ -24,7 +25,7 @@ const CareAboutPets = () => {
                 {/* Image */}
                 <div className="md:w-1/2 flex justify-center">
                     <img
-                        src="https://png.pngtree.com/png-vector/20241119/ourmid/pngtree-cute-golden-retriever-dog-high-resolution-pet-photo-png-image_14494535.png"
+                        src={dogCat}
                         alt="Golden Retriever"
                         className="w-80 md:w-full object-contain"
                     />
