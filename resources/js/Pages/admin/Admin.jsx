@@ -53,11 +53,10 @@ const AdminProfile = ({ pets }) => {
                     {/* Applications */}
                     <button
                         onClick={() => setActiveSection("applications")}
-                        className={`flex cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${
-                            activeSection === "applications"
+                        className={`flex cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "applications"
                                 ? "bg-primary text-white"
                                 : "hover:bg-gray-100"
-                        }`}
+                            }`}
                     >
                         <MdSettingsApplications size={24} />
                         <span className="hidden md:inline">Applications</span>
@@ -66,11 +65,10 @@ const AdminProfile = ({ pets }) => {
                     {/* Upload */}
                     <button
                         onClick={() => setActiveSection("upload")}
-                        className={`flex  cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${
-                            activeSection === "upload"
+                        className={`flex  cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "upload"
                                 ? "bg-primary text-white"
                                 : "hover:bg-gray-100"
-                        }`}
+                            }`}
                     >
                         <IoCloudUploadOutline size={24} />
                         <span className="hidden md:inline">Upload Pet</span>
@@ -79,11 +77,10 @@ const AdminProfile = ({ pets }) => {
                     {/* Manage */}
                     <button
                         onClick={() => setActiveSection("manage")}
-                        className={`flex cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${
-                            activeSection === "manage"
+                        className={`flex cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "manage"
                                 ? "bg-primary text-white"
                                 : "hover:bg-gray-100"
-                        }`}
+                            }`}
                     >
                         <MdManageHistory size={24} />
                         <span className="hidden md:inline">Manage Pets</span>
@@ -122,7 +119,7 @@ const AdminProfile = ({ pets }) => {
                                     </div>
                                     <div className="mt-2 md:mt-0 flex gap-2">
                                         <button
-                                            className="btn btn-sm bg-green-700 text-white"
+                                            className="btn p-5 text-xl btn-sm bg-[#fab74c] hover:bg-[#fa7070] text-black hover:text-white"
                                             onClick={() =>
                                                 handleApplicationAction(
                                                     app.id,
