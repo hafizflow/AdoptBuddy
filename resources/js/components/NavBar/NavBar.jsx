@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { FiHeart } from "react-icons/fi";
-import { MdLogin } from "react-icons/md";
+import { MdLogin, MdLogout } from "react-icons/md";
+import { usePage } from "@inertiajs/react";
 
 const Navbar = ({ user }) => {
     const [isScrolled, setIsScrolled] = useState(false);
-
+    const { auth } = usePage().props;
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 20);
@@ -14,21 +15,27 @@ const Navbar = ({ user }) => {
     }, []);
 
     const navItems = [
-        { name: "Home", path: "/" },
-        { name: "About", path: "/about" },
-        { name: "Adopt", path: "/adopt" },
-        { name: "Admin", path: "/admin" },
-        { name: "Be a saver", path: "/userupload" },
-        { name: "Contact", path: "/contact" },
+        { name: "Home", path: "/", isShow: true },
+        { name: "About", path: "/about", isShow: true },
+        { name: "Adopt", path: "/adopt", isShow: true },
+        { name: "Admin", path: "/admin", isShow: auth?.user?.role == "admin" },
+        {
+            name: "Be a saver",
+            path: "/userupload",
+            isShow: auth?.user?.is_admin,
+        },
+        { name: "Contact", path: "/contact", isShow: true },
     ];
 
-    const links = navItems.map(({ name, path }) => {
+    const links = navItems.map(({ name, path, isShow }) => {
         const isActive = window.location.pathname === path;
         return (
             <li key={name}>
                 <a
                     href={path}
-                    className={`hover:underline hover:bg-transparent underline-offset-8 decoration-white transition ${isActive ? "underline" : ""}`}
+                    className={`hover:underline hover:bg-transparent underline-offset-8 decoration-white transition ${
+                        isActive ? "underline" : ""
+                    } ${isShow ? "" : "hidden"}`}
                 >
                     {name}
                 </a>
@@ -36,11 +43,11 @@ const Navbar = ({ user }) => {
         );
     });
 
-
     return (
         <div
-            className={`navbar bg-[#1b1a1b] fixed top-0 w-full z-50 md:px-20 mx-auto transition-all duration-300 ${isScrolled ? "bg-white/30 backdrop-blur-md shadow-md" : ""
-                }`}
+            className={`navbar bg-[#1b1a1b] fixed top-0 w-full z-50 md:px-20 mx-auto transition-all duration-300 ${
+                isScrolled ? "bg-white/30 backdrop-blur-md shadow-md" : ""
+            }`}
         >
             <div className="navbar-start">
                 <div className="dropdown">
@@ -69,6 +76,7 @@ const Navbar = ({ user }) => {
                         className="menu menu-sm dropdown-content rounded-box z-10 mt-3 w-52 p-2 bg-white/30 backdrop-blur-md"
                     >
                         {links}
+                        {}
                     </ul>
                 </div>
                 <a
@@ -76,8 +84,9 @@ const Navbar = ({ user }) => {
                         window.scrollTo(0, 0);
                     }}
                     href="/"
-                    className={`${isScrolled ? "text-indigo-900" : "text-white"
-                        } text-2xl font-semibold`}
+                    className={`${
+                        isScrolled ? "text-indigo-900" : "text-white"
+                    } text-2xl font-semibold`}
                 >
                     AdoptBuddy
                 </a>
@@ -85,16 +94,18 @@ const Navbar = ({ user }) => {
 
             <div className="navbar-end hidden lg:flex">
                 <ul
-                    className={`${isScrolled ? "text-indigo-900" : "text-white"
-                        } menu menu-horizontal px-1 font-semibold`}
+                    className={`${
+                        isScrolled ? "text-indigo-900" : "text-white"
+                    } menu menu-horizontal px-1 font-semibold`}
                 >
                     {links}
                 </ul>
             </div>
 
             <div
-                className={`${isScrolled ? "text-indigo-900" : "text-white"
-                    } navbar-end flex gap-6 items-center`}
+                className={`${
+                    isScrolled ? "text-indigo-900" : "text-white"
+                } navbar-end flex gap-6 items-center`}
             >
                 <div className="relative group inline-block">
                     <a href="/favouritelist">
@@ -106,22 +117,42 @@ const Navbar = ({ user }) => {
                 </div>
 
                 <div className="relative group inline-block">
-                    <a className="flex items-center cursor-pointer" href="/login">
-                        {user ? (
-                            user.name
-                        ) : (
-                            <>
-                                <MdLogin className="text-xl" />
-                                <span className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 px-2 py-1 text-xs text-white bg-gray-800 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-                                    Login
-                                </span>
-                            </>
-                        )}
-                    </a>
+                    {!auth?.user && (
+                        <a
+                            className="flex items-center cursor-pointer"
+                            href="/login"
+                        >
+                            {user ? (
+                                user.name
+                            ) : (
+                                <>
+                                    <MdLogin className="text-xl" />
+                                    <span className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 px-2 py-1 text-xs text-white bg-gray-800 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                                        Login
+                                    </span>
+                                </>
+                            )}
+                        </a>
+                    )}
+                    {auth?.user && (
+                        <a
+                            className="flex items-center cursor-pointer"
+                            href="/logout"
+                        >
+                            {auth?.user ? (
+                                auth?.user.name
+                            ) : (
+                                <>
+                                    <MdLogout className="text-xl" />
+                                    <span className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 px-2 py-1 text-xs text-white bg-gray-800 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                                        Logout
+                                    </span>
+                                </>
+                            )}
+                        </a>
+                    )}
                 </div>
-
             </div>
-
         </div>
     );
 };

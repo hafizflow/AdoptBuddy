@@ -1,5 +1,7 @@
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { usePage } from "@inertiajs/react";
+
 import Button from "../../components/Button/Button";
 import Services from "./Services";
 import Facilities from "./Facilities";
@@ -10,6 +12,9 @@ import CareAboutPets from "./CareAboutPet";
 import dog from "../../../assets/bannerDog.png";
 import { TypeAnimation } from "react-type-animation";
 const HomePage = ({ pets }) => {
+    const { auth } = usePage().props;
+    
+    console.log(auth);
     const MotionDiv = motion.div;
     return (
         <div className="flex flex-col space-y-10">
