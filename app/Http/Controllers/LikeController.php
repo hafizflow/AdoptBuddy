@@ -13,10 +13,10 @@ class LikeController extends Controller
     {
         $likedPosts = auth()->user()
             ->likes()
-            ->with('post.images')
+            ->with('post.images') // eager load post and images
             ->get()
-            ->pluck('post')
-            ->filter();
+            ->pluck('post')       // get only the posts
+            ->filter();           // remove nulls in case post was deleted
 
         return view('user.likes', ['likedPosts' => $likedPosts]);
     }

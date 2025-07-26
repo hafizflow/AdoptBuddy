@@ -4,7 +4,6 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostUserController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\AdminController;
@@ -44,36 +43,6 @@ Route::get("/userupload", function () {
 
 
 
-//Route::get('/', [HomeController::class, 'index']);
-//
-//Route::get("/contact", function () {
-//    return Inertia::render('contact/Contact');
-//});
-//Route::get("/about", function () {
-//    return Inertia::render('about/About');
-//});
-//Route::get("/adopt", function () {
-//    return Inertia::render('adopt/Adopt');
-//});
-//Route::get("/admin", function () {
-//    return Inertia::render('admin/Admin');
-//});
-//Route::get("/details", function () {
-//    return Inertia::render('petDetails/petDetails');
-//});
-//Route::get("/profile", function () {
-//    return Inertia::render('userProfile/userProfile');
-//});
-//Route::get("/favouritelist", function () {
-//    return Inertia::render('favouriteList/FavouriteList');
-//});
-//Route::get("/userupload", function () {
-//    return Inertia::render('userUpload/UserUpload');
-//});
-//
-//Route::delete("/test/{id}", function ($id) {
-//    dd("Hello World");
-//});
 
 //Auth
 Route::get('/login', [SessionController::class, 'create'])->name('login');
@@ -95,8 +64,6 @@ Route::patch('/requests/{postUser}', [PostUserController::class, 'update'])->nam
 Route::delete('/requests/{postUser}', [PostUserController::class, 'destroy'])->middleware(IsAdmin::class);
 
 
-Route::get('/', [PostUserController::class, 'index']);
-
 Route::get('/post', [PostController::class, 'create'])->middleware('auth');
 Route::post('/post', [PostController::class, 'store'])->middleware('auth');
 Route::get('/adopt', [PostController::class, 'index'])->name('pets.index');
@@ -108,8 +75,4 @@ Route::patch('/postRequest{post}', [PostController::class, 'postRequest'])->name
 
 
 Route::post('/posts/{post}/like', [LikeController::class, 'toggle'])->name('posts.like')->middleware('auth');
-Route::get('/likes', [LikeController::class, 'index'])->name('likes')->middleware('auth');
-
-
-
-Route::get('/profile', [ProfileController::class, 'show']);
+//Route::get('/likes', [LikeController::class, 'index'])->name('likes')->middleware('auth');

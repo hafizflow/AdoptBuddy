@@ -108,7 +108,7 @@ const Navbar = ({ user }) => {
                 } navbar-end flex gap-6 items-center`}
             >
                 <div className="relative group inline-block">
-                    <a href="/favouritelist">
+                    <a href="/likes">
                         <FiHeart className="text-xl font-bold group-hover:text-red-600" />
                         <span className="absolute left-1/2 -translate-x-1/2 bottom-full mb-1 px-2 py-1 text-xs text-white rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
                             Favourite

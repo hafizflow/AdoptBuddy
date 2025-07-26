@@ -1,6 +1,6 @@
 import { useState } from "react";
+import { FiHeart } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
-import { FaHeart } from "react-icons/fa";
 
 const PetCard = () => {
     const [liked, setLiked] = useState(false);
@@ -12,7 +12,7 @@ const PetCard = () => {
     }
     return (
         <div>
-            <div onClick={handlecardClick} className="bg-white border border-indigo-100 rounded-3xl shadow-md p-4 w-80 mx-auto hover:shadow-indigo-500/50 transition-shadow duration-300 cursor-pointer">
+            <div onClick={handlecardClick} className="bg-white rounded-3xl shadow-md p-4 w-80 mx-auto hover:shadow-lg">
 
                 <div className="flex justify-between items-start mb-4">
                     <span className="bg-gray-100 text-green-600 text-sm font-medium px-3 py-1 rounded-full">
@@ -23,9 +23,9 @@ const PetCard = () => {
                             e.stopPropagation();
                             setLiked(!liked)
                         }}
-                        className={`text-xl ${liked ? "text-red-500" : "text-gray-300"}`}
+                        className={`text-xl ${liked ? "text-red-500" : "text-gray-400"}`}
                     >
-                        <FaHeart />
+                        <FiHeart />
                     </button>
                 </div>
 
@@ -48,7 +48,7 @@ const PetCard = () => {
                 <button onClick={(e) => {
                     e.stopPropagation();
                     document.getElementById('my_modal_5').showModal()
-                }} className="w-full cursor-pointer bg-indigo-500 text-white py-2 rounded-2xl font-medium">
+                }} className="w-full cursor-pointer bg-black text-white py-2 rounded-2xl font-medium">
                     Apply to Adopt
                 </button>
             </div>

@@ -6,14 +6,18 @@ use App\Http\Middleware\IsAdmin;
 use App\Models\Post;
 use App\Models\PostImage;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class PostController extends Controller
 {
 
     public function index()
     {
-        $pets = Post::with('images')->where('isVisible', 'Visible')->latest()->get();
-        return view('admin.all-post', compact('pets'));
+        $pets = Post::with('images')->latest()->get();
+        return Inertia::render('adopt/Adopt', [
+            'pets' => $pets,
+        ]);
+        //return view('admin.all-post', compact('pets'));
     }
 
     public function create() {
