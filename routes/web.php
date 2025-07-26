@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostUserController;
 use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\AdminController;
 use App\Http\Middleware\IsAdmin;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Routing\Router;
@@ -21,12 +22,12 @@ Route::get("/contact", function () {
 Route::get("/about", function () {
     return Inertia::render('about/About');
 });
+
 Route::get("/adopt", function () {
     return Inertia::render('adopt/Adopt');
 });
-Route::get("/admin", function () {
-    return Inertia::render('admin/Admin');
-});
+
+Route::get("/admin", [AdminController::class, 'index'])->middleware(IsAdmin::class);
 Route::get("/details", function () {
     return Inertia::render('petDetails/petDetails');
 });
@@ -57,11 +58,10 @@ Route::get('/adopt/{post}', [PostUserController::class, 'create'])->name('adopt.
 Route::post('/adopt/{post}', [PostUserController::class, 'store'])->name('adopt.store')->middleware('auth');
 
 
-
 // Admin Form
 Route::get('/requests', [PostUserController::class, 'index'])->middleware(IsAdmin::class);
 Route::patch('/requests/{postUser}', [PostUserController::class, 'update'])->name('requests.update')->middleware(IsAdmin::class);
-Route::delete('/requests/{postUser}', [PostUserController::class, 'destroy'])->name('requests.destroy')->middleware(IsAdmin::class);
+Route::delete('/requests/{postUser}', [PostUserController::class, 'destroy'])->middleware(IsAdmin::class);
 
 
 Route::get('/post', [PostController::class, 'create'])->middleware('auth');

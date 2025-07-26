@@ -9,7 +9,7 @@ const Facilities = () => {
     ];
 
     return (
-        <section className="py-12">
+        <section className="py-12 block">
             <div className="max-w-7xl mx-auto px-4 flex flex-col lg:flex-row items-center gap-10">
                 {/* Facilities List */}
                 <div className="flex-1">

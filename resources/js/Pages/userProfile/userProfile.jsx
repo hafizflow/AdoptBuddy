@@ -1,13 +1,11 @@
 import { IoMdNotificationsOutline } from "react-icons/io";
-
+import { usePage } from "@inertiajs/react";
 const UserProfile = () => {
+    const { auth } = usePage().props;
     const user = {
-        name: "Hafizur Rahman",
-        email: "hafiz@5678.com",
         location: "Savar, Bangladesh",
         phone: "01700610483",
         avatar: "https://i.pinimg.com/736x/eb/76/a4/eb76a46ab920d056b02d203ca95e9a22.jpg",
-        bio: "Pet lover and frequent adopter. Passionate about animals and their well-being.",
     };
 
     return (
@@ -16,11 +14,11 @@ const UserProfile = () => {
                 <div className="flex flex-col items-center md:items-start md:w-1/3">
                     <img
                         src={user.avatar}
-                        alt={user.name}
+                        alt={auth?.user.name}
                         className="w-40 h-40 rounded-full border-4 border-gray-300 object-cover mb-4"
                     />
                     <h2 className="text-xl font-semibold text-center md:text-left">
-                        {user.name}
+                        {auth?.user.name}
                     </h2>
                     <p className="text-sm text-gray-600 text-center md:text-left">
                         {user.location}
@@ -38,7 +36,7 @@ const UserProfile = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
                             <h4 className="text-sm font-medium text-gray-600">
-                                Email
+                                {auth?.user.email}
                             </h4>
                             <p className="text-gray-800">{user.email}</p>
                         </div>

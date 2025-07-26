@@ -34,7 +34,7 @@ const Services = () => {
     ];
 
     return (
-        <section className="md:py-12">
+        <section className="md:py-12 block">
             <div className="md:max-w-7xl mx-auto px-4 text-center">
                 <h2 className="text-3xl font-bold text-gray-800 mb-8">
                     Our Services
