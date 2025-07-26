@@ -5,8 +5,9 @@ import { IoCloudUploadOutline } from "react-icons/io5";
 import { useForm } from "@inertiajs/react";
 import { router } from "@inertiajs/react";
 
+import ManageCard from "../../components/ManageCard/ManageCard";
 
-const AdminProfile = () => {
+const AdminProfile = ({ pets }) => {
     const [activeSection, setActiveSection] = useState("applications");
     const { data, setData, post, processing, errors } = useForm({
         name: "",
@@ -42,6 +43,30 @@ const AdminProfile = () => {
                 console.error("Error deleting pet:", error);
             },
         });
+    };
+
+    // Handling file drop
+
+    const [dragActive, setDragActive] = useState(false);
+
+    const handleDrag = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (e.type === "dragleave") {
+            setDragActive(false);
+        }
+    };
+
+    const handleDrop = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setDragActive(false);
+        if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+            setData("images", e.dataTransfer.files);
+        }
+    };
+    const handleChange = (e) => {
+        setData("images", e.target.files);
     };
 
     return (
@@ -133,7 +158,7 @@ const AdminProfile = () => {
                                     </div>
                                     <div className="mt-2 md:mt-0 flex gap-2">
                                         <button
-                                            className="btn btn-sm bg-green-700 text-white"
+                                            className="btn p-5 text-xl btn-sm bg-[#fab74c] hover:bg-[#fa7070] text-black hover:text-white"
                                             onClick={() =>
                                                 handleApplicationAction(
                                                     app.id,
@@ -170,6 +195,12 @@ const AdminProfile = () => {
                             Upload New Pet
                         </h2>
                         <form
+                            onDragEnter={() => setDragActive(true)}
+                            onDragOver={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                            }}
+                            onDrop={handleDrop}
                             className="grid grid-cols-1 md:grid-cols-2 gap-4"
                             onSubmit={(e) => {
                                 e.preventDefault();
@@ -215,11 +246,21 @@ const AdminProfile = () => {
                                         type="file"
                                         className="hidden"
                                         multiple
-                                        onChange={(e) =>
-                                            setData("images", e.target.files)
-                                        }
+                                        // onChange={(e) =>
+                                        //     setData("images", e.target.files)
+                                        // }
+                                        onChange={handleChange}
                                     />
                                 </label>
+                                {dragActive && (
+                                    <div
+                                        className="absolute inset-0 z-10"
+                                        onDragEnter={handleDrag}
+                                        onDragLeave={handleDrag}
+                                        onDragOver={handleDrag}
+                                        onDrop={handleDrop}
+                                    ></div>
+                                )}
                             </div>
                             <input
                                 value={data.name}
@@ -321,25 +362,9 @@ const AdminProfile = () => {
                         <h2 className="text-xl text-center font-semibold mb-4">
                             Manage Pets
                         </h2>
-                        <div className="space-y-4">
-                            <div className="p-4 border border-indigo-100 rounded-xl flex justify-between items-center">
-                                <div>
-                                    <h3 className="font-bold">Milo</h3>
-                                    <p className="text-sm">
-                                        Breed: Golden Retriever
-                                    </p>
-                                    <p className="text-sm">Status: Available</p>
-                                </div>
-                                <div className="flex gap-2">
-                                    <button className="btn btn-sm bg-yellow-700 text-white">
-                                        Update
-                                    </button>
-                                    <button onClick={() => handleDelete(pet.id)} className="btn btn-sm bg-red-700 text-white">
-                                        Delete
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                        {pets.map((pet) => (
+                            <ManageCard key={pet.id} pet={pet} />
+                        ))}
                     </section>
                 )}
             </main>

@@ -77,15 +77,15 @@ class PostController extends Controller
         return redirect()->route('pets.index')->with('success', 'Pet status updated!');
     }
 
-    public function destroy(Post $post)
+    public function destroy()
     {
         // Delete related images from storage
-        foreach ($post->images as $image) {
-            \Storage::disk('public')->delete($image->image);
-            $image->delete();
-        }
+        // foreach ($post->images as $image) {
+        //     \Storage::disk('public')->delete($image->image);
+        //     $image->delete();
+        // }
 
-        $post->delete();
+        // $post->delete();
 
         return redirect()->route('pets.index')->with('success', 'Pet deleted!');
     }

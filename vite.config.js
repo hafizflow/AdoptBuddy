@@ -9,8 +9,11 @@ export default defineConfig({
                 primary: "#1e3a8a", // indigo-900
             },
             fontFamily: {
-                heading: ["Montserrat", "sans-serif"],
-                body: ["Nunito", "sans-serif"],
+                // heading: ["Montserrat", "sans-serif"],
+                heading: ["Truculenta", "sans-serif"],
+                // body: ["Nunito", "sans-serif"],
+                body: ["Truculenta", "sans-serif"],
+                truculenta: ["Truculenta", "sans-serif"],
             },
         },
     },
