@@ -13,8 +13,7 @@ import dog from "../../../assets/bannerDog.png";
 import { TypeAnimation } from "react-type-animation";
 const HomePage = ({ pets }) => {
     const { auth } = usePage().props;
-    
-    console.log(auth);
+    console.log(pets);
     const MotionDiv = motion.div;
     return (
         <div className="flex flex-col space-y-10">
@@ -96,7 +95,10 @@ const HomePage = ({ pets }) => {
             </div>
             <div className="flex flex-col md:flex-row justify-between gap-5 mx-auto px-20">
                 {pets
-                    ?.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+                    ?.sort(
+                        (a, b) =>
+                            new Date(b.created_at) - new Date(a.created_at)
+                    )
                     .slice(0, 3)
                     .map((pet) => (
                         <PetCard key={pet.id} pet={pet} />
