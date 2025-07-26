@@ -16,8 +16,8 @@ const CareAboutPets = () => {
     });
 
     return (
-        <section ref={ref} className="px-6 py-16 max-w-7xl mx-auto">
-            <h2 className="text-4xl md:text-6xl font-bold leading-tight mb-8">
+        <section ref={ref} className="px-6 py-16 max-w-7xl mx-auto block">
+            <h2 className="text-4xl md:text-6xl text-center font-bold leading-tight mb-8">
                 WHAT MAKE US CARE ABOUT PET?
             </h2>
 
@@ -50,9 +50,9 @@ const CareAboutPets = () => {
                         {stats.map((stat, index) => (
                             <div
                                 key={index}
-                                className="flex items-center justify-between border border-gray-200 rounded-xl px-6 py-4 transition-all duration-200 hover:border-purple-600"
+                                className="flex items-center justify-between border border-gray-200 rounded-xl px-6 py-4 transition-all duration-200 hover:border-[#fab74c]"
                             >
-                                <span className="w-8 h-8 rounded-full flex items-center justify-center border text-purple-600 transition-all duration-200 hover:bg-purple-600 hover:text-white hover:border-purple-600">
+                                <span className="w-8 h-8 rounded-full flex items-center justify-center border text-[#fab74c] transition-all duration-200 hover:bg-[#fab74c] hover:text-white hover:border-[#fab74c]">
                                     <FaChevronLeft size={12} />
                                 </span>
                                 <p className="font-semibold text-lg">

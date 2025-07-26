@@ -13,7 +13,8 @@ import dog from "../../../assets/bannerDog.png";
 import { TypeAnimation } from "react-type-animation";
 const HomePage = ({ pets }) => {
     const { auth } = usePage().props;
-    console.log(pets);
+
+    console.log(auth);
     const MotionDiv = motion.div;
     return (
         <div className="flex flex-col space-y-10">
@@ -56,7 +57,8 @@ const HomePage = ({ pets }) => {
                 <div className="relative z-10 flex flex-col md:flex-row justify-between md:items-end md:top-10 gap-10 md:gap-20 w-full">
                     {/* Social Icons */}
                     <div className="flex text-2xl cursor-pointer flex-row md:flex-col justify-center items-center text-white gap-5">
-                        <FaFacebookF className="hover:border border-blue-600 rounded-full hover:bg-blue-600 p-1 hover:text-white transition" />
+                        <a target="_blank" href="https://www.facebook.com/ummay.suzana"> <FaFacebookF className="hover:border border-blue-600 rounded-full hover:bg-blue-600 p-1 hover:text-white transition" /></a>
+
                         <FaInstagram className="hover:border border-red-600 rounded-full hover:bg-red-600 p-1 hover:text-white transition" />
                         <FaTwitter className="hover:border border-blue-600 rounded-full hover:bg-blue-600 p-1 hover:text-white transition" />
                     </div>
@@ -93,7 +95,7 @@ const HomePage = ({ pets }) => {
                     Pets you can Adpot
                 </h2>
             </div>
-            <div className="flex flex-col md:flex-row justify-between gap-5 mx-auto px-20">
+            <div className="flex flex-col md:flex-row justify-between gap-5 mx-auto px-20 ">
                 {pets
                     ?.sort(
                         (a, b) =>

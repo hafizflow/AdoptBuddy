@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { FaHeart } from "react-icons/fa";
 import { FaPaw } from "react-icons/fa";
-import { router } from "@inertiajs/react";
 
 const PetCard = ({ pet }) => {
     const [liked, setLiked] = useState(false);
@@ -21,21 +20,58 @@ const PetCard = ({ pet }) => {
     };
 
     return (
-        <div className="md:w-sm relative">
-            {/* Heart button */}
-            <button
-                onClick={(e) => {
-                    handleLikeClick();
-                    setLiked(!liked);
-                }}
-                className={`absolute top-4 z-20 right-4 text-2xl ${
-                    liked || pet.likes.length > 0
-                        ? "text-red-500"
-                        : "text-white"
-                } hover:scale-110 transition-transform`}
-            >
-                <FaHeart className="drop-shadow-lg" />
-            </button>
+        // <div>
+        //     <div
+        //         onClick={handlecardClick}
+        //         className="bg-indigo-50 border border-indigo-100 rounded-3xl shadow-md p-4 mx-auto transition-transform duration-500 transform cursor-pointer hover:scale-105 hover:shadow-lg"
+        //     >
+        //         <div className="flex justify-between items-start mb-4">
+        //             <span className={`${pet?.status === 'Available' ? "text-green-600" : "text-red-600"}  bg-white text-sm font-medium px-3 py-1 rounded-full`}>
+        //                 {pet ? pet.status : "Not found."}
+        //             </span>
+        //             <button
+        //                 onClick={(e) => {
+        //                     e.stopPropagation();
+        //                     setLiked(!liked);
+        //                 }}
+        //                 className={`text-xl ${liked ? "text-red-500" : "text-gray-300"
+        //                     } cursor-pointer`}
+        //             >
+        //                 <FaHeart />
+        //             </button>
+        //         </div>
+
+        //         <div className="flex justify-center mb-4">
+        //             <img
+        //                 src={`http://localhost:8000/storage/${pet.images?.[0]?.image || 'default.jpg'}`}
+        //                 className="w-full h-64 object-cover rounded-xl"
+        //             />
+        //         </div>
+
+        //         <p className="text-sm text-green-600 font-medium">{ }</p>
+        //         <h3 className="text-lg font-semibold">{pet?.name}</h3>
+        //         <p className="text-md text-gray-700 mb-4">
+        //             Breed : {pet ? pet.breed : "Not found"} | Age : {pet ? pet.age : "Not found"}
+        //         </p>
+        //         <p className="text-md text-gray-700 mb-4">
+        //             Location : {pet ? pet.location : "Location not found"}
+        //         </p>
+
+        //         <button
+        //             onClick={(e) => {
+        //                 e.stopPropagation();
+        //                 document.getElementById("my_modal_5").showModal();
+        //             }}
+        //             className="w-full cursor-pointer bg-indigo-500 hover:bg-indigo-600 text-white py-2 rounded-2xl font-medium"
+        //         >
+        //             Apply to Adopt
+        //         </button>
+        //     </div>
+
+        // </div>
+
+        // new card
+        <div className="md:w-sm">
             <div
                 onClick={handlecardClick}
                 className="bg-white  relative rounded-xl shadow-lg overflow-hidden   cursor-pointer hover:shadow-xl"
@@ -44,10 +80,8 @@ const PetCard = ({ pet }) => {
                 <div className="relative">
                     <div className="relative overflow-hidden">
                         <img
-                            src={`http://localhost:8000/storage/${
-                                pet?.images?.[0]?.image || "default.jpg"
-                            }`}
-                            alt={pet?.name}
+                            src={`http://localhost:8000/storage/${pet.images?.[0]?.image || 'default.jpg'}`}
+                            alt={pet.name}
                             className="w-full relative h-[330px] object-cover transition-transform duration-500 transform hover:scale-105"
                         />
 
@@ -58,17 +92,27 @@ const PetCard = ({ pet }) => {
                             </div>
                         </div>
                     </div>
+
+                    {/* Heart button */}
+                    <button
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            setLiked(!liked);
+                        }}
+                        className={`absolute top-4 right-4 text-2xl ${
+                            liked ? "text-red-500" : "text-white"
+                        } hover:scale-110 transition-transform`}
+                    >
+                        <FaHeart className="drop-shadow-lg" />
+                    </button>
                 </div>
 
                 {/* Content Section */}
                 <div className="p-6 relative">
                     {/* Breed and Age */}
                     <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                        {"Breed : " + pet?.breed}
-                        <span className="text-gray-600 font-normal">
-                            {" "}
-                            - (Age: {pet?.age})
-                        </span>
+                        {pet?.breed}
+                        <span className="text-gray-600 font-normal"> - (Age: {pet?.age})</span>
                     </h2>
 
                     {/* Description */}

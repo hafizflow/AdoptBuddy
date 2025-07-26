@@ -6,6 +6,11 @@ import { useForm } from "@inertiajs/react";
 import ManageCard from "../../components/ManageCard/ManageCard";
 
 const AdminProfile = ({ pets }) => {
+    // preview application
+    const [previewApplication, setPreviewApplication] = useState(null);
+    // preview uploaded image
+    const [previewUrls, setPreviewUrls] = useState([]);
+
     const [activeSection, setActiveSection] = useState("applications");
     const { data, setData, post, processing, errors } = useForm({
         name: "",
@@ -17,11 +22,14 @@ const AdminProfile = ({ pets }) => {
         status: "",
         location: "",
         description: "",
-        images: null,
+        images: [],
     });
 
     const [applications, setApplications] = useState([
         { id: 1, name: "John Doe", petName: "Milo", status: "Available" },
+        { id: 2, name: "Jane Smith", petName: "Luna", status: "Available" },
+        { id: 2, name: "Jane Smith", petName: "Luna", status: "Available" },
+        { id: 2, name: "Jane Smith", petName: "Luna", status: "Available" },
         { id: 2, name: "Jane Smith", petName: "Luna", status: "Available" },
     ]);
 
@@ -49,13 +57,20 @@ const AdminProfile = ({ pets }) => {
         e.preventDefault();
         e.stopPropagation();
         setDragActive(false);
-        if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-            setData("images", e.dataTransfer.files);
+        setDragActive(false);
+        if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+            const files = Array.from(e.dataTransfer.files);
+            setData("images", files);
+            setPreviewUrls(files.map(file => URL.createObjectURL(file)));
         }
     };
     const handleChange = (e) => {
-        setData("images", e.target.files);
-    };
+        const files = Array.from(e.target.files);
+        setData("images", files);
+        setPreviewUrls(files.map(file => URL.createObjectURL(file)));
+    }
+
+
 
     return (
         <div className="min-h-screen mt-16 flex flex-col md:flex-row">
@@ -129,24 +144,24 @@ const AdminProfile = ({ pets }) => {
                         <h2 className="text-xl text-center font-semibold mb-4">
                             Adoption Applications
                         </h2>
-                        <ul className="space-y-4">
+                        <ul className="space-y-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
                             {applications.map((app) => (
                                 <li
                                     key={app.id}
-                                    className="border border-indigo-100 rounded-lg p-4 flex flex-col md:flex-row md:justify-between md:items-center"
+                                    className="border w-full border-indigo-100 rounded-lg p-2 flex flex-col items-center gap-5"
                                 >
-                                    <div>
+                                    <div className="md:text-xl">
                                         <p className="font-medium">
-                                            {app.name} applied to adopt{" "}
-                                            {app.petName}
+                                            <span className="text-green-600">{app.name}</span> applied to adopt{" "}
+                                            <span className="text-green-600">{app.petName}</span>
                                         </p>
                                         <p className="text-sm text-gray-500">
-                                            Status: {app.status}
+                                            From: {app.status}
                                         </p>
                                     </div>
-                                    <div className="mt-2 md:mt-0 flex gap-2">
+                                    <div className="flex gap-2 w-full justify-center">
                                         <button
-                                            className="btn p-5 text-xl btn-sm bg-[#fab74c] hover:bg-[#fa7070] text-black hover:text-white"
+                                            className="btn p-2 md:text-lg  bg-[#fab74c] hover:bg-[#fa7070] text-black hover:text-white"
                                             onClick={() =>
                                                 handleApplicationAction(
                                                     app.id,
@@ -157,7 +172,7 @@ const AdminProfile = ({ pets }) => {
                                             Accept
                                         </button>
                                         <button
-                                            className="btn btn-sm bg-red-700 text-white"
+                                            className="btn p-2 md:text-lg bg-[#fab74c] hover:bg-[#fa7070] text-black hover:text-white"
                                             onClick={() =>
                                                 handleApplicationAction(
                                                     app.id,
@@ -167,9 +182,35 @@ const AdminProfile = ({ pets }) => {
                                         >
                                             Reject
                                         </button>
-                                        <button className="btn btn-sm bg-blue-700 text-white">
+                                        <button className="btn p-2 md:text-lg bg-[#fab74c] hover:bg-[#fa7070] text-black hover:text-white"
+                                            onClick={() => { setPreviewApplication(app) }}
+                                        >
                                             Preview
                                         </button>
+                                        {previewApplication && (
+                                            <div
+                                                className="fixed inset-0 bg-black/20 bg-opacity-30 flex items-center justify-center z-50"
+                                                onClick={() => setPreviewApplication(null)} // clicking outside
+                                            >
+                                                <div
+                                                    className="bg-white rounded-xl shadow-lg p-6 w-11/12 max-w-md relative"
+                                                    onClick={(e) => e.stopPropagation()} // prevent close on card click
+                                                >
+                                                    <h3 className="text-xl font-semibold mb-2 text-center">Application Preview</h3>
+                                                    <p><strong>Applicant:</strong> {previewApplication.name}</p>
+                                                    <p><strong>Pet:</strong> {previewApplication.petName}</p>
+                                                    <p><strong>Status:</strong> {previewApplication.status}</p>
+
+                                                    <button
+                                                        className="absolute top-2 right-2 text-red-500 hover:text-red-700"
+                                                        onClick={() => setPreviewApplication(null)}
+                                                    >
+                                                        ✕
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        )}
+
                                     </div>
                                 </li>
                             ))}
@@ -189,6 +230,7 @@ const AdminProfile = ({ pets }) => {
                                 e.stopPropagation();
                             }}
                             onDrop={handleDrop}
+                            encType="multipart/form-data"
                             className="grid grid-cols-1 md:grid-cols-2 gap-4"
                             onSubmit={(e) => {
                                 e.preventDefault();
@@ -197,6 +239,21 @@ const AdminProfile = ({ pets }) => {
                                 });
                             }}
                         >
+
+                            {previewUrls.length > 0 && (
+                                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
+                                    {previewUrls.map((url, idx) => (
+                                        <div key={idx} className="w-full aspect-square border rounded overflow-hidden shadow">
+                                            <img
+                                                src={url}
+                                                alt={`preview-${idx}`}
+                                                className="w-full h-full object-cover"
+                                            />
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+
                             <div className="md:col-span-2">
                                 <label
                                     htmlFor="fileUpload"
@@ -307,12 +364,11 @@ const AdminProfile = ({ pets }) => {
                                 onChange={(e) =>
                                     setData("status", e.target.value)
                                 }
-                                className="select select-bordered focus:outline-none focus:ring-0 focus:border-indigo-900"
+                                className="select select-bordered focus:outline-none focus:ring-0 focus:border-indigo-900 cursor-pointer"
                             >
-                                <option value="" disabled>
-                                    Pet Status
+                                <option value="Available">
+                                    Available
                                 </option>
-                                <option value="Available">Available</option>
                                 <option value="On Hold">On Hold</option>
                                 <option value="Adopted">Adopted</option>
                             </select>
@@ -331,11 +387,11 @@ const AdminProfile = ({ pets }) => {
                                     setData("description", e.target.value)
                                 }
                                 placeholder="Description"
-                                className="textarea textarea-bordered md:col-span-2 focus:outline-none focus:ring-0 focus:border-indigo-900"
-                                rows={4}
+                                className="textarea textarea-bordered md:col-span-2 focus:outline-none focus:ring-0 focus:border-indigo-900 resize-none"
+                                rows={3}
                             ></textarea>
                             <Button
-                                className="col-span-full"
+                                className="col-span-full w-1/2 mx-auto"
                                 type="submit"
                                 disabled={processing}
                             >
