@@ -52,12 +52,10 @@ const AdminProfile = ({ pets }) => {
         if (e.dataTransfer.files && e.dataTransfer.files[0]) {
             setData("images", e.dataTransfer.files);
         }
-    }
+    };
     const handleChange = (e) => {
         setData("images", e.target.files);
-    }
-
-
+    };
 
     return (
         <div className="min-h-screen mt-16 flex flex-col md:flex-row">
