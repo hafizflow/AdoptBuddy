@@ -12,7 +12,7 @@ class PostController extends Controller
 
     public function index()
     {
-        $pets = Post::with('images')->latest()->where('isVisible', 'Visible')->get();
+        $pets = Post::with('images')->where('isVisible', 'Visible')->latest()->get();
         return view('admin.all-post', compact('pets'));
     }
 

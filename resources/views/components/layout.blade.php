@@ -36,7 +36,7 @@
             </div>
             <div class="hidden lg:flex lg:gap-x-12">
                 <a href="/requests" class="text-sm/6 font-semibold text-gray-900">Admin</a>
-                <a href="/pets" class="text-sm/6 font-semibold text-gray-900">Posts</a>
+                <a href="/adopt" class="text-sm/6 font-semibold text-gray-900">Posts</a>
                 <a href="/post" class="text-sm/6 font-semibold text-gray-900">Post Form</a>
                 <a href="/likes" class="text-sm/6 font-semibold text-gray-900">Liked</a>
             </div>
