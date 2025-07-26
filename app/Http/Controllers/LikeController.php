@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Like;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class LikeController extends Controller
 {
@@ -18,7 +19,9 @@ class LikeController extends Controller
             ->pluck('post')       // get only the posts
             ->filter();           // remove nulls in case post was deleted
 
-        return view('user.likes', ['likedPosts' => $likedPosts]);
+        return Inertia::render('favouriteList/FavouriteList', [
+            'pets' => $likedPosts,
+        ]);
     }
 
 

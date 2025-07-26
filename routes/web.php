@@ -7,6 +7,7 @@ use App\Http\Controllers\PostUserController;
 use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DetailsController;
 use App\Http\Middleware\IsAdmin;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Routing\Router;
@@ -28,15 +29,16 @@ Route::get("/adopt", function () {
 });
 
 Route::get("/admin", [AdminController::class, 'index'])->middleware(IsAdmin::class);
-Route::get("/details", function () {
-    return Inertia::render('petDetails/petDetails');
-});
+Route::get("/details/{id}", [DetailsController::class, 'index']);
 Route::get("/profile", function () {
     return Inertia::render('userProfile/userProfile');
 });
 Route::get("/favouritelist", function () {
     return Inertia::render('favouriteList/FavouriteList');
 });
+
+Route::get('/likes', [LikeController::class, 'index'])->middleware('auth');
+
 Route::get("/userupload", function () {
     return Inertia::render('userUpload/UserUpload');
 });
@@ -75,4 +77,5 @@ Route::patch('/postRequest{post}', [PostController::class, 'postRequest'])->name
 
 
 Route::post('/posts/{post}/like', [LikeController::class, 'toggle'])->name('posts.like')->middleware('auth');
-Route::get('/likes', [LikeController::class, 'index'])->name('likes')->middleware('auth');
+
+//Route::get('/likes', [LikeController::class, 'index'])->name('likes')->middleware('auth');
