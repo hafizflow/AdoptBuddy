@@ -33,6 +33,32 @@ const AdminProfile = ({ pets }) => {
         );
     };
 
+    // Handling file drop
+
+    const [dragActive, setDragActive] = useState(false);
+
+    const handleDrag = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (e.type === "dragleave") {
+            setDragActive(false);
+        }
+    };
+
+    const handleDrop = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setDragActive(false);
+        if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+            setData("images", e.dataTransfer.files);
+        }
+    }
+    const handleChange = (e) => {
+        setData("images", e.target.files);
+    }
+
+
+
     return (
         <div className="min-h-screen mt-16 flex flex-col md:flex-row">
             {/* Sidebar */}
@@ -159,6 +185,12 @@ const AdminProfile = ({ pets }) => {
                             Upload New Pet
                         </h2>
                         <form
+                            onDragEnter={() => setDragActive(true)}
+                            onDragOver={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                            }}
+                            onDrop={handleDrop}
                             className="grid grid-cols-1 md:grid-cols-2 gap-4"
                             onSubmit={(e) => {
                                 e.preventDefault();
@@ -204,11 +236,21 @@ const AdminProfile = ({ pets }) => {
                                         type="file"
                                         className="hidden"
                                         multiple
-                                        onChange={(e) =>
-                                            setData("images", e.target.files)
-                                        }
+                                        // onChange={(e) =>
+                                        //     setData("images", e.target.files)
+                                        // }
+                                        onChange={handleChange}
                                     />
                                 </label>
+                                {dragActive && (
+                                    <div
+                                        className="absolute inset-0 z-10"
+                                        onDragEnter={handleDrag}
+                                        onDragLeave={handleDrag}
+                                        onDragOver={handleDrag}
+                                        onDrop={handleDrop}
+                                    ></div>
+                                )}
                             </div>
                             <input
                                 value={data.name}
