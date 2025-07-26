@@ -2,26 +2,46 @@
 
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostUserController;
 use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\AdminController;
 use App\Http\Middleware\IsAdmin;
+use Illuminate\Routing\Route as RoutingRoute;
+use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 
-Route::get("/riyad", function () {
-    return inertia('Home');
-});
-Route::get('/anjumHome', function () {
-    return Inertia::render('home/Home');
-});
+Route::get('/', [HomeController::class, 'index']);
+
 Route::get("/contact", function () {
-    return Inertia::render('contact/contact');
+    return Inertia::render('contact/Contact');
 });
 Route::get("/about", function () {
     return Inertia::render('about/About');
 });
+
+Route::get("/adopt", function () {
+    return Inertia::render('adopt/Adopt');
+});
+
+Route::get("/admin", [AdminController::class, 'index'])->middleware(IsAdmin::class);
+Route::get("/details", function () {
+    return Inertia::render('petDetails/petDetails');
+});
+Route::get("/profile", function () {
+    return Inertia::render('userProfile/userProfile');
+});
+Route::get("/favouritelist", function () {
+    return Inertia::render('favouriteList/FavouriteList');
+});
+Route::get("/userupload", function () {
+    return Inertia::render('userUpload/UserUpload');
+});
+
+
 
 
 //Auth
@@ -38,16 +58,15 @@ Route::get('/adopt/{post}', [PostUserController::class, 'create'])->name('adopt.
 Route::post('/adopt/{post}', [PostUserController::class, 'store'])->name('adopt.store')->middleware('auth');
 
 
-
 // Admin Form
 Route::get('/requests', [PostUserController::class, 'index'])->middleware(IsAdmin::class);
 Route::patch('/requests/{postUser}', [PostUserController::class, 'update'])->name('requests.update')->middleware(IsAdmin::class);
-Route::delete('/requests/{postUser}', [PostUserController::class, 'destroy'])->name('requests.destroy')->middleware(IsAdmin::class);
+Route::delete('/requests/{postUser}', [PostUserController::class, 'destroy'])->middleware(IsAdmin::class);
 
 
 Route::get('/post', [PostController::class, 'create'])->middleware('auth');
 Route::post('/post', [PostController::class, 'store'])->middleware('auth');
-Route::get('/pets', [PostController::class, 'index'])->name('pets.index');
+Route::get('/adopt', [PostController::class, 'index'])->name('pets.index');
 
 Route::get('/posts/{post}', [PostController::class, 'edit'])->name('post.edit')->middleware(IsAdmin::class);
 Route::put('/posts/{post}', [PostController::class, 'update'])->name('post.update')->middleware(IsAdmin::class);

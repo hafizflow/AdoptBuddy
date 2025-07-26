@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { FiHeart } from "react-icons/fi";
 import { Link, NavLink } from "react-router-dom";
 import { MdLogin } from "react-icons/md";
-import { FaRegUser } from "react-icons/fa";
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -29,7 +28,8 @@ const Navbar = () => {
             <NavLink
                 to={path}
                 className={({ isActive }) =>
-                    `hover:underline hover:bg-transparent underline-offset-8 decoration-white transition ${isActive ? "underline" : ""
+                    `hover:underline hover:bg-transparent underline-offset-8 decoration-white transition ${
+                        isActive ? "underline" : ""
                     }`
                 }
             >
@@ -40,12 +40,17 @@ const Navbar = () => {
 
     return (
         <div
-            className={`navbar bg-[#1b1a1b] fixed top-0 w-full z-50 md:px-20 mx-auto transition-all duration-300 ${isScrolled ? "bg-white/30 backdrop-blur-md shadow-md" : ""
-                }`}
+            className={`navbar bg-[#1b1a1b] fixed top-0 w-full z-50 md:px-20 mx-auto transition-all duration-300 ${
+                isScrolled ? "bg-white/30 backdrop-blur-md shadow-md" : ""
+            }`}
         >
             <div className="navbar-start">
                 <div className="dropdown">
-                    <div tabIndex={0} role="button" className="btn btn-ghost hover:bg-indigo-900 hover:border-none hover:shadow-none lg:hidden">
+                    <div
+                        tabIndex={0}
+                        role="button"
+                        className="btn btn-ghost hover:bg-indigo-900 hover:border-none hover:shadow-none lg:hidden"
+                    >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="h-5 w-5 text-white"
@@ -68,22 +73,41 @@ const Navbar = () => {
                         {links}
                     </ul>
                 </div>
-                <Link onClick={() => { window.scrollTo(0, 0) }} to="/" className={`${isScrolled ? "text-indigo-900" : "text-white"} text-2xl font-semibold`}>
+                <Link
+                    onClick={() => {
+                        window.scrollTo(0, 0);
+                    }}
+                    to="/"
+                    className={`${
+                        isScrolled ? "text-indigo-900" : "text-white"
+                    } text-2xl font-semibold`}
+                >
                     AdoptBuddy
                 </Link>
             </div>
 
             <div className="navbar-end hidden lg:flex">
-                <ul className={`${isScrolled ? "text-indigo-900" : "text-white"} menu menu-horizontal px-1 font-semibold`}>
+                <ul
+                    className={`${
+                        isScrolled ? "text-indigo-900" : "text-white"
+                    } menu menu-horizontal px-1 font-semibold`}
+                >
                     {links}
                 </ul>
             </div>
 
-            <div className={`${isScrolled ? "text-indigo-900" : "text-white"} navbar-end flex gap-2 items-center`}>
+            <div
+                className={`${
+                    isScrolled ? "text-indigo-900" : "text-white"
+                } navbar-end flex gap-2 items-center`}
+            >
                 <Link to="/favouritelist">
                     <FiHeart className="text-xl font-bold hover:text-2xl hover:text-red-600" />
                 </Link>
-                <Link className="flex items-center" to="/login">Login<MdLogin className="text-xl" /></Link>
+                <Link className="flex items-center" to="/login">
+                    Login
+                    <MdLogin className="text-xl" />
+                </Link>
             </div>
         </div>
     );

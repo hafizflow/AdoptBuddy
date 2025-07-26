@@ -1,13 +1,43 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Nunito&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Truculenta:opsz,wght@12..72,100..900&display=swap');
+
 @import "tailwindcss";
 @source "../views";
+@plugin "daisyui";
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
 @source '../**/*.js';
 
-@theme {
+/* @theme {
     --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
         "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
         "Noto Color Emoji";
+} */
+
+@theme {
+    --font-sans: "Truculenta", ui-sans-serif, system-ui, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+        "Noto Color Emoji";
+}
+
+
+html {
+    scroll-behavior: smooth;
+
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    /* font-family: "Montserrat", sans-serif; */
+    font-family: "Truculenta", sans-serif;
+}
+
+.custom-banner-font {
+    font-family: "Walter Turncoat", cursive !important;
 }

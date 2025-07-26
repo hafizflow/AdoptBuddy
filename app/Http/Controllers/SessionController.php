@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
+use Inertia\Inertia;
+
 
 class SessionController extends Controller
 {
     public function create(){
-        return view('auth.login');
+        return Inertia::render('login/Login');
     }
 
     public function store(){
@@ -27,11 +29,11 @@ class SessionController extends Controller
         // store session
         request()->session()->regenerate();
         // redirect
-        return redirect('/pets');
+        return Inertia::location('/');
     }
 
     public function destroy(){
         Auth::logout();
-        return redirect('/login');
+        return Inertia::location('/login');
     }
 }

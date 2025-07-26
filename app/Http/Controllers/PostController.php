@@ -6,6 +6,7 @@ use App\Http\Middleware\IsAdmin;
 use App\Models\Post;
 use App\Models\PostImage;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class PostController extends Controller
 {
@@ -13,7 +14,10 @@ class PostController extends Controller
     public function index()
     {
         $pets = Post::with('images')->latest()->get();
-        return view('admin.all-post', compact('pets'));
+        return Inertia::render('adopt/Adopt', [
+            'pets' => $pets,
+        ]); 
+        //return view('admin.all-post', compact('pets'));
     }
 
     public function create() {
@@ -74,15 +78,15 @@ class PostController extends Controller
         return redirect()->route('pets.index')->with('success', 'Pet status updated!');
     }
 
-    public function destroy(Post $post)
+    public function destroy()
     {
         // Delete related images from storage
-        foreach ($post->images as $image) {
-            \Storage::disk('public')->delete($image->image);
-            $image->delete();
-        }
+        // foreach ($post->images as $image) {
+        //     \Storage::disk('public')->delete($image->image);
+        //     $image->delete();
+        // }
 
-        $post->delete();
+        // $post->delete();
 
         return redirect()->route('pets.index')->with('success', 'Pet deleted!');
     }
