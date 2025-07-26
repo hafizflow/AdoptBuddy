@@ -29,7 +29,9 @@ const PetCard = ({ pet }) => {
                     setLiked(!liked);
                 }}
                 className={`absolute top-4 z-20 right-4 text-2xl ${
-                    liked ? "text-red-500" : "text-white"
+                    liked || pet.likes.length > 0
+                        ? "text-red-500"
+                        : "text-white"
                 } hover:scale-110 transition-transform`}
             >
                 <FaHeart className="drop-shadow-lg" />

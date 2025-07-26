@@ -12,7 +12,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $pets = Post::with('images')->latest()->take(4)->get();
+        $pets = Post::with('images','likes')->latest()->take(4)->get();
         return Inertia::render('home/Home', [
             'pets' => $pets,
         ]);

@@ -2,7 +2,6 @@ import ApplyAdoptForm from "../../components/ApplyAdoptForm/ApplyAdoptForm";
 import PetCard from "../../components/PetCard/PetCard";
 
 const FavouriteList = ({ pets }) => {
-    console.log(pets);
     return (
         <div className="min-h-screen mt-12 px-5 lg:px-20 py-8 space-y-10">
             <div className="">
@@ -12,7 +11,7 @@ const FavouriteList = ({ pets }) => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {pets.map((pet) => (
-                    <PetCard key={pet.id} pet={pet} />
+                    <PetCard key={pet.id} pet={{ ...pet, likes: [1, 2] }} />
                 ))}
             </div>
             <ApplyAdoptForm></ApplyAdoptForm>

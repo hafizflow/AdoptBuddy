@@ -13,7 +13,7 @@ class PostController extends Controller
 
     public function index()
     {
-        $pets = Post::with('images')->latest()->get();
+        $pets = Post::with('images','likes')->latest()->get();
         return Inertia::render('adopt/Adopt', [
             'pets' => $pets,
         ]); 
