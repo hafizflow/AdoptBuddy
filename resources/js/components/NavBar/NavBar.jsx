@@ -64,9 +64,8 @@ const Navbar = ({ user }) => {
 
     return (
         <div
-            className={`navbar bg-[#1b1a1b] fixed top-0 w-full z-50 md:px-20 mx-auto transition-all duration-300 ${
-                isScrolled ? "bg-white/30 backdrop-blur-md shadow-md" : ""
-            }`}
+            className={`navbar bg-[#1b1a1b] fixed top-0 w-full z-50 md:px-20 mx-auto transition-all duration-300 ${isScrolled ? "bg-white/30 backdrop-blur-md shadow-md" : ""
+                }`}
         >
             <div className="navbar-start">
                 <div className="dropdown">
@@ -113,7 +112,7 @@ const Navbar = ({ user }) => {
             <div className="navbar-end hidden lg:flex">
                 <ul
                     className={`${isScrolled ? "text-gray-700" : "text-white"
-                        } menu menu-horizontal px-1 font-semibold text-lg`}
+                        } menu menu-horizontal px-1 font-semibold`}
                 >
                     {links}
                 </ul>

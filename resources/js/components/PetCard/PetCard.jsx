@@ -3,7 +3,8 @@ import { FaHeart } from "react-icons/fa";
 import { FaPaw } from "react-icons/fa";
 
 const PetCard = ({ pet }) => {
-    const [liked, setLiked] = useState(false);
+    const [liked, setLiked] = useState(pet.likes?.length > 0);
+
 
     const handlecardClick = () => {
         window.location.href = `/details/${pet.id}`;
@@ -46,8 +47,8 @@ const PetCard = ({ pet }) => {
                     {/* Heart button */}
                     <button
                         onClick={(e) => {
-                            handleLikeClick()
                             e.stopPropagation();
+                            handleLikeClick()
                             setLiked(!liked);
                         }}
                         className={`absolute top-4 right-4 text-2xl ${liked ? "text-red-500" : "text-white"
@@ -60,7 +61,7 @@ const PetCard = ({ pet }) => {
                 {/* Content Section */}
                 <div className="p-6 relative">
                     {/* Breed and Age */}
-                    <h2 className="text-2xl font-bold text-gray-900 mb-2">
+                    <h2 className="text-xl font-bold text-gray-900 mb-2">
                         {pet?.breed}
                         <span className="text-gray-600 font-normal"> - (Age: {pet?.age})</span>
                     </h2>

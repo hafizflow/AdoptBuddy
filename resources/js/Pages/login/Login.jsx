@@ -23,11 +23,11 @@ const Login = () => {
                     transition={{ duration: 1 }}
                 >
                     <div className="text-center lg:text-left">
-                        <h1 className="text-5xl text-indigo-900 font-bold">
+                        <h1 className="text-5xl text-amber-500 font-bold">
                             Login now!
                         </h1>
                     </div>
-                    <div className="card bg-indigo-50 w-full max-w-full shrink-0 shadow">
+                    <div className="card bg-amber-50 w-full max-w-full shrink-0 shadow">
                         <div className="card-body">
                             <form
                                 className="fieldset"

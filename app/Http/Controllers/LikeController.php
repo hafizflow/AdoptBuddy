@@ -18,7 +18,7 @@ class LikeController extends Controller
             ->get()
             ->pluck('post')       // get only the posts
             ->filter();           // remove nulls in case post was deleted
-        
+
 
         return Inertia::render('favouriteList/FavouriteList', [
             'pets' => $likedPosts,
