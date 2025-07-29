@@ -23,23 +23,27 @@ const Login = () => {
                     transition={{ duration: 1 }}
                 >
                     <div className="text-center lg:text-left">
-                        <h1 className="text-5xl text-amber-500 font-bold">
+                        <h1 className="text-5xl text-[#D92C54] font-bold">
                             Login now!
                         </h1>
                     </div>
-                    <div className="card bg-amber-50 w-full max-w-full shrink-0 shadow">
+                    <div className="card bg-[#D92C54]/10 w-full max-w-full shrink-0 shadow">
                         <div className="card-body">
                             <form
                                 className="fieldset"
                                 onSubmit={(e) => {
                                     e.preventDefault();
+                                    if (!data.email.trim() || !data.password.trim()) {
+                                        alert("Please enter both email and password");
+                                        return;
+                                    }
                                     post("/login");
                                 }}
                             >
                                 <label className="label font-bold">Email</label>
                                 <input
                                     type="email"
-                                    className="input focus:outline-none focus:ring-0 focus:border-indigo-900  w-full"
+                                    className="input focus:outline-none focus:ring-0 focus:border-[#D92C54]  w-full"
                                     value={data.email}
                                     onChange={(e) =>
                                         setData("email", e.target.value)
@@ -58,7 +62,7 @@ const Login = () => {
                                         onChange={(e) =>
                                             setData("password", e.target.value)
                                         }
-                                        className="input w-full focus:outline-none focus:ring-0 focus:border-indigo-900 pr-10"
+                                        className="input w-full focus:outline-none focus:ring-0 focus:border-[#D92C54] pr-10"
                                         placeholder="Password"
                                     />
                                     <button
@@ -87,7 +91,7 @@ const Login = () => {
                                     <a className="">Dont have an account?</a>
                                     <a
                                         href="/register"
-                                        className="link link-hover text-indigo-900"
+                                        className="link link-hover text-[#D92C54]"
                                     >
                                         Register
                                     </a>

@@ -8,25 +8,25 @@ import {
 const Services = () => {
     const services = [
         {
-            icon: <FaPaw className="text-4xl text-amber-950" />,
+            icon: <FaPaw className="text-4xl text-white" />,
             title: "Pet Adoption",
             description:
                 "Find and adopt your perfect companion from trusted shelters.",
         },
         {
-            icon: <FaHandsHelping className="text-4xl text-amber-950" />,
+            icon: <FaHandsHelping className="text-4xl text-white" />,
             title: "Pet Rescue",
             description:
                 "Report stray or injured animals and let us help them.",
         },
         {
-            icon: <FaMapMarkedAlt className="text-4xl text-amber-950" />,
+            icon: <FaMapMarkedAlt className="text-4xl text-white" />,
             title: "Nearby Map",
             description:
                 "Locate shelters and clinics near you with our interactive map.",
         },
         {
-            icon: <FaFileAlt className="text-4xl text-amber-950" />,
+            icon: <FaFileAlt className="text-4xl text-white" />,
             title: "Adoption Tracking",
             description:
                 "Apply online and track the status of your adoption journey.",
@@ -43,15 +43,15 @@ const Services = () => {
                     {services.map((service, idx) => (
                         <div
                             key={idx}
-                            className="bg-white p-6 rounded-xl shadow-md hover:shadow-indigo-500/50 transition duration-300"
+                            className="bg-gradient-to-r from-[#932F67] to-[#D92C54] p-6 rounded-xl shadow-md hover:shadow-indigo-500/50 transition duration-300"
                         >
                             <div className="mb-4 flex justify-center">
                                 {service.icon}
                             </div>
-                            <h3 className="text-xl font-semibold text-gray-700 mb-2">
+                            <h3 className="text-xl font-semibold text-white mb-2">
                                 {service.title}
                             </h3>
-                            <p className="text-gray-600 text-sm">
+                            <p className="text-white text-sm">
                                 {service.description}
                             </p>
                         </div>

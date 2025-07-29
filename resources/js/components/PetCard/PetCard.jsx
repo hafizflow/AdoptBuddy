@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { FaHeart } from "react-icons/fa";
 import { FaPaw } from "react-icons/fa";
+import { router } from '@inertiajs/react';
+
 
 const PetCard = ({ pet }) => {
     const [liked, setLiked] = useState(pet.likes?.length > 0);
@@ -48,7 +50,7 @@ const PetCard = ({ pet }) => {
                     <button
                         onClick={(e) => {
                             e.stopPropagation();
-                            handleLikeClick()
+                            handleLikeClick();
                             setLiked(!liked);
                         }}
                         className={`absolute top-4 right-4 text-2xl ${liked ? "text-red-500" : "text-white"
@@ -78,7 +80,7 @@ const PetCard = ({ pet }) => {
                             e.stopPropagation();
                             document.getElementById("my_modal_5").showModal();
                         }}
-                        className=" bg-[#fab74c] hover:bg-[#fa7070] text-black hover:text-white py-3 px-6 rounded-2xl font-semibold text-lg transition-colors duration-200 cursor-pointer"
+                        className=" text-white bg-[#E13452] hover:bg-[#8ABB6C] py-3 px-6 rounded-2xl font-semibold text-lg transition-colors duration-200 cursor-pointer"
                     >
                         Adopt Me
                     </button>

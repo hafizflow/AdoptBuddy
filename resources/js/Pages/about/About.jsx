@@ -31,7 +31,7 @@ const About = () => {
         <div className="mt-14">
             <div className="min-h-screen px-5 lg:px-20 py-8 flex flex-col lg:flex-row items-center justify-center gap-10 ">
                 <div className="flex-1 max-w-xl">
-                    <p className="text-primary font-semibold mb-2">
+                    <p className="text-[#932F67] font-semibold mb-2">
                         How It Started
                     </p>
                     <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
@@ -60,35 +60,35 @@ const About = () => {
                     />
 
                     <div className="grid grid-cols-2 gap-4">
-                        <div className="bg-gray-100 p-6 rounded-xl shadow">
-                            <p className="text-2xl font-bold text-gray-900">
+                        <div className="bg-gradient-to-r from-[#932F67] to-[#D92C54] p-6 rounded-xl shadow">
+                            <p className="text-2xl font-bold text-white">
                                 4+
                             </p>
-                            <p className="text-gray-600 text-sm">
+                            <p className="text-white text-sm">
                                 Years of Trusted Service
                             </p>
                         </div>
-                        <div className="bg-gray-100 p-6 rounded-xl shadow">
-                            <p className="text-2xl font-bold text-gray-900">
+                        <div className="bg-gradient-to-r from-[#932F67] to-[#D92C54] p-6 rounded-xl shadow">
+                            <p className="text-2xl font-bold text-white">
                                 5,200+
                             </p>
-                            <p className="text-gray-600 text-sm">
+                            <p className="text-white text-sm">
                                 Pets Successfully Adopted
                             </p>
                         </div>
-                        <div className="bg-gray-100 p-6 rounded-xl shadow">
-                            <p className="text-2xl font-bold text-gray-900">
+                        <div className="bg-gradient-to-r from-[#932F67] to-[#D92C54] p-6 rounded-xl shadow">
+                            <p className="text-2xl font-bold text-white">
                                 2,800+
                             </p>
-                            <p className="text-gray-600 text-sm">
+                            <p className="text-white text-sm">
                                 Happy Pet Parents
                             </p>
                         </div>
-                        <div className="bg-gray-100 p-6 rounded-xl shadow">
-                            <p className="text-2xl font-bold text-gray-900">
+                        <div className="bg-gradient-to-r from-[#932F67] to-[#D92C54] p-6 rounded-xl shadow">
+                            <p className="text-2xl font-bold text-white">
                                 300+
                             </p>
-                            <p className="text-gray-600 text-sm">
+                            <p className="text-white text-sm">
                                 Partner Shelters
                             </p>
                         </div>

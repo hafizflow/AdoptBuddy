@@ -4,8 +4,17 @@ import { MdSettingsApplications, MdManageHistory } from "react-icons/md";
 import { IoCloudUploadOutline } from "react-icons/io5";
 import { useForm } from "@inertiajs/react";
 import ManageCard from "../../components/ManageCard/ManageCard";
+import { FaRegUser } from "react-icons/fa";
+import { MdOutlineEmail } from "react-icons/md";
+import { IoLocationOutline } from "react-icons/io5";
+import { IoMdInformationCircleOutline } from "react-icons/io";
+import { IoCallOutline } from "react-icons/io5";
+
+
+
 
 const AdminProfile = ({ pets }) => {
+    console.log("ALL pets", pets);
     // preview application
     const [previewApplication, setPreviewApplication] = useState(null);
     // preview uploaded image
@@ -78,10 +87,10 @@ const AdminProfile = ({ pets }) => {
             <aside className="bg-white shadow-md sticky top-0 z-10 flex md:flex-col justify-between md:justify-start p-3 md:p-5 md:w-64">
                 {/* Admin info - only visible on md+ */}
                 <div className="hidden md:block text-center mb-6">
-                    <h1 className="text-2xl font-bold text-primary mb-2">
+                    <h1 className="text-2xl font-bold text-[#932F67] mb-2">
                         Welcome back, Admin
                     </h1>
-                    <div className="bg-indigo-100 text-primary p-3 rounded-xl">
+                    <div className="bg-[#932F67]/20 text-[#932F67] p-3 rounded-xl">
                         <p className="font-medium">Admin Name</p>
                         <p className="text-sm">admin@email.com</p>
                     </div>
@@ -92,11 +101,10 @@ const AdminProfile = ({ pets }) => {
                     {/* Applications */}
                     <button
                         onClick={() => setActiveSection("applications")}
-                        className={`flex cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${
-                            activeSection === "applications"
-                                ? "bg-primary text-white"
-                                : "hover:bg-gray-100"
-                        }`}
+                        className={`flex cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "applications"
+                            ? "bg-[#932F67] text-white"
+                            : "hover:bg-gray-100"
+                            }`}
                     >
                         <MdSettingsApplications size={24} />
                         <span className="hidden md:inline">Applications</span>
@@ -105,11 +113,10 @@ const AdminProfile = ({ pets }) => {
                     {/* Upload */}
                     <button
                         onClick={() => setActiveSection("upload")}
-                        className={`flex  cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${
-                            activeSection === "upload"
-                                ? "bg-primary text-white"
-                                : "hover:bg-gray-100"
-                        }`}
+                        className={`flex  cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "upload"
+                            ? "bg-[#932F67] text-white"
+                            : "hover:bg-gray-100"
+                            }`}
                     >
                         <IoCloudUploadOutline size={24} />
                         <span className="hidden md:inline">Upload Pet</span>
@@ -118,11 +125,10 @@ const AdminProfile = ({ pets }) => {
                     {/* Manage */}
                     <button
                         onClick={() => setActiveSection("manage")}
-                        className={`flex cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${
-                            activeSection === "manage"
-                                ? "bg-primary text-white"
-                                : "hover:bg-gray-100"
-                        }`}
+                        className={`flex cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "manage"
+                            ? "bg-[#932F67] text-white"
+                            : "hover:bg-gray-100"
+                            }`}
                     >
                         <MdManageHistory size={24} />
                         <span className="hidden md:inline">Manage Pets</span>
@@ -152,74 +158,130 @@ const AdminProfile = ({ pets }) => {
                                 >
                                     <div className="md:text-xl">
                                         <p className="font-medium">
-                                            <span className="text-green-600">{app.name}</span> applied to adopt{" "}
-                                            <span className="text-green-600">{app.petName}</span>
+                                            <span className="text-[#932F67]">{app.name}</span> applied to adopt{" "}
+                                            <span className="text-[#D92C54]">{app.petName}</span>
                                         </p>
-                                        <p className="text-sm text-gray-500">
-                                            From: {app.status}
-                                        </p>
+                                        <p className="text-sm text-gray-500">From: {app.status}</p>
                                     </div>
-                                    <div className="flex gap-2 w-full justify-center">
+
+                                    <div className="flex flex-wrap md:flex-nowrap gap-2 justify-center">
                                         <button
-                                            className="btn p-2 md:text-lg  bg-[#fab74c] hover:bg-[#fa7070] text-black hover:text-white"
-                                            onClick={() =>
-                                                handleApplicationAction(
-                                                    app.id,
-                                                    "Accepted"
-                                                )
-                                            }
+                                            className="text-xs px-3 py-1 rounded bg-green-500 hover:bg-green-600 text-white cursor-pointer"
+                                            onClick={() => handleApplicationAction(app.id, "Accepted")}
                                         >
                                             Accept
                                         </button>
                                         <button
-                                            className="btn p-2 md:text-lg bg-[#fab74c] hover:bg-[#fa7070] text-black hover:text-white"
-                                            onClick={() =>
-                                                handleApplicationAction(
-                                                    app.id,
-                                                    "Rejected"
-                                                )
-                                            }
+                                            className="text-xs px-3 py-1 rounded bg-red-500 hover:bg-red-600 text-white cursor-pointer"
+                                            onClick={() => handleApplicationAction(app.id, "Rejected")}
                                         >
                                             Reject
                                         </button>
-                                        <button className="btn p-2 md:text-lg bg-[#fab74c] hover:bg-[#fa7070] text-black hover:text-white"
-                                            onClick={() => { setPreviewApplication(app) }}
+                                        <button
+                                            className="text-xs px-3 py-1 rounded bg-gray-600 hover:bg-gray-700 text-white cursor-pointer"
+                                            onClick={() => setPreviewApplication(app)}
                                         >
                                             Preview
                                         </button>
-                                        {previewApplication && (
-                                            <div
-                                                className="fixed inset-0 bg-black/20 bg-opacity-30 flex items-center justify-center z-50"
-                                                onClick={() => setPreviewApplication(null)} // clicking outside
-                                            >
-                                                <div
-                                                    className="bg-white rounded-xl shadow-lg p-6 w-11/12 max-w-md relative"
-                                                    onClick={(e) => e.stopPropagation()} // prevent close on card click
-                                                >
-                                                    <h3 className="text-xl font-semibold mb-2 text-center">Application Preview</h3>
-                                                    <p><strong>Applicant:</strong> {previewApplication.name}</p>
-                                                    <p><strong>Pet:</strong> {previewApplication.petName}</p>
-                                                    <p><strong>Status:</strong> {previewApplication.status}</p>
+                                    </div>
 
-                                                    <button
-                                                        className="absolute top-2 right-2 text-red-500 hover:text-red-700"
-                                                        onClick={() => setPreviewApplication(null)}
-                                                    >
-                                                        ✕
-                                                    </button>
+
+
+
+                                    {/* Preview Modal */}
+                                    {previewApplication?.id === app.id && (
+                                        <div
+                                            className="fixed inset-0 bg-black/30 flex items-center justify-center z-50"
+                                            onClick={() => setPreviewApplication(null)}
+                                        >
+                                            <div
+                                                className="bg-white rounded-xl shadow-lg p-6 w-11/12 max-w-2xl relative"
+                                                onClick={(e) => e.stopPropagation()}
+                                            >
+                                                <button
+                                                    className="absolute top-2 right-2 text-red-500 hover:text-red-700 text-xl"
+                                                    onClick={() => setPreviewApplication(null)}
+                                                >
+                                                    ✕
+                                                </button>
+
+                                                <h3 className="text-xl font-semibold mb-4 text-center">
+                                                    Application Preview
+                                                </h3>
+
+                                                <div className="flex flex-col md:flex-row gap-6 items-start">
+                                                    {/* Pet Image */}
+                                                    <img
+                                                        className="w-40 h-40 md:w-48 md:h-48 rounded-2xl object-cover"
+                                                        src="https://i.guim.co.uk/img/media/327aa3f0c3b8e40ab03b4ae80319064e401c6fbc/377_133_3542_2834/master/3542.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=34d32522f47e4a67286f9894fc81c863"
+                                                        alt="pet"
+                                                    />
+
+                                                    {/* Info Section */}
+                                                    <div className="flex flex-col gap-6 w-full">
+                                                        {/* Applicant Info */}
+                                                        <div className="flex flex-col md:flex-row justify-between gap-4">
+                                                            <div className="flex flex-col gap-2">
+                                                                <h1 className="font-bold text-xl flex items-center gap-2">
+                                                                    <FaRegUser className="text-gray-600" />
+                                                                    {previewApplication.name}
+                                                                </h1>
+                                                                <p className="flex items-center gap-2 text-gray-700">
+                                                                    <MdOutlineEmail className="text-gray-600" />
+                                                                    anjumhossain@gmail.com
+                                                                </p>
+                                                                <p className="flex items-center gap-2 text-gray-700">
+                                                                    <IoLocationOutline className="text-gray-600" />
+                                                                    Savar, Dhaka
+                                                                </p>
+                                                            </div>
+
+                                                            <div className="flex flex-col gap-2">
+                                                                <p className="flex items-center gap-2 text-gray-700">
+                                                                    <IoCallOutline className="text-gray-600" />
+                                                                    01700610483
+                                                                </p>
+                                                                <div>
+                                                                    <p className="font-semibold text-gray-800">Message:</p>
+                                                                    <span className="text-gray-700">
+                                                                        Lorem ipsum dolor sit amet consectetur
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        {/* Pet Info */}
+                                                        <div>
+                                                            <h2 className="flex items-center text-lg font-semibold text-gray-800 mb-2">
+                                                                <IoMdInformationCircleOutline className="text-gray-600 mr-2" />
+                                                                Pet Info
+                                                            </h2>
+                                                            <div className="grid grid-cols-2 gap-4 text-gray-700">
+                                                                <div>
+                                                                    <p><strong>Name:</strong> {previewApplication.petName}</p>
+                                                                    <p><strong>Breed:</strong> {/* Replace with actual value */}</p>
+                                                                    <p><strong>Age:</strong> {/* Replace with actual value */}</p>
+                                                                </div>
+                                                                <div>
+                                                                    <p><strong>Gender:</strong> {/* Replace with actual value */}</p>
+                                                                    <p><strong>Size:</strong> {/* Replace with actual value */}</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        )}
-
-                                    </div>
+                                        </div>
+                                    )}
                                 </li>
+
                             ))}
                         </ul>
                     </section>
                 )}
 
                 {activeSection === "upload" && (
-                    <section className="bg-white shadow rounded-xl p-6">
+                    <section className="bg-white shadow rounded-xl max-w-3xl mx-auto p-6">
                         <h2 className="text-xl text-center font-semibold mb-4">
                             Upload New Pet
                         </h2>
@@ -314,7 +376,7 @@ const AdminProfile = ({ pets }) => {
                                 }
                                 type="text"
                                 placeholder="Name"
-                                className="input input-bordered focus:outline-none focus:ring-0 focus:border-indigo-900"
+                                className="input w-full input-bordered focus:outline-none focus:ring-0 focus:border-[#932F67]"
                             />
                             <input
                                 value={data.breed}
@@ -323,14 +385,14 @@ const AdminProfile = ({ pets }) => {
                                 }
                                 type="text"
                                 placeholder="Breed"
-                                className="input input-bordered focus:outline-none focus:ring-0 focus:border-indigo-900"
+                                className="input w-full input-bordered focus:outline-none focus:ring-0 focus:border-[#932F67]"
                             />
                             <input
                                 value={data.age}
                                 onChange={(e) => setData("age", e.target.value)}
                                 type="text"
                                 placeholder="Age"
-                                className="input input-bordered focus:outline-none focus:ring-0 focus:border-indigo-900"
+                                className="input w-full input-bordered focus:outline-none focus:ring-0 focus:border-[#932F67]"
                             />
                             <input
                                 value={data.gender}
@@ -339,7 +401,7 @@ const AdminProfile = ({ pets }) => {
                                 }
                                 type="text"
                                 placeholder="Gender"
-                                className="input input-bordered focus:outline-none focus:ring-0 focus:border-indigo-900"
+                                className="input w-full input-bordered focus:outline-none focus:ring-0 focus:border-[#932F67]"
                             />
                             <input
                                 value={data.size}
@@ -348,7 +410,7 @@ const AdminProfile = ({ pets }) => {
                                 }
                                 type="text"
                                 placeholder="Size"
-                                className="input input-bordered focus:outline-none focus:ring-0 focus:border-indigo-900"
+                                className="input w-full input-bordered focus:outline-none focus:ring-0 focus:border-[#932F67]"
                             />
                             <input
                                 value={data.color}
@@ -357,14 +419,14 @@ const AdminProfile = ({ pets }) => {
                                 }
                                 type="text"
                                 placeholder="Color"
-                                className="input input-bordered focus:outline-none focus:ring-0 focus:border-indigo-900"
+                                className="input w-full input-bordered focus:outline-none focus:ring-0 focus:border-[#932F67]"
                             />
                             <select
                                 value={data.status}
                                 onChange={(e) =>
                                     setData("status", e.target.value)
                                 }
-                                className="select select-bordered focus:outline-none focus:ring-0 focus:border-indigo-900 cursor-pointer"
+                                className="select w-full select-bordered focus:outline-none focus:ring-0 focus:border-[#932F67] cursor-pointer"
                             >
                                 <option value="Available">
                                     Available
@@ -379,7 +441,7 @@ const AdminProfile = ({ pets }) => {
                                 }
                                 type="text"
                                 placeholder="Location"
-                                className="input input-bordered focus:outline-none focus:ring-0 focus:border-indigo-900"
+                                className="input w-full input-bordered focus:outline-none focus:ring-0 focus:border-[#932F67]"
                             />
                             <textarea
                                 value={data.description}
@@ -387,7 +449,7 @@ const AdminProfile = ({ pets }) => {
                                     setData("description", e.target.value)
                                 }
                                 placeholder="Description"
-                                className="textarea textarea-bordered md:col-span-2 focus:outline-none focus:ring-0 focus:border-indigo-900 resize-none"
+                                className="textarea w-full textarea-bordered md:col-span-2 focus:outline-none focus:ring-0 focus:border-[#932F67] resize-none"
                                 rows={3}
                             ></textarea>
                             <Button
@@ -406,9 +468,10 @@ const AdminProfile = ({ pets }) => {
                         <h2 className="text-xl text-center font-semibold mb-4">
                             Manage Pets
                         </h2>
-                        {pets.map((pet) => (
+                        {Array.isArray(pets) && pets.map((pet) => (
                             <ManageCard key={pet.id} pet={pet} />
                         ))}
+
                     </section>
                 )}
             </main>

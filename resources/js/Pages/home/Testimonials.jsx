@@ -39,9 +39,9 @@ const TestimonialSection = () => {
                 {testimonials.map((item) => (
                     <div
                         key={item.id}
-                        className="bg-indigo-50 rounded-2xl shadow-sm border border-indigo-500 p-6 text-left hover:shadow-md transition-shadow duration-300"
+                        className="bg-[#932F67]/30 rounded-2xl shadow-sm border border-[#932F67] p-6 text-left hover:shadow-md transition-shadow duration-300"
                     >
-                        <div className="text-indigo-500 text-3xl mb-4 leading-none">
+                        <div className="text-[#D92C54] text-3xl mb-4 leading-none">
                             <FaQuoteRight />
                         </div>
                         <p className="text-gray-600 mb-6">{item.text}</p>
@@ -55,7 +55,7 @@ const TestimonialSection = () => {
                                 <h4 className="font-bold text-black text-sm">
                                     {item.name}
                                 </h4>
-                                <p className="text-gray-400 text-sm">
+                                <p className="text-[#D92C54] text-sm">
                                     {item.country}
                                 </p>
                             </div>

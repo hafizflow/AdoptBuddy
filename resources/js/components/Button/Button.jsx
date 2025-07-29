@@ -7,10 +7,10 @@ const Button = ({
     disabled = false,
 }) => {
     const baseStyle =
-        "inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 cursor-pointer";
+        "inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold transition-all duration-300 cursor-pointer";
 
     const variants = {
-        primary: "text-black hover:text-white bg-[#fab74c] hover:bg-[#fa7070]"
+        primary: "text-white bg-[#E13452] hover:bg-[#8ABB6C]"
     };
 
     const disabledStyle = "opacity-50 cursor-not-allowed";
