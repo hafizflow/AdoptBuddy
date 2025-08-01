@@ -9,12 +9,9 @@ import { MdOutlineEmail } from "react-icons/md";
 import { IoLocationOutline } from "react-icons/io5";
 import { IoMdInformationCircleOutline } from "react-icons/io";
 import { IoCallOutline } from "react-icons/io5";
-
-
-
+import LocationPickerLeaflet from "../../components/LocationPicker/LocationPicker";
 
 const AdminProfile = ({ pets }) => {
-    console.log("ALL pets", pets);
     // preview application
     const [previewApplication, setPreviewApplication] = useState(null);
     // preview uploaded image
@@ -29,7 +26,8 @@ const AdminProfile = ({ pets }) => {
         size: "",
         color: "",
         status: "",
-        location: "",
+        lat: 0,
+        lng: 0,
         description: "",
         images: [],
     });
@@ -70,16 +68,14 @@ const AdminProfile = ({ pets }) => {
         if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
             const files = Array.from(e.dataTransfer.files);
             setData("images", files);
-            setPreviewUrls(files.map(file => URL.createObjectURL(file)));
+            setPreviewUrls(files.map((file) => URL.createObjectURL(file)));
         }
     };
     const handleChange = (e) => {
         const files = Array.from(e.target.files);
         setData("images", files);
-        setPreviewUrls(files.map(file => URL.createObjectURL(file)));
-    }
-
-
+        setPreviewUrls(files.map((file) => URL.createObjectURL(file)));
+    };
 
     return (
         <div className="min-h-screen mt-16 flex flex-col md:flex-row">
@@ -101,10 +97,11 @@ const AdminProfile = ({ pets }) => {
                     {/* Applications */}
                     <button
                         onClick={() => setActiveSection("applications")}
-                        className={`flex cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "applications"
-                            ? "bg-[#932F67] text-white"
-                            : "hover:bg-gray-100"
-                            }`}
+                        className={`flex cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${
+                            activeSection === "applications"
+                                ? "bg-[#932F67] text-white"
+                                : "hover:bg-gray-100"
+                        }`}
                     >
                         <MdSettingsApplications size={24} />
                         <span className="hidden md:inline">Applications</span>
@@ -113,10 +110,11 @@ const AdminProfile = ({ pets }) => {
                     {/* Upload */}
                     <button
                         onClick={() => setActiveSection("upload")}
-                        className={`flex  cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "upload"
-                            ? "bg-[#932F67] text-white"
-                            : "hover:bg-gray-100"
-                            }`}
+                        className={`flex  cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${
+                            activeSection === "upload"
+                                ? "bg-[#932F67] text-white"
+                                : "hover:bg-gray-100"
+                        }`}
                     >
                         <IoCloudUploadOutline size={24} />
                         <span className="hidden md:inline">Upload Pet</span>
@@ -125,10 +123,11 @@ const AdminProfile = ({ pets }) => {
                     {/* Manage */}
                     <button
                         onClick={() => setActiveSection("manage")}
-                        className={`flex cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "manage"
-                            ? "bg-[#932F67] text-white"
-                            : "hover:bg-gray-100"
-                            }`}
+                        className={`flex cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${
+                            activeSection === "manage"
+                                ? "bg-[#932F67] text-white"
+                                : "hover:bg-gray-100"
+                        }`}
                     >
                         <MdManageHistory size={24} />
                         <span className="hidden md:inline">Manage Pets</span>
@@ -158,49 +157,73 @@ const AdminProfile = ({ pets }) => {
                                 >
                                     <div className="md:text-xl">
                                         <p className="font-medium">
-                                            <span className="text-[#932F67]">{app.name}</span> applied to adopt{" "}
-                                            <span className="text-[#D92C54]">{app.petName}</span>
+                                            <span className="text-[#932F67]">
+                                                {app.name}
+                                            </span>{" "}
+                                            applied to adopt{" "}
+                                            <span className="text-[#D92C54]">
+                                                {app.petName}
+                                            </span>
                                         </p>
-                                        <p className="text-sm text-gray-500">From: {app.status}</p>
+                                        <p className="text-sm text-gray-500">
+                                            From: {app.status}
+                                        </p>
                                     </div>
 
                                     <div className="flex flex-wrap md:flex-nowrap gap-2 justify-center">
                                         <button
                                             className="text-xs px-3 py-1 rounded bg-green-500 hover:bg-green-600 text-white cursor-pointer"
-                                            onClick={() => handleApplicationAction(app.id, "Accepted")}
+                                            onClick={() =>
+                                                handleApplicationAction(
+                                                    app.id,
+                                                    "Accepted"
+                                                )
+                                            }
                                         >
                                             Accept
                                         </button>
                                         <button
                                             className="text-xs px-3 py-1 rounded bg-red-500 hover:bg-red-600 text-white cursor-pointer"
-                                            onClick={() => handleApplicationAction(app.id, "Rejected")}
+                                            onClick={() =>
+                                                handleApplicationAction(
+                                                    app.id,
+                                                    "Rejected"
+                                                )
+                                            }
                                         >
                                             Reject
                                         </button>
                                         <button
                                             className="text-xs px-3 py-1 rounded bg-gray-600 hover:bg-gray-700 text-white cursor-pointer"
-                                            onClick={() => setPreviewApplication(app)}
+                                            onClick={() =>
+                                                setPreviewApplication(app)
+                                            }
                                         >
                                             Preview
                                         </button>
                                     </div>
 
-
-
-
                                     {/* Preview Modal */}
                                     {previewApplication?.id === app.id && (
                                         <div
                                             className="fixed inset-0 bg-black/30 flex items-center justify-center z-50"
-                                            onClick={() => setPreviewApplication(null)}
+                                            onClick={() =>
+                                                setPreviewApplication(null)
+                                            }
                                         >
                                             <div
                                                 className="bg-white rounded-xl shadow-lg p-6 w-11/12 max-w-2xl relative"
-                                                onClick={(e) => e.stopPropagation()}
+                                                onClick={(e) =>
+                                                    e.stopPropagation()
+                                                }
                                             >
                                                 <button
                                                     className="absolute top-2 right-2 text-red-500 hover:text-red-700 text-xl"
-                                                    onClick={() => setPreviewApplication(null)}
+                                                    onClick={() =>
+                                                        setPreviewApplication(
+                                                            null
+                                                        )
+                                                    }
                                                 >
                                                     ✕
                                                 </button>
@@ -224,7 +247,9 @@ const AdminProfile = ({ pets }) => {
                                                             <div className="flex flex-col gap-2">
                                                                 <h1 className="font-bold text-xl flex items-center gap-2">
                                                                     <FaRegUser className="text-gray-600" />
-                                                                    {previewApplication.name}
+                                                                    {
+                                                                        previewApplication.name
+                                                                    }
                                                                 </h1>
                                                                 <p className="flex items-center gap-2 text-gray-700">
                                                                     <MdOutlineEmail className="text-gray-600" />
@@ -242,9 +267,15 @@ const AdminProfile = ({ pets }) => {
                                                                     01700610483
                                                                 </p>
                                                                 <div>
-                                                                    <p className="font-semibold text-gray-800">Message:</p>
+                                                                    <p className="font-semibold text-gray-800">
+                                                                        Message:
+                                                                    </p>
                                                                     <span className="text-gray-700">
-                                                                        Lorem ipsum dolor sit amet consectetur
+                                                                        Lorem
+                                                                        ipsum
+                                                                        dolor
+                                                                        sit amet
+                                                                        consectetur
                                                                     </span>
                                                                 </div>
                                                             </div>
@@ -258,13 +289,40 @@ const AdminProfile = ({ pets }) => {
                                                             </h2>
                                                             <div className="grid grid-cols-2 gap-4 text-gray-700">
                                                                 <div>
-                                                                    <p><strong>Name:</strong> {previewApplication.petName}</p>
-                                                                    <p><strong>Breed:</strong> {/* Replace with actual value */}</p>
-                                                                    <p><strong>Age:</strong> {/* Replace with actual value */}</p>
+                                                                    <p>
+                                                                        <strong>
+                                                                            Name:
+                                                                        </strong>{" "}
+                                                                        {
+                                                                            previewApplication.petName
+                                                                        }
+                                                                    </p>
+                                                                    <p>
+                                                                        <strong>
+                                                                            Breed:
+                                                                        </strong>{" "}
+                                                                        {/* Replace with actual value */}
+                                                                    </p>
+                                                                    <p>
+                                                                        <strong>
+                                                                            Age:
+                                                                        </strong>{" "}
+                                                                        {/* Replace with actual value */}
+                                                                    </p>
                                                                 </div>
                                                                 <div>
-                                                                    <p><strong>Gender:</strong> {/* Replace with actual value */}</p>
-                                                                    <p><strong>Size:</strong> {/* Replace with actual value */}</p>
+                                                                    <p>
+                                                                        <strong>
+                                                                            Gender:
+                                                                        </strong>{" "}
+                                                                        {/* Replace with actual value */}
+                                                                    </p>
+                                                                    <p>
+                                                                        <strong>
+                                                                            Size:
+                                                                        </strong>{" "}
+                                                                        {/* Replace with actual value */}
+                                                                    </p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -274,7 +332,6 @@ const AdminProfile = ({ pets }) => {
                                         </div>
                                     )}
                                 </li>
-
                             ))}
                         </ul>
                     </section>
@@ -293,7 +350,7 @@ const AdminProfile = ({ pets }) => {
                             }}
                             onDrop={handleDrop}
                             encType="multipart/form-data"
-                            className="grid grid-cols-1 md:grid-cols-2 gap-4"
+                            className="grid h-full grid-cols-1 md:grid-cols-2 gap-4"
                             onSubmit={(e) => {
                                 e.preventDefault();
                                 post("/post", {
@@ -301,11 +358,13 @@ const AdminProfile = ({ pets }) => {
                                 });
                             }}
                         >
-
                             {previewUrls.length > 0 && (
                                 <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4">
                                     {previewUrls.map((url, idx) => (
-                                        <div key={idx} className="w-full aspect-square border rounded overflow-hidden shadow">
+                                        <div
+                                            key={idx}
+                                            className="w-full aspect-square border rounded overflow-hidden shadow"
+                                        >
                                             <img
                                                 src={url}
                                                 alt={`preview-${idx}`}
@@ -376,7 +435,7 @@ const AdminProfile = ({ pets }) => {
                                 }
                                 type="text"
                                 placeholder="Name"
-                                className="input w-full input-bordered focus:outline-none focus:ring-0 focus:border-[#932F67]"
+                                className="input w-full col-start-1 col-end-3 input-bordered focus:outline-none focus:ring-0 focus:border-[#932F67]"
                             />
                             <input
                                 value={data.breed}
@@ -428,21 +487,20 @@ const AdminProfile = ({ pets }) => {
                                 }
                                 className="select w-full select-bordered focus:outline-none focus:ring-0 focus:border-[#932F67] cursor-pointer"
                             >
-                                <option value="Available">
-                                    Available
-                                </option>
+                                <option value="Available">Available</option>
                                 <option value="On Hold">On Hold</option>
                                 <option value="Adopted">Adopted</option>
                             </select>
-                            <input
-                                value={data.location}
-                                onChange={(e) =>
-                                    setData("location", e.target.value)
-                                }
-                                type="text"
-                                placeholder="Location"
-                                className="input w-full input-bordered focus:outline-none focus:ring-0 focus:border-[#932F67]"
-                            />
+                            <div className="h-full min-h-[200px] col-start-1 col-end-3 w-full flex flex-col items-center ">
+                                <label className="w-full">Location</label>
+                                <LocationPickerLeaflet
+                                    setLocation={(val) => {
+                                        console.log("Location set:", val);
+                                        setData("lat", val[0]);
+                                        setData("lng", val[1]);
+                                    }}
+                                />
+                            </div>
                             <textarea
                                 value={data.description}
                                 onChange={(e) =>
@@ -468,10 +526,10 @@ const AdminProfile = ({ pets }) => {
                         <h2 className="text-xl text-center font-semibold mb-4">
                             Manage Pets
                         </h2>
-                        {Array.isArray(pets) && pets.map((pet) => (
-                            <ManageCard key={pet.id} pet={pet} />
-                        ))}
-
+                        {Array.isArray(pets) &&
+                            pets.map((pet) => (
+                                <ManageCard key={pet.id} pet={pet} />
+                            ))}
                     </section>
                 )}
             </main>

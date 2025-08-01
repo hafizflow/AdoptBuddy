@@ -4,17 +4,11 @@ import { FaHeart } from "react-icons/fa";
 import Button from "../../components/Button/Button";
 import "leaflet/dist/leaflet.css";
 import ApplyAdoptForm from "../../components/ApplyAdoptForm/ApplyAdoptForm";
+import MapViewer from "../../components/MapViewer/MapViewer";
 
-const PetDetails = () => {
-    const pet = {
-        name: "Awame Legue Dog",
-        location: "Mirpur, Dhaka", // Location as string
-    };
-
+const PetDetails = ({ pet }) => {
     const [coords, setCoords] = useState(null);
-
-    console.log("Pet Details:", pet);
-
+    console.log(pet);
     // Fetch coordinates based on location name
     useEffect(() => {
         const getLatLngFromLocation = async (locationName) => {
@@ -135,32 +129,23 @@ const PetDetails = () => {
                             </MapContainer>
                         </div>
                     )} */}
-                    {coords && (
-                        <div className="w-full border border-gray-300 p-2 h-96 mt-6 rounded-xl shadow-lg z-10">
-                            <MapContainer
-                                key={`${coords.lat}-${coords.lng}`}
-                                center={[coords.lat, coords.lng]}
-                                zoom={15}
-                                scrollWheelZoom={false}
-                                style={{ height: "100%", width: "100%" }}
-                            >
-                                <TileLayer
-                                    url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-                                    attribution='&copy; <a href="https://carto.com/">CARTO</a>'
-                                />
-
-                                <Marker position={[coords.lat, coords.lng]}>
-                                    <Popup>{pet.name} is here!</Popup>
-                                </Marker>
-                            </MapContainer>
-                        </div>
-                    )}
-
+                    <div className="h-64 mt-6 rounded-xl overflow-hidden shadow-lg z-10">
+                        <MapViewer
+                            markerValue={
+                                pet?.lat && pet?.lng
+                                    ? [Number(pet.lat), Number(pet.lng)]
+                                    : null
+                            }
+                        />
+                    </div>
                     <div className="w-full flex flex-col items-center gap-3 mt-4">
                         <div className="flex w-full gap-5 justify-between">
                             <Button className="w-full">Distance from me</Button>
 
-                            <Button className=""> <FaHeart /></Button>
+                            <Button className="">
+                                {" "}
+                                <FaHeart />
+                            </Button>
                         </div>
                         <div className="w-full">
                             <Button

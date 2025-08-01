@@ -4,6 +4,8 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostUserController;
+use App\Http\Controllers\DetailsController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\SessionController;
 use App\Http\Middleware\IsAdmin;
@@ -25,12 +27,18 @@ Route::get("/about", function () {
 Route::get("/adopt", function () {
     return Inertia::render('adopt/Adopt');
 });
-Route::get("/admin", function () {
-    return Inertia::render('admin/Admin');
-});
+
+Route::get("/admin", [
+    AdminController::class, 'index'
+])->middleware(IsAdmin::class);
+
 Route::get("/details", function () {
     return Inertia::render('petDetails/petDetails');
 });
+
+Route::get("/details/{id}", [DetailsController::class, 'index']);
+
+
 Route::get("/profile", function () {
     return Inertia::render('userProfile/userProfile');
 });

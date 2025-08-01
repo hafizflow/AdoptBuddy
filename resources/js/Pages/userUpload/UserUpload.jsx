@@ -1,10 +1,17 @@
 import Button from "../../components/Button/Button";
-
+import { useState } from "react";
+import LocationPicker from "../../components/LocationPicker/LocationPicker";
 
 const UserUpload = () => {
+    const [location, setLocation] = useState(null);
+    console.log("UserUpload Location:", location);
     return (
-        <div className="relative  min-h-screen mt-12 px-5 lg:px-20 py-8 space-y-10 flex gap-5 items-center justify-center">
-            <img className="absolute inset-0 w-full h-full object-cover z-0 brightness-40" src="https://i.pinimg.com/1200x/a9/8b/2a/a98b2a90caf1286ea55ce4548bc7a624.jpg" alt="" />
+        <div className="relative w-full  min-h-screen mt-12 px-5 lg:px-20 py-8 space-y-10 flex gap-5 items-center justify-center">
+            <img
+                className="absolute inset-0 w-full h-full object-cover z-0 brightness-40"
+                src="https://i.pinimg.com/1200x/a9/8b/2a/a98b2a90caf1286ea55ce4548bc7a624.jpg"
+                alt=""
+            />
             <section className="relative z-10 bg-indigo-50 text-black shadow rounded-xl p-6 max-w-xl w-full">
                 <h2 className="text-xl text-center font-semibold mb-4">
                     Save a pets life
@@ -87,11 +94,9 @@ const UserUpload = () => {
                         {/* <option>On Hold</option>
                         <option>Adopted</option> */}
                     </select>
-                    <input
-                        type="text"
-                        placeholder="Location"
-                        className="input input-bordered col-span-2 w-full focus:outline-none focus:ring-0 focus:border-indigo-900"
-                    />
+                    <div className="w-full flex justify-center items-center col-start-1 col-end-3 min-h-[200px]">
+                        <LocationPicker setLocation={setLocation} />
+                    </div>
                     <textarea
                         placeholder="Description"
                         className="textarea h-15 w-full resize-none textarea-bordered col-span-2 focus:outline-none focus:ring-0 focus:border-indigo-900"
