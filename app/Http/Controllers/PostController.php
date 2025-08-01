@@ -25,12 +25,16 @@ class PostController extends Controller
     }
 
     public function store() {
+       
+
         $data = request()->validate([
             'name' => 'required',
             'age' => 'required',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'description' => 'required', 'max:255',
             'size' => 'required',
+            'lat'=> 'required|numeric',
+            'lng'=> 'required|numeric',
             'breed' => 'required',
             'gender' => 'required',
             ]);
@@ -42,6 +46,8 @@ class PostController extends Controller
             'size' => $data['size'],
             'breed' => $data['breed'],
             'gender' => $data['gender'],
+            'lat' => $data['lat'],
+            'lng' => $data['lng'],
             'isVisible' => auth()->user()->role === 'admin' ? 'Visible' : 'Invisible',
         ]);
 
@@ -78,17 +84,18 @@ class PostController extends Controller
         return redirect()->route('pets.index')->with('success', 'Pet status updated!');
     }
 
-    public function destroy()
+    public function destroy($id)
     {
+        $post = Post::findOrFail($id);
         // Delete related images from storage
-        // foreach ($post->images as $image) {
-        //     \Storage::disk('public')->delete($image->image);
-        //     $image->delete();
-        // }
+        foreach ($post->images as $image) {
+            \Storage::disk('public')->delete($image->image);
+            $image->delete();
+        }
 
-        // $post->delete();
+        $post->delete();
 
-        return redirect()->route('pets.index')->with('success', 'Pet deleted!');
+        return redirect()->route('admin')->with('success', 'Pet deleted!');
     }
 
     public function postRequest(Post $post){

@@ -1,8 +1,9 @@
 import { router } from "@inertiajs/react";
 
 export default function ManageCard({ pet }) {
-    const handleDelete = (id) => {
-        router.delete(`/requests/${id}`, {
+    console.log("ManageCard Pet:", pet);
+    const handleDelete = (post) => {
+        router.delete(`/posts/${post}`, {
             onSuccess: () => {
                 console.log("Pet deleted successfully");
             },

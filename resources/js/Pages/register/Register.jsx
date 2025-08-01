@@ -36,16 +36,38 @@ const Register = () => {
                     transition={{ duration: 1 }}
                 >
                     <div className="text-center lg:text-left">
-                        <h1 className="text-5xl text-indigo-900 font-bold">
+                        <h1 className="text-5xl text-[#D92C54] font-bold">
                             Register now!
                         </h1>
                     </div>
-                    <div className="card bg-indigo-50 w-full max-w-full shrink-0 shadow">
+                    <div className="card bg-[#D92C54]/10 w-full max-w-full shrink-0 shadow">
                         <div className="card-body">
                             <form
                                 className="fieldset"
                                 onSubmit={(e) => {
                                     e.preventDefault();
+
+                                    const passwordRegex =
+                                        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#^(){}[\]<>\-_+=~])[A-Za-z\d@$!%*?&#^(){}[\]<>\-_+=~]{8,}$/;
+
+                                    if (!data.name.trim() ||
+                                        !data.email.trim() ||
+                                        !data.password.trim() ||
+                                        !data.password_confirmation.trim()) {
+                                        alert("Please fill in all fields.");
+                                        return;
+                                    }
+
+                                    if (data.password !== data.password_confirmation) {
+                                        alert("Passwords do not match.");
+                                        return;
+                                    }
+
+                                    if (!passwordRegex.test(data.password)) {
+                                        alert("Password must be at least 8 characters long and include uppercase, lowercase, number and special character.");
+                                        return;
+                                    }
+
                                     post("/register");
                                 }}
                             >
@@ -58,7 +80,7 @@ const Register = () => {
                                     onChange={(e) =>
                                         setData("name", e.target.value)
                                     }
-                                    className="input focus:outline-none focus:ring-0 focus:border-indigo-900  w-full"
+                                    className="input focus:outline-none focus:ring-0 focus:border-[#D92C54]  w-full"
                                     placeholder="Name"
                                 />
 
@@ -71,7 +93,7 @@ const Register = () => {
                                     onChange={(e) =>
                                         setData("email", e.target.value)
                                     }
-                                    className="input focus:outline-none focus:ring-0 focus:border-indigo-900  w-full"
+                                    className="input focus:outline-none focus:ring-0 focus:border-[#D92C54]  w-full"
                                     placeholder="Email"
                                 />
                                 <label className="label font-bold">
@@ -88,7 +110,7 @@ const Register = () => {
                                         onChange={(e) =>
                                             setData("password", e.target.value)
                                         }
-                                        className="input w-full focus:outline-none focus:ring-0 focus:border-indigo-900 pr-10"
+                                        className="input w-full focus:outline-none focus:ring-0 focus:border-[#D92C54] pr-10"
                                         placeholder="Password"
                                     />
                                     <button
@@ -111,7 +133,7 @@ const Register = () => {
                                 <div className="relative w-full">
                                     <input
                                         type={
-                                            showPassword ? "text" : "password"
+                                            showConfirmPassword ? "text" : "password"
                                         }
                                         value={data.password_confirmation}
                                         onChange={(e) =>
@@ -122,7 +144,7 @@ const Register = () => {
                                         }
                                         name="password_confirmation"
                                         id="password_confirmation"
-                                        className="input w-full focus:outline-none focus:ring-0 focus:border-indigo-900 pr-10"
+                                        className="input w-full focus:outline-none focus:ring-0 focus:border-[#D92C54] pr-10"
                                         placeholder="Confirm Password"
                                     />
                                     <button
@@ -146,12 +168,13 @@ const Register = () => {
                                     <a className="">Already have an account?</a>
                                     <a
                                         href="/login"
-                                        className="link link-hover text-indigo-900"
+                                        className="link link-hover text-[#D92C54]"
                                     >
                                         Login
                                     </a>
                                 </div>
                             </form>
+
                         </div>
                     </div>
                 </MotionDiv>
