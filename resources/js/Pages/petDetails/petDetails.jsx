@@ -4,12 +4,11 @@ import { FaHeart } from "react-icons/fa";
 import Button from "../../components/Button/Button";
 import "leaflet/dist/leaflet.css";
 import ApplyAdoptForm from "../../components/ApplyAdoptForm/ApplyAdoptForm";
+import MapViewer from "../../components/MapViewer/MapViewer";
 
 const PetDetails = ({ pet }) => {
     const [coords, setCoords] = useState(null);
-
-    console.log("Pet Details:", pet);
-
+    console.log(pet);
     // Fetch coordinates based on location name
     useEffect(() => {
         const getLatLngFromLocation = async (locationName) => {
@@ -112,7 +111,7 @@ const PetDetails = ({ pet }) => {
                     </div>
 
                     {/* Show map only if coords are ready */}
-                    {coords && (
+                    {/* {coords && (
                         <div className="w-full border border-indigo-500 p-2 h-64 mt-6 rounded-xl overflow-hidden shadow-lg z-10">
                             <MapContainer
                                 center={[coords.lat, coords.lng]}
@@ -129,13 +128,21 @@ const PetDetails = ({ pet }) => {
                                 </Marker>
                             </MapContainer>
                         </div>
-                    )}
-
+                    )} */}
+                    <div className="h-64 mt-6 rounded-xl overflow-hidden shadow-lg z-10">
+                        <MapViewer
+                            markerValue={
+                                pet?.lat && pet?.lng
+                                    ? [Number(pet.lat), Number(pet.lng)]
+                                    : null
+                            }
+                        />
+                    </div>
                     <div className="w-full flex flex-col items-center gap-3 mt-4">
                         <div className="flex w-full gap-5 justify-between">
                             <Button className="w-full">Distance from me</Button>
 
-                            <Button className="bg-indigo-400">
+                            <Button className="">
                                 {" "}
                                 <FaHeart />
                             </Button>

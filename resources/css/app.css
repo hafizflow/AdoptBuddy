@@ -1,5 +1,6 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Nunito&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Truculenta:opsz,wght@12..72,100..900&display=swap');
+/* @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Nunito&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Truculenta:opsz,wght@12..72,100..900&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
 
 @import "tailwindcss";
 @source "../views";
@@ -10,17 +11,12 @@
 @source '../**/*.blade.php';
 @source '../**/*.js';
 
-/* @theme {
-    --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
-        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-        "Noto Color Emoji";
-} */
 
-@theme {
+/* @theme {
     --font-sans: "Truculenta", ui-sans-serif, system-ui, sans-serif,
         "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
         "Noto Color Emoji";
-}
+} */
 
 
 html {
@@ -28,16 +24,28 @@ html {
 
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    /* font-family: "Montserrat", sans-serif; */
-    font-family: "Truculenta", sans-serif;
+body {
+    font-family: "Quicksand", sans-serif;
 }
 
 .custom-banner-font {
     font-family: "Walter Turncoat", cursive !important;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        scale: 0.5;
+    }
+
+    to {
+        opacity: 1;
+        scale: 1;
+    }
+}
+
+.block {
+    animation: appear 5s linear;
+    animation-timeline: view();
+    animation-range: entry 0% cover 40%;
 }

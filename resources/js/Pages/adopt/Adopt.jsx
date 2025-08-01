@@ -28,8 +28,8 @@ const AllPets = ({ pets }) => {
                             onClick={() => setSelectedType(type)}
                             className={`border-2 rounded-4xl px-3 py-2 text-xl cursor-pointer hover:shadow transition-all duration-200
                             ${selectedType === type
-                                    ? "bg-indigo-500 text-white border-indigo-600"
-                                    : "text-primary border-indigo-300"
+                                    ? "bg-[#D92C54] text-white border-[#932F67]"
+                                    : "text-[#D92C54] border-[#D92C54]"
                                 }`}>
                             {type}
                         </span>
