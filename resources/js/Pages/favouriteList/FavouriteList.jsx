@@ -1,7 +1,7 @@
 import ApplyAdoptForm from "../../components/ApplyAdoptForm/ApplyAdoptForm";
 import PetCard from "../../components/PetCard/PetCard";
 
-const FavouriteList = ({ pets }) => {
+const FavouriteList = ({ pets = [] }) => {
     return (
         <div className="min-h-screen mt-12 px-5 lg:px-20 py-8 space-y-10">
             <div className="">
@@ -9,12 +9,18 @@ const FavouriteList = ({ pets }) => {
                     My Favourite List
                 </h2>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                {pets.map((pet) => (
-                    <PetCard key={pet.id} pet={{ ...pet, likes: [1, 2] }} />
-                ))}
-            </div>
-            <ApplyAdoptForm></ApplyAdoptForm>
+
+            {pets.length > 0 ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    {pets.map((pet) => (
+                        <PetCard key={pet.id} pet={{ ...pet, likes: [1, 2] }} />
+                    ))}
+                </div>
+            ) : (
+                <p className="text-center text-gray-500">No favourite pets found.</p>
+            )}
+
+            <ApplyAdoptForm />
         </div>
     );
 };

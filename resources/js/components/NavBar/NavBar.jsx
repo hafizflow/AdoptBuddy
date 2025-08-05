@@ -64,7 +64,7 @@ const Navbar = ({ user }) => {
 
     return (
         <div
-            className={`navbar bg-[#1b1a1b] fixed top-0 w-full z-50 md:px-20 mx-auto transition-all duration-300 ${isScrolled ? "bg-white/30 backdrop-blur-md shadow-md" : ""
+            className={`navbar bg-[#1b1a1b] fixed top-0 w-full z-50 md:px-20 mx-auto transition-all duration-300 ${isScrolled ? "bg-white/30 backdrop-blur-md" : ""
                 }`}
         >
             <div className="navbar-start">
@@ -72,7 +72,7 @@ const Navbar = ({ user }) => {
                     <div
                         tabIndex={0}
                         role="button"
-                        className="btn btn-ghost hover:bg-indigo-900 hover:border-none hover:shadow-none lg:hidden"
+                        className="btn btn-ghost hover:bg-[#07553B] hover:border-none hover:shadow-none lg:hidden"
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -102,7 +102,7 @@ const Navbar = ({ user }) => {
                         window.scrollTo(0, 0);
                     }}
                     href="/"
-                    className={`${isScrolled ? "text-gray-700" : "text-white"
+                    className={`${isScrolled ? "pc" : "text-white"
                         } text-2xl font-semibold`}
                 >
                     AdoptBuddy
@@ -111,7 +111,7 @@ const Navbar = ({ user }) => {
 
             <div className="navbar-end hidden lg:flex">
                 <ul
-                    className={`${isScrolled ? "text-gray-700" : "text-white"
+                    className={`${isScrolled ? "pc" : "text-white"
                         } menu menu-horizontal px-1 font-semibold`}
                 >
                     {links}
@@ -119,7 +119,7 @@ const Navbar = ({ user }) => {
             </div>
 
             <div
-                className={`${isScrolled ? "text-gray-700" : "text-white"
+                className={`${isScrolled ? "pc" : "text-white"
                     } navbar-end flex gap-6 items-center`}
             >
                 <div className="relative group inline-block">
@@ -168,7 +168,7 @@ const Navbar = ({ user }) => {
                     )}
                 </div> */}
                 <div className="relative group inline-block" ref={dropdownRef}>
-                    {!auth?.user ? (
+                    {!auth?.user || auth.user.role === 'admin' ? (
                         <a
                             href="/login"
                             className="flex items-center cursor-pointer relative"
@@ -211,7 +211,7 @@ const Navbar = ({ user }) => {
                                     </button>
                                     <button
                                         onClick={handleLogout}
-                                        className="flex items-center gap-2 w-full px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 cursor-pointer"
+                                        className="flex items-center gap-2 w-full px-4 py-2 text-sm text-red-600 hover:bg-indigo-50 cursor-pointer"
                                     >
                                         <MdLogout className="text-lg" />
                                         Logout

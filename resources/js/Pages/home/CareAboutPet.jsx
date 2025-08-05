@@ -50,9 +50,9 @@ const CareAboutPets = () => {
                         {stats.map((stat, index) => (
                             <div
                                 key={index}
-                                className="flex items-center justify-between border border-gray-200 rounded-xl px-6 py-4 transition-all duration-200 hover:border-[#932F67]"
+                                className="flex items-center justify-between border border-gray-200 rounded-xl px-6 py-4 transition-all duration-200 hover:border-[#07553B]"
                             >
-                                <span className="w-8 h-8 rounded-full flex items-center justify-center border text-[#932F67] transition-all duration-200 hover:bg-[#D92C54] hover:text-white hover:border-[#932F67]">
+                                <span className="w-8 h-8 rounded-full flex items-center justify-center border pc transition-all duration-200 hover:bg-[#CED46A] hover:text-white hover:border-[#07553B]">
                                     <FaChevronLeft size={12} />
                                 </span>
                                 <p className="font-semibold text-lg">

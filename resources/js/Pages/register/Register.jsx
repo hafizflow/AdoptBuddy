@@ -36,11 +36,11 @@ const Register = () => {
                     transition={{ duration: 1 }}
                 >
                     <div className="text-center lg:text-left">
-                        <h1 className="text-5xl text-[#D92C54] font-bold">
+                        <h1 className="text-5xl pc font-bold">
                             Register now!
                         </h1>
                     </div>
-                    <div className="card bg-[#D92C54]/10 w-full max-w-full shrink-0 shadow">
+                    <div className="card bg-[#07553B]/20  w-full max-w-full shrink-0 shadow">
                         <div className="card-body">
                             <form
                                 className="fieldset"
@@ -80,7 +80,7 @@ const Register = () => {
                                     onChange={(e) =>
                                         setData("name", e.target.value)
                                     }
-                                    className="input focus:outline-none focus:ring-0 focus:border-[#D92C54]  w-full"
+                                    className="input focus:outline-none focus:ring-0 focus:border-[#07553B]  w-full"
                                     placeholder="Name"
                                 />
 
@@ -93,7 +93,7 @@ const Register = () => {
                                     onChange={(e) =>
                                         setData("email", e.target.value)
                                     }
-                                    className="input focus:outline-none focus:ring-0 focus:border-[#D92C54]  w-full"
+                                    className="input focus:outline-none focus:ring-0 focus:border-[#07553B]  w-full"
                                     placeholder="Email"
                                 />
                                 <label className="label font-bold">
@@ -110,7 +110,7 @@ const Register = () => {
                                         onChange={(e) =>
                                             setData("password", e.target.value)
                                         }
-                                        className="input w-full focus:outline-none focus:ring-0 focus:border-[#D92C54] pr-10"
+                                        className="input w-full focus:outline-none focus:ring-0 focus:border-[#07553B] pr-10"
                                         placeholder="Password"
                                     />
                                     <button
@@ -144,7 +144,7 @@ const Register = () => {
                                         }
                                         name="password_confirmation"
                                         id="password_confirmation"
-                                        className="input w-full focus:outline-none focus:ring-0 focus:border-[#D92C54] pr-10"
+                                        className="input w-full focus:outline-none focus:ring-0 focus:border-[#07553B] pr-10"
                                         placeholder="Confirm Password"
                                     />
                                     <button
@@ -168,7 +168,7 @@ const Register = () => {
                                     <a className="">Already have an account?</a>
                                     <a
                                         href="/login"
-                                        className="link link-hover text-[#D92C54]"
+                                        className="link link-hover pc"
                                     >
                                         Login
                                     </a>

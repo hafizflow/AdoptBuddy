@@ -49,3 +49,17 @@ body {
     animation-timeline: view();
     animation-range: entry 0% cover 40%;
 }
+
+.pc {
+    color: #07553B;
+}
+.bg-pc {
+    background-color: #07553B;
+}
+
+.sc {
+    color: #CED46A;
+}
+.bg-sc {
+    background-color: #CED46A;
+}
