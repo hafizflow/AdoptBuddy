@@ -37,6 +37,7 @@ class PostController extends Controller
             'lng'=> 'required|numeric',
             'breed' => 'required',
             'gender' => 'required',
+            'status' => 'in:Available,On Hold,Adopted',
             ]);
 
         $pet = Post::create([
@@ -48,6 +49,7 @@ class PostController extends Controller
             'gender' => $data['gender'],
             'lat' => $data['lat'],
             'lng' => $data['lng'],
+            'status' => $data['status'] ?? 'Available',
             'isVisible' => auth()->user()->role === 'admin' ? 'Visible' : 'Invisible',
         ]);
 

@@ -30,7 +30,7 @@ Route::get("/adopt", function () {
 
 Route::get("/admin", [
     AdminController::class, 'index'
-])->middleware(IsAdmin::class);
+])->middleware(IsAdmin::class)->name("admin");
 
 Route::get("/details", function () {
     return Inertia::render('petDetails/petDetails');

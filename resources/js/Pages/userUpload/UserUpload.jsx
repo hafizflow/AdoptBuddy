@@ -1,10 +1,23 @@
 import Button from "../../components/Button/Button";
 import { useState } from "react";
+import { useForm } from "@inertiajs/react";
 import LocationPicker from "../../components/LocationPicker/LocationPicker";
 
 const UserUpload = () => {
-    const [location, setLocation] = useState(null);
-    console.log("UserUpload Location:", location);
+    const { data, setData, post, processing, errors } = useForm({
+        name: "",
+        breed: "",
+        age: "",
+        gender: "",
+        size: "",
+        color: "",
+        status: "Available",
+        lat: 0,
+        lng: 0,
+        description: "",
+        images: [],
+    });
+
     return (
         <div className="relative w-full  min-h-screen mt-12 px-5 lg:px-20 py-8 space-y-10 flex gap-5 items-center justify-center">
             <img
@@ -16,7 +29,13 @@ const UserUpload = () => {
                 <h2 className="text-xl text-center font-semibold mb-4">
                     Save a pets life
                 </h2>
-                <form className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <form
+                    className="grid grid-cols-1 md:grid-cols-2 gap-4"
+                    onSubmit={(e) => {
+                        e.preventDefault();
+                        post("/post", { forceFormData: true });
+                    }}
+                >
                     <div className="col-span-2">
                         <label
                             htmlFor="fileUpload"
@@ -53,6 +72,13 @@ const UserUpload = () => {
                                 id="fileUpload"
                                 type="file"
                                 className="hidden"
+                                multiple
+                                onChange={(e) =>
+                                    setData(
+                                        "images",
+                                        Array.from(e.target.files)
+                                    )
+                                }
                             />
                         </label>
                     </div>
@@ -60,49 +86,65 @@ const UserUpload = () => {
                         type="text"
                         placeholder="Name"
                         className="input input-bordered col-span-2 w-full focus:outline-none focus:ring-0 focus:border-indigo-900"
+                        value={data.name}
+                        onChange={(e) => setData("name", e.target.value)}
                     />
                     <input
                         type="text"
                         placeholder="Breed"
                         className="input input-bordered focus:outline-none focus:ring-0 focus:border-indigo-900"
+                        value={data.breed}
+                        onChange={(e) => setData("breed", e.target.value)}
                     />
                     <input
                         type="text"
                         placeholder="Age"
                         className="input input-bordered focus:outline-none focus:ring-0 focus:border-indigo-900"
+                        value={data.age}
+                        onChange={(e) => setData("age", e.target.value)}
                     />
                     <input
                         type="text"
                         placeholder="Gender"
                         className="input input-bordered focus:outline-none focus:ring-0 focus:border-indigo-900"
+                        value={data.gender}
+                        onChange={(e) => setData("gender", e.target.value)}
                     />
                     <input
                         type="text"
                         placeholder="Size"
                         className="input input-bordered focus:outline-none focus:ring-0 focus:border-indigo-900"
+                        value={data.size}
+                        onChange={(e) => setData("size", e.target.value)}
                     />
                     <input
                         type="text"
                         placeholder="Color"
                         className="input input-bordered focus:outline-none focus:ring-0 focus:border-indigo-900"
+                        value={data.color}
+                        onChange={(e) => setData("color", e.target.value)}
                     />
-                    <select className="select select-bordered focus:outline-none focus:ring-0 focus:border-indigo-900">
-                        <option disabled selected>
-                            Pet Status
-                        </option>
-                        <option>Available</option>
-                        {/* <option>On Hold</option>
-                        <option>Adopted</option> */}
-                    </select>
+
                     <div className="w-full flex justify-center items-center col-start-1 col-end-3 min-h-[200px]">
-                        <LocationPicker setLocation={setLocation} />
+                        <LocationPicker
+                            setLocation={(loc) => {
+                                setData("lat", loc?.lat || 0);
+                                setData("lng", loc?.lng || 0);
+                            }}
+                        />
                     </div>
                     <textarea
                         placeholder="Description"
                         className="textarea h-15 w-full resize-none textarea-bordered col-span-2 focus:outline-none focus:ring-0 focus:border-indigo-900"
                         rows={4}
+                        value={data.description}
+                        onChange={(e) => setData("description", e.target.value)}
                     ></textarea>
-                    <Button className="col-span-2 mx-auto">
+                    <Button
+                        className="col-span-2 mx-auto"
+                        type="submit"
+                        disabled={processing}
+                    >
                         Apply For Post
                     </Button>
                 </form>

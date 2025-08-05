@@ -25,7 +25,7 @@ const AdminProfile = ({ pets }) => {
         gender: "",
         size: "",
         color: "",
-        status: "",
+        status: "Available",
         lat: 0,
         lng: 0,
         description: "",
@@ -97,10 +97,11 @@ const AdminProfile = ({ pets }) => {
                     {/* Applications */}
                     <button
                         onClick={() => setActiveSection("applications")}
-                        className={`flex cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "applications"
-                            ? "bg-pc sc"
-                            : "hover:bg-gray-100"
-                            }`}
+                        className={`flex cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${
+                            activeSection === "applications"
+                                ? "bg-pc sc"
+                                : "hover:bg-gray-100"
+                        }`}
                     >
                         <MdSettingsApplications size={24} />
                         <span className="hidden md:inline">Applications</span>
@@ -109,10 +110,11 @@ const AdminProfile = ({ pets }) => {
                     {/* Upload */}
                     <button
                         onClick={() => setActiveSection("upload")}
-                        className={`flex  cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "upload"
-                            ? "bg-pc sc"
-                            : "hover:bg-gray-100"
-                            }`}
+                        className={`flex  cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${
+                            activeSection === "upload"
+                                ? "bg-pc sc"
+                                : "hover:bg-gray-100"
+                        }`}
                     >
                         <IoCloudUploadOutline size={24} />
                         <span className="hidden md:inline">Upload Pet</span>
@@ -121,10 +123,11 @@ const AdminProfile = ({ pets }) => {
                     {/* Manage */}
                     <button
                         onClick={() => setActiveSection("manage")}
-                        className={`flex cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "manage"
-                            ? "bg-pc sc"
-                            : "hover:bg-gray-100"
-                            }`}
+                        className={`flex cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${
+                            activeSection === "manage"
+                                ? "bg-pc sc"
+                                : "hover:bg-gray-100"
+                        }`}
                     >
                         <MdManageHistory size={24} />
                         <span className="hidden md:inline">Manage Pets</span>
@@ -286,36 +289,39 @@ const AdminProfile = ({ pets }) => {
                                                             </h2>
                                                             <div className="grid grid-cols-2 gap-4 text-gray-700">
                                                                 <div>
-                                                                    <p>Name:{" "}
-                                                                        <strong>{
-                                                                            previewApplication.petName
-                                                                        }</strong>
+                                                                    <p>
+                                                                        Name:{" "}
+                                                                        <strong>
+                                                                            {
+                                                                                previewApplication.petName
+                                                                            }
+                                                                        </strong>
                                                                     </p>
                                                                     <p>
-
                                                                         Breed:
-                                                                        <strong> {" "}</strong>
-
+                                                                        <strong>
+                                                                            {" "}
+                                                                        </strong>
                                                                     </p>
                                                                     <p>
-
                                                                         Age:
-                                                                        <strong>  {" "}</strong>
-
+                                                                        <strong>
+                                                                            {" "}
+                                                                        </strong>
                                                                     </p>
                                                                 </div>
                                                                 <div>
                                                                     <p>
-
                                                                         Gender:
-                                                                        <strong>   {" "}</strong>
-
+                                                                        <strong>
+                                                                            {" "}
+                                                                        </strong>
                                                                     </p>
                                                                     <p>
-
                                                                         Size:
-                                                                        <strong> {" "}</strong>
-
+                                                                        <strong>
+                                                                            {" "}
+                                                                        </strong>
                                                                     </p>
                                                                 </div>
                                                             </div>
