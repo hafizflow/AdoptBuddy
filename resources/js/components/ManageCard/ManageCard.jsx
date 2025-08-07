@@ -1,7 +1,6 @@
 import { router } from "@inertiajs/react";
 
 export default function ManageCard({ pet }) {
-    console.log("ManageCard Pet:", pet);
     const handleDelete = (post) => {
         router.delete(`/posts/${post}`, {
             onSuccess: () => {
@@ -9,6 +8,17 @@ export default function ManageCard({ pet }) {
             },
             onError: (error) => {
                 console.error("Error deleting pet:", error);
+            },
+        });
+    };
+
+    const handleUpdate = (post) => {
+        router.put(`/posts/${post}`, {
+            onSuccess: () => {
+                console.log("Pet updated successfully");
+            },
+            onError: (error) => {
+                console.error("Error updating pet:", error);
             },
         });
     };
@@ -23,7 +33,10 @@ export default function ManageCard({ pet }) {
                         <p className="text-sm">Status: {pet.status}</p>
                     </div>
                     <div className="flex gap-2">
-                        <button className="px-2 py-1 rounded-md border border-gray-400 bg-yellow-700 text-white">
+                        <button
+                            onClick={() => handleUpdate(pet.id)}
+                            className="px-2 py-1 rounded-md border border-gray-400 bg-yellow-700 text-white"
+                        >
                             Update
                         </button>
 

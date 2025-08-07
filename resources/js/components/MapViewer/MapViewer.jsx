@@ -19,12 +19,6 @@ L.Icon.Default.mergeOptions({
 
 // Handle marker placement on map click
 function LocationMarker({ marker, setMarker }) {
-    useMapEvents({
-        click(e) {
-            setMarker(e.latlng);
-        },
-    });
-
     return marker ? <Marker position={marker} /> : null;
 }
 
@@ -61,11 +55,12 @@ function DistanceLabel({ pointA, pointB, text }) {
     );
 }
 
-export default function MapViewer({ markerValue }) {
+export default function MapViewer({ markerValue, currentLocation }) {
     const [marker, setMarker] = useState(markerValue || null);
     const [mapCenter, setMapCenter] = useState(markerValue || [51.505, -0.09]); // default to London
-    const [userLocation, setUserLocation] = useState(markerValue);
-    const initializedRef = useRef(false);
+    const [userLocation, setUserLocation] = useState(
+        currentLocation || [51.505, -0.09]
+    );
     // Update on prop change
     useEffect(() => {
         if (markerValue) {
@@ -76,24 +71,9 @@ export default function MapViewer({ markerValue }) {
 
     // Try to use user location if marker is not set
     useEffect(() => {
-        if (!markerValue && !initializedRef.current && navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    const userLatLng = [
-                        position.coords.latitude,
-                        position.coords.longitude,
-                    ];
-                    setMapCenter(userLatLng);
-                    setUserLocation(userLatLng);
-                    initializedRef.current = true;
-                },
-                (error) => {
-                    console.error("Geolocation error:", error);
-                    initializedRef.current = true;
-                }
-            );
-        }
-    }, [markerValue]);
+        setUserLocation(currentLocation || [51.505, -0.09]);
+        setMarker(markerValue || [51.505, -0.09]);
+    }, [markerValue, currentLocation]);
 
     // Distance calculation
     let distanceText = "";
@@ -104,7 +84,7 @@ export default function MapViewer({ markerValue }) {
     }
 
     return (
-        <div className="w-full max-h-[15rem] flex h-full relative">
+        <div className="w-full  flex h-full relative">
             <MapContainer
                 center={mapCenter}
                 zoom={10}
@@ -114,12 +94,13 @@ export default function MapViewer({ markerValue }) {
                     attribution='&copy; <a href="https://osm.org/copyright">OpenStreetMap</a>'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
-                <LocationMarker marker={marker} setMarker={setMarker} />
-                <Marker position={userLocation} />
-                {marker && (
+                <LocationMarker marker={marker} />
+                {userLocation && <Marker position={userLocation} />}
+
+                {marker && userLocation && (
                     <Polyline positions={[marker, userLocation]} color="red" />
                 )}
-                {marker && (
+                {marker && userLocation && (
                     <DistanceLabel
                         pointA={marker}
                         pointB={userLocation}

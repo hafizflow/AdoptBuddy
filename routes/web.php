@@ -8,6 +8,7 @@ use App\Http\Controllers\DetailsController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\AdoptController;
 use App\Http\Middleware\IsAdmin;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Routing\Router;
@@ -63,6 +64,8 @@ Route::get('/logout', [SessionController::class, 'destroy']);
 Route::get('/register', [RegisterUserController::class, 'create']);
 Route::post('/register', [RegisterUserController::class, 'store']);
 
+// adopt request
+Route::post('/adopt/apply', [AdoptController::class, 'create']);
 
 // Adoption Form
 Route::get('/adopt/{post}', [PostUserController::class, 'create'])->name('adopt.create')->middleware('auth');

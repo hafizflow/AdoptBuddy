@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { FaHeart } from "react-icons/fa";
 import Button from "../../components/Button/Button";
 import "leaflet/dist/leaflet.css";
@@ -7,37 +6,23 @@ import ApplyAdoptForm from "../../components/ApplyAdoptForm/ApplyAdoptForm";
 import MapViewer from "../../components/MapViewer/MapViewer";
 
 const PetDetails = ({ pet }) => {
-    const [coords, setCoords] = useState(null);
-    console.log(pet);
-    // Fetch coordinates based on location name
+    const [userLocation, setUserLocation] = useState(null);
+
     useEffect(() => {
-        const getLatLngFromLocation = async (locationName) => {
-            const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
-                locationName
-            )}`;
-
-            try {
-                const response = await fetch(url, {
-                    headers: {
-                        "Accept-Language": "en",
-                        "User-Agent": "PetAdoptionApp - your@email.com",
-                    },
-                });
-
-                if (!response.ok) throw new Error("Network error");
-
-                const data = await response.json();
-                if (data.length === 0) throw new Error("Location not found");
-
-                const { lat, lon } = data[0];
-                setCoords({ lat: parseFloat(lat), lng: parseFloat(lon) });
-            } catch (err) {
-                console.error("Error fetching coordinates:", err);
-            }
-        };
-
-        getLatLngFromLocation(pet.location);
-    }, [pet.location]);
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    setUserLocation([
+                        position.coords.latitude,
+                        position.coords.longitude,
+                    ]);
+                },
+                (error) => {
+                    console.error("Geolocation error:", error);
+                }
+            );
+        }
+    }, []);
 
     return (
         <div className="min-h-screen bg-cover bg-center mt-10 flex items-center justify-center px-4">
@@ -45,34 +30,39 @@ const PetDetails = ({ pet }) => {
                 <div className="flex-1 flex flex-col md:flex-row rounded-xl items-center gap-5 overflow-hidden">
                     <div className="flex md:flex-col justify-between gap-4">
                         <img
-                            src={`http://localhost:8000/storage/${pet?.images?.[0]?.image || "default.jpg"
-                                }`}
+                            src={`http://localhost:8000/storage/${
+                                pet?.images?.[0]?.image || "default.jpg"
+                            }`}
                             alt={pet?.name}
                             className="w-32 h-32 rounded-2xl object-cover overflow-hidden"
                         />
                         <img
-                            src={`http://localhost:8000/storage/${pet?.images?.[0]?.image || "default.jpg"
-                                }`}
+                            src={`http://localhost:8000/storage/${
+                                pet?.images?.[0]?.image || "default.jpg"
+                            }`}
                             alt={pet?.name}
                             className="w-32 h-32 rounded-2xl object-cover overflow-hidden"
                         />
                         <img
-                            src={`http://localhost:8000/storage/${pet?.images?.[0]?.image || "default.jpg"
-                                }`}
+                            src={`http://localhost:8000/storage/${
+                                pet?.images?.[0]?.image || "default.jpg"
+                            }`}
                             alt={pet?.name}
                             className="w-32 h-32 rounded-2xl object-cover overflow-hidden"
                         />
                         <img
-                            src={`http://localhost:8000/storage/${pet?.images?.[0]?.image || "default.jpg"
-                                }`}
+                            src={`http://localhost:8000/storage/${
+                                pet?.images?.[0]?.image || "default.jpg"
+                            }`}
                             alt={pet?.name}
                             className="w-32 h-32 rounded-2xl object-cover overflow-hidden"
                         />
                     </div>
                     <div className="w-full h-full">
                         <img
-                            src={`http://localhost:8000/storage/${pet?.images?.[0]?.image || "default.jpg"
-                                }`}
+                            src={`http://localhost:8000/storage/${
+                                pet?.images?.[0]?.image || "default.jpg"
+                            }`}
                             alt={pet?.name}
                             className="w-full rounded-2xl object-cover overflow-hidden"
                         />
@@ -129,8 +119,9 @@ const PetDetails = ({ pet }) => {
                             </MapContainer>
                         </div>
                     )} */}
-                    <div className="h-64 mt-6 rounded-xl overflow-hidden shadow-lg z-10">
+                    <div className="h-[18rem] mt-6 rounded-xl overflow-hidden shadow-lg z-10">
                         <MapViewer
+                            currentLocation={userLocation}
                             markerValue={
                                 pet?.lat && pet?.lng
                                     ? [Number(pet.lat), Number(pet.lng)]
@@ -139,14 +130,6 @@ const PetDetails = ({ pet }) => {
                         />
                     </div>
                     <div className="w-full flex flex-col items-center gap-3 mt-4">
-                        <div className="flex w-full gap-5 justify-between">
-                            <Button className="w-full">Distance from me</Button>
-
-                            <Button className="">
-                                {" "}
-                                <FaHeart />
-                            </Button>
-                        </div>
                         <div className="w-full">
                             <Button
                                 className="w-full"

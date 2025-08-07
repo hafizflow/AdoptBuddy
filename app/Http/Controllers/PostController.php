@@ -73,17 +73,15 @@ class PostController extends Controller
         return view('admin.edit-post', compact('post'));
     }
 
-    public function update(Post $post)
+    public function update($id)
     {
-        request()->validate([
-            'status' => 'required|in:Available,On Hold,Adopted',
+        $selectedPost = Post::findOrFail($id);
+
+        $selectedPost->update([
+            'status' => $selectedPost->status === 'Available' ? 'On Hold' : 'Available',
         ]);
 
-        $post->update([
-            'status' => request()->status,
-        ]);
-
-        return redirect()->route('pets.index')->with('success', 'Pet status updated!');
+        return redirect()->route('admin')->with('success', 'Pet status updated!');
     }
 
     public function destroy($id)
