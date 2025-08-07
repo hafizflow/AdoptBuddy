@@ -42,12 +42,12 @@ const UserProfile = ({ adoptionApplications = [], postApplications = [] }) => {
     return (
         <div className="min-h-screen mt-16 flex flex-col md:flex-row">
             {/* Sidebar */}
-            <aside className="bg-sc shadow-md sticky top-0 z-10 flex md:flex-col justify-between md:justify-start p-3 md:p-5 md:w-64">
+            <aside className="bg-[#07553B]/10 shadow-md sticky top-0 z-10 flex md:flex-col justify-between md:justify-start p-3 md:p-5 md:w-64">
                 <div className="hidden md:block text-center mb-6">
                     <h1 className="text-2xl font-bold pc mb-2">
                         Hello, {auth.user.name.split(" ")[0]}
                     </h1>
-                    <div className="bg-sc pc p-3 rounded-xl">
+                    <div className="bg-[#07553B]/10 pc pc p-3 rounded-xl">
                         <p className="font-medium">{auth.user.name}</p>
                         <p className="text-sm">{auth.user.email}</p>
                     </div>
@@ -58,7 +58,7 @@ const UserProfile = ({ adoptionApplications = [], postApplications = [] }) => {
                     <button
                         onClick={() => setActiveSection("profile")}
                         className={`flex items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "profile"
-                            ? "bg-pc sc"
+                            ? "bg-[#07553B]/10 pc"
                             : "hover:bg-gray-100"
                             }`}
                     >
@@ -70,7 +70,7 @@ const UserProfile = ({ adoptionApplications = [], postApplications = [] }) => {
                     <button
                         onClick={() => setActiveSection("adoptions")}
                         className={`flex items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "adoptions"
-                            ? "bg-pc sc"
+                            ? "bg-[#07553B]/10 pc"
                             : "hover:bg-gray-100"
                             }`}
                     >
@@ -84,7 +84,7 @@ const UserProfile = ({ adoptionApplications = [], postApplications = [] }) => {
                     <button
                         onClick={() => setActiveSection("posts")}
                         className={`flex items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "posts"
-                            ? "bg-pc sc"
+                            ? "bg-[#07553B]/10 pc"
                             : "hover:bg-gray-100"
                             }`}
                     >

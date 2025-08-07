@@ -80,13 +80,13 @@ const AdminProfile = ({ pets }) => {
     return (
         <div className="min-h-screen mt-16 flex flex-col md:flex-row">
             {/* Sidebar */}
-            <aside className="bg-sc shadow-md sticky top-0 z-10 flex md:flex-col justify-between md:justify-start p-3 md:p-5 md:w-64">
+            <aside className="bg-[#07553B]/10 shadow-md sticky top-0 z-10 flex md:flex-col justify-between md:justify-start p-3 md:p-5 md:w-64">
                 {/* Admin info - only visible on md+ */}
                 <div className="hidden md:block text-center mb-6">
                     <h1 className="text-2xl font-bold pc mb-2">
                         Welcome back, Admin
                     </h1>
-                    <div className="bg-sc pc p-3 rounded-xl">
+                    <div className="bg-[#07553B]/10 pc p-3 rounded-xl">
                         <p className="font-medium">Admin Name</p>
                         <p className="text-sm">admin@email.com</p>
                     </div>
@@ -98,7 +98,7 @@ const AdminProfile = ({ pets }) => {
                     <button
                         onClick={() => setActiveSection("applications")}
                         className={`flex cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "applications"
-                            ? "bg-pc sc"
+                            ? "bg-[#07553B]/10 pc"
                             : "hover:bg-gray-100"
                             }`}
                     >
@@ -110,7 +110,7 @@ const AdminProfile = ({ pets }) => {
                     <button
                         onClick={() => setActiveSection("upload")}
                         className={`flex  cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "upload"
-                            ? "bg-pc sc"
+                            ? "bg-[#07553B]/10 pc"
                             : "hover:bg-gray-100"
                             }`}
                     >
@@ -122,7 +122,7 @@ const AdminProfile = ({ pets }) => {
                     <button
                         onClick={() => setActiveSection("manage")}
                         className={`flex cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "manage"
-                            ? "bg-pc sc"
+                            ? "bg-[#07553B]/10 pc"
                             : "hover:bg-gray-100"
                             }`}
                     >
