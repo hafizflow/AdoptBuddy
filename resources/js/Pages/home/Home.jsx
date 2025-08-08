@@ -49,7 +49,7 @@ const HomePage = ({ pets }) => {
             {/* Banner Content */}
             <div
                 style={{ backgroundImage: `url(${dog})` }}
-                className="flex flex-col min-h-screen mt-15 bg-cover bg-center bg-no-repeat justify-center items-center px-5 lg:px-20 relative"
+                className="flex flex-col min-h-screen mt-15 bg-cover bg-center bg-no-repeat justify-center items-center px-5 lg:px-20 relative bg-zoom-out"
             >
                 <div className="absolute bg-black/20 inset-0 bg-opacity-40"></div>
 

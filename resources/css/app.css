@@ -87,8 +87,22 @@ body {
 
 .glow-border {
   border: 2px solid;
-  border-radius: 0.75rem; /* match rounded-xl */
+  border-radius: 0.75rem; 
   border-image-slice: 1;
   animation: border-runner 5s linear infinite;
+}
+
+/* banner zoom out */
+@keyframes bg-zoom-out {
+  0% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.bg-zoom-out {
+  animation: bg-zoom-out 1.5s ease-out forwards;
 }
 
