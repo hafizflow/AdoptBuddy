@@ -7,7 +7,7 @@ import { compass } from "@cloudinary/url-gen/qualifiers/gravity";
 
 
 const PetCard = ({ pet, user }) => {
-    console.log("Hi user :",user);
+    console.log("Hi user :", user);
     const [liked, setLiked] = useState(pet.likes?.length > 0);
     const notify = () => {
         toast("Added to Favourite List!", {
@@ -101,7 +101,9 @@ const PetCard = ({ pet, user }) => {
 
                     {/* Description */}
                     <p className="text-gray-600 text-sm leading-relaxed mb-6">
-                        {pet?.description}
+                        {pet?.description?.length > 50
+                            ? pet.description.slice(0, 50) + "..."
+                            : pet?.description}
                     </p>
 
                     {/* Adopt Button */}

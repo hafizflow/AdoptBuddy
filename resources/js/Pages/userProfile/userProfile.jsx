@@ -15,9 +15,9 @@ const UserProfile = ({ adoptionApplications = [], postApplications = [] }) => {
         name: "Anjum Hossain",
         email: "anjum@example.com",
         phone: "017XXXXXXXX",
-        location: "Dhaka, Bangladesh",
+        location: "Chahdra, Gazipur",
         bio: "Animal lover and pet adoption enthusiast.",
-        avatar: "https://i.pravatar.cc/150?img=3",
+        avatar: "https://scontent.fdac174-1.fna.fbcdn.net/v/t39.30808-6/475979620_1025661022931686_6539658198443314913_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=BVAiLzBo_dMQ7kNvwH3NqSN&_nc_oc=AdlKYXgtY94t75YN3MQmAZs9XX5W3tJu9OfqmK0zz_1jSDhARMPgXWk8ovxEcdJWjxk&_nc_zt=23&_nc_ht=scontent.fdac174-1.fna&_nc_gid=R6tX9-2YoLb7D2FXo0DOLA&oh=00_AfVFJZI15SpPA_t1v66RSaeSsyVhfVy_J3cWQXO4GiNsbA&oe=689BA359",
         adoptedPets: ["Charlie", "Milo", "Bella"],
         favourites: ["Golden Retriever", "Siamese Cat"],
     };
@@ -42,12 +42,12 @@ const UserProfile = ({ adoptionApplications = [], postApplications = [] }) => {
     return (
         <div className="min-h-screen mt-16 flex flex-col md:flex-row">
             {/* Sidebar */}
-            <aside className="bg-sc shadow-md sticky top-0 z-10 flex md:flex-col justify-between md:justify-start p-3 md:p-5 md:w-64">
+            <aside className="bg-[#07553B]/10 shadow-md sticky top-0 z-10 flex md:flex-col justify-between md:justify-start p-3 md:p-5 md:w-64">
                 <div className="hidden md:block text-center mb-6">
                     <h1 className="text-2xl font-bold pc mb-2">
                         Hello, {auth.user.name.split(" ")[0]}
                     </h1>
-                    <div className="bg-sc pc p-3 rounded-xl">
+                    <div className="bg-[#07553B]/10 pc pc p-3 rounded-xl">
                         <p className="font-medium">{auth.user.name}</p>
                         <p className="text-sm">{auth.user.email}</p>
                     </div>
@@ -58,7 +58,7 @@ const UserProfile = ({ adoptionApplications = [], postApplications = [] }) => {
                     <button
                         onClick={() => setActiveSection("profile")}
                         className={`flex items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "profile"
-                            ? "bg-pc sc"
+                            ? "bg-[#07553B]/10 pc"
                             : "hover:bg-gray-100"
                             }`}
                     >
@@ -70,7 +70,7 @@ const UserProfile = ({ adoptionApplications = [], postApplications = [] }) => {
                     <button
                         onClick={() => setActiveSection("adoptions")}
                         className={`flex items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "adoptions"
-                            ? "bg-pc sc"
+                            ? "bg-[#07553B]/10 pc"
                             : "hover:bg-gray-100"
                             }`}
                     >
@@ -84,7 +84,7 @@ const UserProfile = ({ adoptionApplications = [], postApplications = [] }) => {
                     <button
                         onClick={() => setActiveSection("posts")}
                         className={`flex items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "posts"
-                            ? "bg-pc sc"
+                            ? "bg-[#07553B]/10 pc"
                             : "hover:bg-gray-100"
                             }`}
                     >
@@ -107,14 +107,14 @@ const UserProfile = ({ adoptionApplications = [], postApplications = [] }) => {
             <main className="flex-1 p-5 lg:px-10 space-y-8">
                 {/* All main sections (unchanged) */}
                 {activeSection === "profile" && (
-                    <section className="bg-white shadow rounded-xl p-6 flex flex-col md:flex-row gap-6">
+                    <section className="bg-white shadow rounded-xl p-6 flex flex-col md:flex-row gap-6 glow-border">
                         <img
                             src={user.avatar}
                             alt="User Avatar"
-                            className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-[#932F67] shadow"
+                            className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-[#07553B] shadow"
                         />
                         <div className="space-y-2">
-                            <h2 className="text-2xl font-bold text-[#932F67]">
+                            <h2 className="text-2xl font-bold ">
                                 {auth.user.name}
                             </h2>
                             <p className="text-gray-600 flex items-center gap-2">

@@ -26,7 +26,7 @@ export default function ManageCard({ pet }) {
     return (
         <section className=" my-2.5  rounded-xl p-2 md:p-6">
             <div className="">
-                <div className="p-4 space-y-2 border-[#CED46A] bg-pc sc rounded-xl flex flex-col  justify-between">
+                <div className="p-4 space-y-2 border border-[#07553B]/50  pc rounded-xl flex flex-col  justify-between">
                     <div>
                         <h3 className="font-bold">{pet.name}</h3>
                         <p className="text-sm">Breed: {pet.breed}</p>
