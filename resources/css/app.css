@@ -63,3 +63,32 @@ body {
 .bg-sc {
     background-color: #CED46A;
 }
+
+
+/* for glow border */
+
+@keyframes border-runner {
+  0% {
+    border-image-source: linear-gradient(0deg, transparent, #07553B, transparent);
+  }
+  25% {
+    border-image-source: linear-gradient(90deg, transparent, #07553B, transparent);
+  }
+  50% {
+    border-image-source: linear-gradient(180deg, transparent, #07553B, transparent);
+  }
+  75% {
+    border-image-source: linear-gradient(270deg, transparent, #07553B, transparent);
+  }
+  100% {
+    border-image-source: linear-gradient(360deg, transparent, #07553B, transparent);
+  }
+}
+
+.glow-border {
+  border: 2px solid;
+  border-radius: 0.75rem; /* match rounded-xl */
+  border-image-slice: 1;
+  animation: border-runner 5s linear infinite;
+}
+

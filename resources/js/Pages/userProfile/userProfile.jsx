@@ -15,9 +15,9 @@ const UserProfile = ({ adoptionApplications = [], postApplications = [] }) => {
         name: "Anjum Hossain",
         email: "anjum@example.com",
         phone: "017XXXXXXXX",
-        location: "Dhaka, Bangladesh",
+        location: "Chahdra, Gazipur",
         bio: "Animal lover and pet adoption enthusiast.",
-        avatar: "https://i.pravatar.cc/150?img=3",
+        avatar: "https://scontent.fdac174-1.fna.fbcdn.net/v/t39.30808-6/475979620_1025661022931686_6539658198443314913_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=BVAiLzBo_dMQ7kNvwH3NqSN&_nc_oc=AdlKYXgtY94t75YN3MQmAZs9XX5W3tJu9OfqmK0zz_1jSDhARMPgXWk8ovxEcdJWjxk&_nc_zt=23&_nc_ht=scontent.fdac174-1.fna&_nc_gid=R6tX9-2YoLb7D2FXo0DOLA&oh=00_AfVFJZI15SpPA_t1v66RSaeSsyVhfVy_J3cWQXO4GiNsbA&oe=689BA359",
         adoptedPets: ["Charlie", "Milo", "Bella"],
         favourites: ["Golden Retriever", "Siamese Cat"],
     };
@@ -107,14 +107,14 @@ const UserProfile = ({ adoptionApplications = [], postApplications = [] }) => {
             <main className="flex-1 p-5 lg:px-10 space-y-8">
                 {/* All main sections (unchanged) */}
                 {activeSection === "profile" && (
-                    <section className="bg-white shadow rounded-xl p-6 flex flex-col md:flex-row gap-6">
+                    <section className="bg-white shadow rounded-xl p-6 flex flex-col md:flex-row gap-6 glow-border">
                         <img
                             src={user.avatar}
                             alt="User Avatar"
-                            className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-[#932F67] shadow"
+                            className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-[#07553B] shadow"
                         />
                         <div className="space-y-2">
-                            <h2 className="text-2xl font-bold text-[#932F67]">
+                            <h2 className="text-2xl font-bold ">
                                 {auth.user.name}
                             </h2>
                             <p className="text-gray-600 flex items-center gap-2">
