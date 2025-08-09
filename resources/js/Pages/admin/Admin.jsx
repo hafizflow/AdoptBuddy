@@ -10,8 +10,9 @@ import { IoLocationOutline } from "react-icons/io5";
 import { IoMdInformationCircleOutline } from "react-icons/io";
 import { IoCallOutline } from "react-icons/io5";
 import LocationPickerLeaflet from "../../components/LocationPicker/LocationPicker";
+import { router } from "@inertiajs/react";
 
-const AdminProfile = ({ pets }) => {
+const AdminProfile = ({ pets, applications }) => {
     // preview application
     const [previewApplication, setPreviewApplication] = useState(null);
     // preview uploaded image
@@ -32,20 +33,18 @@ const AdminProfile = ({ pets }) => {
         images: [],
     });
 
-    const [applications, setApplications] = useState([
-        { id: 1, name: "John Doe", petName: "Milo", status: "Available" },
-        { id: 2, name: "Jane Smith", petName: "Luna", status: "Available" },
-        { id: 2, name: "Jane Smith", petName: "Luna", status: "Available" },
-        { id: 2, name: "Jane Smith", petName: "Luna", status: "Available" },
-        { id: 2, name: "Jane Smith", petName: "Luna", status: "Available" },
-    ]);
-
     const handleApplicationAction = (id, action) => {
-        setApplications((prev) =>
-            prev.map((app) =>
-                app.id === id ? { ...app, status: action } : app
-            )
-        );
+        router.patch(`/applications/${id}`, {
+            action,
+            onSuccess: () => {
+                // Optionally, you can show a success message or update the UI
+                console.log(`Application ${id} ${action} successfully`);
+            },
+            onError: (error) => {
+                // Handle error
+                console.error(`Failed to ${action} application ${id}:`, error);
+            },
+        });
     };
 
     // Handling file drop
@@ -97,10 +96,11 @@ const AdminProfile = ({ pets }) => {
                     {/* Applications */}
                     <button
                         onClick={() => setActiveSection("applications")}
-                        className={`flex cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "applications"
-                            ? "bg-[#07553B]/10 pc"
-                            : "hover:bg-gray-100"
-                            }`}
+                        className={`flex cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${
+                            activeSection === "applications"
+                                ? "bg-[#07553B]/10 pc"
+                                : "hover:bg-gray-100"
+                        }`}
                     >
                         <MdSettingsApplications size={24} />
                         <span className="hidden md:inline">Applications</span>
@@ -109,10 +109,11 @@ const AdminProfile = ({ pets }) => {
                     {/* Upload */}
                     <button
                         onClick={() => setActiveSection("upload")}
-                        className={`flex  cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "upload"
-                            ? "bg-[#07553B]/10 pc"
-                            : "hover:bg-gray-100"
-                            }`}
+                        className={`flex  cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${
+                            activeSection === "upload"
+                                ? "bg-[#07553B]/10 pc"
+                                : "hover:bg-gray-100"
+                        }`}
                     >
                         <IoCloudUploadOutline size={24} />
                         <span className="hidden md:inline">Upload Pet</span>
@@ -121,10 +122,11 @@ const AdminProfile = ({ pets }) => {
                     {/* Manage */}
                     <button
                         onClick={() => setActiveSection("manage")}
-                        className={`flex cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "manage"
-                            ? "bg-[#07553B]/10 pc"
-                            : "hover:bg-gray-100"
-                            }`}
+                        className={`flex cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${
+                            activeSection === "manage"
+                                ? "bg-[#07553B]/10 pc"
+                                : "hover:bg-gray-100"
+                        }`}
                     >
                         <MdManageHistory size={24} />
                         <span className="hidden md:inline">Manage Pets</span>
@@ -163,7 +165,7 @@ const AdminProfile = ({ pets }) => {
                                             </span>
                                         </p>
                                         <p className="text-sm text-gray-500">
-                                            From: {app.status}
+                                            Status: {app.status}
                                         </p>
                                     </div>
 
@@ -173,7 +175,7 @@ const AdminProfile = ({ pets }) => {
                                             onClick={() =>
                                                 handleApplicationAction(
                                                     app.id,
-                                                    "Accepted"
+                                                    "accepted"
                                                 )
                                             }
                                         >
@@ -184,7 +186,7 @@ const AdminProfile = ({ pets }) => {
                                             onClick={() =>
                                                 handleApplicationAction(
                                                     app.id,
-                                                    "Rejected"
+                                                    "rejected"
                                                 )
                                             }
                                         >

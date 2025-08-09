@@ -1,4 +1,5 @@
 import { useForm } from "@inertiajs/react";
+import { useEffect } from "react";
 
 const ApplyAdoptForm = () => {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -8,9 +9,23 @@ const ApplyAdoptForm = () => {
         address: "",
         pet_before: false,
         message: "",
-        applied_pet_name: "anjum the dobi do",
-        pet_id: 13,
+        applied_pet_name: "",
+        pet_id: 0,
     });
+
+    useEffect(() => {
+        localStorage.getItem("applied_pet_name") &&
+            setData(
+                "applied_pet_name",
+                localStorage.getItem("applied_pet_name")
+            );
+        localStorage.getItem("pet_id") &&
+            setData("pet_id", localStorage.getItem("pet_id"));
+    }, [
+        localStorage,
+        localStorage.getItem("applied_pet_name"),
+        localStorage.getItem("pet_id"),
+    ]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;

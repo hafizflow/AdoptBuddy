@@ -11,6 +11,8 @@ const UserProfile = ({ adoptionApplications = [], postApplications = [] }) => {
     const [activeSection, setActiveSection] = useState("profile");
     const [showLogoutModal, setShowLogoutModal] = useState(false);
 
+    console.log(adoptionApplications);
+
     const user = {
         name: "Anjum Hossain",
         email: "anjum@example.com",
@@ -57,10 +59,11 @@ const UserProfile = ({ adoptionApplications = [], postApplications = [] }) => {
                     {/* Profile */}
                     <button
                         onClick={() => setActiveSection("profile")}
-                        className={`flex items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "profile"
-                            ? "bg-[#07553B]/10 pc"
-                            : "hover:bg-gray-100"
-                            }`}
+                        className={`flex items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${
+                            activeSection === "profile"
+                                ? "bg-[#07553B]/10 pc"
+                                : "hover:bg-gray-100"
+                        }`}
                     >
                         <FaRegUser size={20} />
                         <span className="hidden md:inline">My Profile</span>
@@ -69,10 +72,11 @@ const UserProfile = ({ adoptionApplications = [], postApplications = [] }) => {
                     {/* Adoptions */}
                     <button
                         onClick={() => setActiveSection("adoptions")}
-                        className={`flex items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "adoptions"
-                            ? "bg-[#07553B]/10 pc"
-                            : "hover:bg-gray-100"
-                            }`}
+                        className={`flex items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${
+                            activeSection === "adoptions"
+                                ? "bg-[#07553B]/10 pc"
+                                : "hover:bg-gray-100"
+                        }`}
                     >
                         <IoMdNotificationsOutline size={20} />
                         <span className="hidden md:inline">
@@ -83,10 +87,11 @@ const UserProfile = ({ adoptionApplications = [], postApplications = [] }) => {
                     {/* Posts */}
                     <button
                         onClick={() => setActiveSection("posts")}
-                        className={`flex items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "posts"
-                            ? "bg-[#07553B]/10 pc"
-                            : "hover:bg-gray-100"
-                            }`}
+                        className={`flex items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${
+                            activeSection === "posts"
+                                ? "bg-[#07553B]/10 pc"
+                                : "hover:bg-gray-100"
+                        }`}
                     >
                         <MdFavoriteBorder size={20} />
                         <span className="hidden md:inline">Post Requests</span>
@@ -153,7 +158,7 @@ const UserProfile = ({ adoptionApplications = [], postApplications = [] }) => {
                                         }}
                                     >
                                         <div className="font-semibold text-[#932F67]">
-                                            {app.petName}
+                                            {app.applied_pet_name}
                                         </div>
                                         <div className="text-sm flex justify-between">
                                             <span>
@@ -169,7 +174,7 @@ const UserProfile = ({ adoptionApplications = [], postApplications = [] }) => {
                                                     {app.status}
                                                 </span>
                                             </span>
-                                            <span>{app.date}</span>
+                                            <span>{app.created_at}</span>
                                         </div>
                                     </li>
                                 ))}
@@ -204,7 +209,7 @@ const UserProfile = ({ adoptionApplications = [], postApplications = [] }) => {
                                         </div>
                                         <div className="text-sm flex justify-between">
                                             <span>
-                                                For: {app.petName}
+                                                For: {app.applied_pet_name}
                                             </span>
                                             <span>
                                                 Status:{" "}

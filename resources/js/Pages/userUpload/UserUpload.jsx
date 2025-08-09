@@ -2,10 +2,8 @@ import { useState } from "react";
 import { useForm } from "@inertiajs/react";
 import LocationPicker from "../../components/LocationPicker/LocationPicker";
 import Button from "../../components/Button/Button";
-import LocationPicker from "../../components/LocationPicker/LocationPicker";
 
 const UserUpload = () => {
-    const [location, setLocation] = useState(null);
     const { data, setData, post, processing, errors } = useForm({
         name: "",
         breed: "",
@@ -88,8 +86,8 @@ const UserUpload = () => {
                         name="name"
                         placeholder="Name"
                         className="input input-bordered bg-transparent col-span-2 w-full focus:outline-none focus:ring-0 focus:border-[#07553B]"
-                        value={formData.name}
-                        onChange={handleChange}
+                        value={data.name}
+                        onChange={(e) => setData("name", e.target.value)}
                         style={{ color: "#07553B" }}
                     />
                     <input
@@ -136,8 +134,8 @@ const UserUpload = () => {
                     <div className="w-full flex justify-center items-center col-start-1 col-end-3 min-h-[200px]">
                         <LocationPicker
                             setLocation={(loc) => {
-                                setData("lat", loc?.lat || 0);
-                                setData("lng", loc?.lng || 0);
+                                setData("lat", loc[0]);
+                                setData("lng", loc[1]);
                             }}
                         />
                     </div>

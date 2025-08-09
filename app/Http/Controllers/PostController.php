@@ -13,7 +13,7 @@ class PostController extends Controller
 
     public function index()
     {
-        $pets = Post::with('images','likes')->latest()->get();
+        $pets = Post::with('images','likes')->latest()->where('isVisible', 'Visible')->get();
         return Inertia::render('adopt/Adopt', [
             'pets' => $pets,
         ]); 
@@ -25,8 +25,8 @@ class PostController extends Controller
     }
 
     public function store() {
-       
-
+         
+        
         $data = request()->validate([
             'name' => 'required',
             'age' => 'required',

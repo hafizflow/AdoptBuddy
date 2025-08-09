@@ -1,10 +1,8 @@
 import { useState } from "react";
 import { FaHeart } from "react-icons/fa";
 import { FaPaw } from "react-icons/fa";
-import { router } from '@inertiajs/react';
-import { ToastContainer, toast } from 'react-toastify';
-import { compass } from "@cloudinary/url-gen/qualifiers/gravity";
-
+import { router } from "@inertiajs/react";
+import { ToastContainer, toast } from "react-toastify";
 
 const PetCard = ({ pet, user }) => {
     console.log("Hi user :", user);
@@ -19,14 +17,9 @@ const PetCard = ({ pet, user }) => {
         });
     };
 
-
-
-
-
     const handlecardClick = () => {
         // window.location.href = `/details/${pet.id}`;
         router.visit(`/details/${pet.id}`);
-
     };
 
     const handleLikeClick = () => {
@@ -39,7 +32,7 @@ const PetCard = ({ pet, user }) => {
         );
     };
 
-    const isAdmin = user?.role === 'admin';
+    const isAdmin = user?.role === "admin";
 
     return (
         // new card
@@ -52,7 +45,9 @@ const PetCard = ({ pet, user }) => {
                 <div className="relative">
                     <div className="relative overflow-hidden">
                         <img
-                            src={`http://localhost:8000/storage/${pet.images?.[0]?.image || 'default.jpg'}`}
+                            src={`http://localhost:8000/storage/${
+                                pet.images?.[0]?.image || "default.jpg"
+                            }`}
                             alt={pet.name}
                             className="w-full relative h-[330px] object-cover transition-transform duration-500 transform hover:scale-105"
                         />
@@ -70,10 +65,13 @@ const PetCard = ({ pet, user }) => {
                         onClick={(e) => {
                             e.stopPropagation();
                             if (!user) {
-                                toast.error("You must be logged in to like a pet.", {
-                                    toastId: `pet-like-error-${pet.id}`,
-                                    autoClose: 1500,
-                                });
+                                toast.error(
+                                    "You must be logged in to like a pet.",
+                                    {
+                                        toastId: `pet-like-error-${pet.id}`,
+                                        autoClose: 1500,
+                                    }
+                                );
                                 return;
                             }
                             if (!liked) {
@@ -81,10 +79,10 @@ const PetCard = ({ pet, user }) => {
                             }
                             handleLikeClick();
                             setLiked(!liked);
-
                         }}
-                        className={`absolute top-4 right-4 text-2xl ${liked ? "text-red-500" : "text-white"
-                            } hover:scale-110 transition-transform`}
+                        className={`absolute top-4 right-4 text-2xl ${
+                            liked ? "text-red-500" : "text-white"
+                        } hover:scale-110 transition-transform`}
                     >
                         <FaHeart className="drop-shadow-lg" />
                     </button>
@@ -96,7 +94,10 @@ const PetCard = ({ pet, user }) => {
                     {/* Breed and Age */}
                     <h2 className="text-xl font-bold text-gray-900 mb-2">
                         {pet?.breed}
-                        <span className="text-gray-600 font-normal"> - (Age: {pet?.age})</span>
+                        <span className="text-gray-600 font-normal">
+                            {" "}
+                            - (Age: {pet?.age})
+                        </span>
                     </h2>
 
                     {/* Description */}
@@ -111,14 +112,19 @@ const PetCard = ({ pet, user }) => {
                     <button
                         onClick={(e) => {
                             e.stopPropagation();
+                            localStorage.setItem("applied_pet_name", pet.name);
+                            localStorage.setItem("pet_id", pet.id);
                             if (!isAdmin) {
-                                document.getElementById("my_modal_5").showModal();
+                                document
+                                    .getElementById("my_modal_5")
+                                    .showModal();
                             }
                         }}
-                        className={`text-white py-3 px-6 rounded-2xl font-semibold text-lg transition-colors duration-200 cursor-pointer ${isAdmin
-                            ? 'bg-gray-400 cursor-not-allowed'
-                            : 'bg-[#07553B] hover:bg-[#CED46A] hover:text-[#07553B]'
-                            }`}
+                        className={`text-white py-3 px-6 rounded-2xl font-semibold text-lg transition-colors duration-200 cursor-pointer ${
+                            isAdmin
+                                ? "bg-gray-400 cursor-not-allowed"
+                                : "bg-[#07553B] hover:bg-[#CED46A] hover:text-[#07553B]"
+                        }`}
                         disabled={isAdmin}
                     >
                         Adopt Me

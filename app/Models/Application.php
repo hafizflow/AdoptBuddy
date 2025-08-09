@@ -19,5 +19,6 @@ class Application extends Model
         'message',
         'applied_pet_name',
         'pet_id',
+        'user_id',
     ];
 }
