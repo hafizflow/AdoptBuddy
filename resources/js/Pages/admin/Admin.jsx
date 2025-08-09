@@ -13,6 +13,8 @@ import LocationPickerLeaflet from "../../components/LocationPicker/LocationPicke
 import { router } from "@inertiajs/react";
 
 const AdminProfile = ({ pets, applications }) => {
+    console.log("App", applications);
+    console.log("Pet", pets);
     // preview application
     const [previewApplication, setPreviewApplication] = useState(null);
     // preview uploaded image
@@ -96,11 +98,10 @@ const AdminProfile = ({ pets, applications }) => {
                     {/* Applications */}
                     <button
                         onClick={() => setActiveSection("applications")}
-                        className={`flex cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${
-                            activeSection === "applications"
-                                ? "bg-[#07553B]/10 pc"
-                                : "hover:bg-gray-100"
-                        }`}
+                        className={`flex cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "applications"
+                            ? "bg-[#07553B]/10 pc"
+                            : "hover:bg-gray-100"
+                            }`}
                     >
                         <MdSettingsApplications size={24} />
                         <span className="hidden md:inline">Applications</span>
@@ -109,11 +110,10 @@ const AdminProfile = ({ pets, applications }) => {
                     {/* Upload */}
                     <button
                         onClick={() => setActiveSection("upload")}
-                        className={`flex  cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${
-                            activeSection === "upload"
-                                ? "bg-[#07553B]/10 pc"
-                                : "hover:bg-gray-100"
-                        }`}
+                        className={`flex  cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "upload"
+                            ? "bg-[#07553B]/10 pc"
+                            : "hover:bg-gray-100"
+                            }`}
                     >
                         <IoCloudUploadOutline size={24} />
                         <span className="hidden md:inline">Upload Pet</span>
@@ -122,14 +122,24 @@ const AdminProfile = ({ pets, applications }) => {
                     {/* Manage */}
                     <button
                         onClick={() => setActiveSection("manage")}
-                        className={`flex cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${
-                            activeSection === "manage"
-                                ? "bg-[#07553B]/10 pc"
-                                : "hover:bg-gray-100"
-                        }`}
+                        className={`flex cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "manage"
+                            ? "bg-[#07553B]/10 pc"
+                            : "hover:bg-gray-100"
+                            }`}
                     >
                         <MdManageHistory size={24} />
                         <span className="hidden md:inline">Manage Pets</span>
+                    </button>
+                    {/* New */}
+                    <button
+                        onClick={() => setActiveSection("managerequest")}
+                        className={`flex cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "managerequest"
+                            ? "bg-[#07553B]/10 pc"
+                            : "hover:bg-gray-100"
+                            }`}
+                    >
+                        <MdManageHistory size={24} />
+                        <span className="hidden md:inline">Manage Request</span>
                     </button>
                 </nav>
             </aside>
@@ -151,7 +161,7 @@ const AdminProfile = ({ pets, applications }) => {
                         <ul className="space-y-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
                             {applications.map((app) => (
                                 <li
-                                    key={app.id}
+                                    key={"Application" + applications.id}
                                     className="w-full border border-[#CED46A]  rounded-lg p-2 flex flex-col items-center gap-5"
                                 >
                                     <div className="md:text-xl">
@@ -161,7 +171,7 @@ const AdminProfile = ({ pets, applications }) => {
                                             </span>{" "}
                                             applied to adopt{" "}
                                             <span className="pc">
-                                                {app.petName}
+                                                {app.applied_pet_name}
                                             </span>
                                         </p>
                                         <p className="text-sm text-gray-500">
@@ -185,7 +195,7 @@ const AdminProfile = ({ pets, applications }) => {
                                             className="text-xs px-3 py-1 rounded bg-red-500 hover:bg-red-600 text-white cursor-pointer"
                                             onClick={() =>
                                                 handleApplicationAction(
-                                                    app.id,
+                                                    applications.id,
                                                     "rejected"
                                                 )
                                             }
@@ -529,6 +539,20 @@ const AdminProfile = ({ pets, applications }) => {
                             {Array.isArray(pets) &&
                                 pets.map((pet) => (
                                     <ManageCard key={pet.id} pet={pet} />
+                                ))}
+                        </div>
+                    </section>
+                )}
+
+                {activeSection === "managerequest" && (
+                    <section className="bg-white shadow rounded-xl p-6">
+                        <h2 className="text-xl text-center font-semibold mb-4">
+                            Manage Pets
+                        </h2>
+                        <div className="grid grid-cols-2 md:grid-cols-4">
+                            {Array.isArray(pets) &&
+                                pets.map((pet) => (
+                                    <ManageCard isManageCard key={pet.id} pet={pet} />
                                 ))}
                         </div>
                     </section>

@@ -45,9 +45,8 @@ const PetCard = ({ pet, user }) => {
                 <div className="relative">
                     <div className="relative overflow-hidden">
                         <img
-                            src={`http://localhost:8000/storage/${
-                                pet.images?.[0]?.image || "default.jpg"
-                            }`}
+                            src={`http://localhost:8000/storage/${pet.images?.[0]?.image || "default.jpg"
+                                }`}
                             alt={pet.name}
                             className="w-full relative h-[330px] object-cover transition-transform duration-500 transform hover:scale-105"
                         />
@@ -64,25 +63,24 @@ const PetCard = ({ pet, user }) => {
                     <button
                         onClick={(e) => {
                             e.stopPropagation();
-                            if (!user) {
-                                toast.error(
-                                    "You must be logged in to like a pet.",
-                                    {
-                                        toastId: `pet-like-error-${pet.id}`,
-                                        autoClose: 1500,
-                                    }
-                                );
-                                return;
-                            }
-                            if (!liked) {
-                                notify();
-                            }
+                            // if (!user) {
+                            //     toast.error(
+                            //         "You must be logged in to like a pet.",
+                            //         {
+                            //             toastId: `pet-like-error-${pet.id}`,
+                            //             autoClose: 1500,
+                            //         }
+                            //     );
+                            //     return;
+                            // }
+                            // if (!liked) {
+                            //     notify();
+                            // }
                             handleLikeClick();
                             setLiked(!liked);
                         }}
-                        className={`absolute top-4 right-4 text-2xl ${
-                            liked ? "text-red-500" : "text-white"
-                        } hover:scale-110 transition-transform`}
+                        className={`absolute top-4 right-4 text-2xl ${liked ? "text-red-500" : "text-white"
+                            } hover:scale-110 transition-transform`}
                     >
                         <FaHeart className="drop-shadow-lg" />
                     </button>
@@ -120,11 +118,10 @@ const PetCard = ({ pet, user }) => {
                                     .showModal();
                             }
                         }}
-                        className={`text-white py-3 px-6 rounded-2xl font-semibold text-lg transition-colors duration-200 cursor-pointer ${
-                            isAdmin
+                        className={`text-white py-3 px-6 rounded-2xl font-semibold text-lg transition-colors duration-200 cursor-pointer ${isAdmin
                                 ? "bg-gray-400 cursor-not-allowed"
                                 : "bg-[#07553B] hover:bg-[#CED46A] hover:text-[#07553B]"
-                        }`}
+                            }`}
                         disabled={isAdmin}
                     >
                         Adopt Me

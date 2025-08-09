@@ -16,10 +16,10 @@ const UserProfile = ({ adoptionApplications = [], postApplications = [] }) => {
     const user = {
         name: "Anjum Hossain",
         email: "anjum@example.com",
-        phone: "017XXXXXXXX",
+        phone: "01700610483",
         location: "Chahdra, Gazipur",
         bio: "Animal lover and pet adoption enthusiast.",
-        avatar: "https://scontent.fdac174-1.fna.fbcdn.net/v/t39.30808-6/475979620_1025661022931686_6539658198443314913_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=BVAiLzBo_dMQ7kNvwH3NqSN&_nc_oc=AdlKYXgtY94t75YN3MQmAZs9XX5W3tJu9OfqmK0zz_1jSDhARMPgXWk8ovxEcdJWjxk&_nc_zt=23&_nc_ht=scontent.fdac174-1.fna&_nc_gid=R6tX9-2YoLb7D2FXo0DOLA&oh=00_AfVFJZI15SpPA_t1v66RSaeSsyVhfVy_J3cWQXO4GiNsbA&oe=689BA359",
+        avatar: "https://i.pinimg.com/736x/53/26/39/5326390aa1af79e0e3644ef46e8b0589.jpg",
         adoptedPets: ["Charlie", "Milo", "Bella"],
         favourites: ["Golden Retriever", "Siamese Cat"],
     };
@@ -59,11 +59,10 @@ const UserProfile = ({ adoptionApplications = [], postApplications = [] }) => {
                     {/* Profile */}
                     <button
                         onClick={() => setActiveSection("profile")}
-                        className={`flex items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${
-                            activeSection === "profile"
-                                ? "bg-[#07553B]/10 pc"
-                                : "hover:bg-gray-100"
-                        }`}
+                        className={`flex items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "profile"
+                            ? "bg-[#07553B]/10 pc"
+                            : "hover:bg-gray-100"
+                            }`}
                     >
                         <FaRegUser size={20} />
                         <span className="hidden md:inline">My Profile</span>
@@ -72,11 +71,10 @@ const UserProfile = ({ adoptionApplications = [], postApplications = [] }) => {
                     {/* Adoptions */}
                     <button
                         onClick={() => setActiveSection("adoptions")}
-                        className={`flex items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${
-                            activeSection === "adoptions"
-                                ? "bg-[#07553B]/10 pc"
-                                : "hover:bg-gray-100"
-                        }`}
+                        className={`flex items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "adoptions"
+                            ? "bg-[#07553B]/10 pc"
+                            : "hover:bg-gray-100"
+                            }`}
                     >
                         <IoMdNotificationsOutline size={20} />
                         <span className="hidden md:inline">
@@ -87,11 +85,10 @@ const UserProfile = ({ adoptionApplications = [], postApplications = [] }) => {
                     {/* Posts */}
                     <button
                         onClick={() => setActiveSection("posts")}
-                        className={`flex items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${
-                            activeSection === "posts"
-                                ? "bg-[#07553B]/10 pc"
-                                : "hover:bg-gray-100"
-                        }`}
+                        className={`flex items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "posts"
+                            ? "bg-[#07553B]/10 pc"
+                            : "hover:bg-gray-100"
+                            }`}
                     >
                         <MdFavoriteBorder size={20} />
                         <span className="hidden md:inline">Post Requests</span>
@@ -116,7 +113,7 @@ const UserProfile = ({ adoptionApplications = [], postApplications = [] }) => {
                         <img
                             src={user.avatar}
                             alt="User Avatar"
-                            className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-[#07553B] shadow"
+                            className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-2 border-[#07553B] shadow"
                         />
                         <div className="space-y-2">
                             <h2 className="text-2xl font-bold ">
@@ -157,7 +154,7 @@ const UserProfile = ({ adoptionApplications = [], postApplications = [] }) => {
                                             ),
                                         }}
                                     >
-                                        <div className="font-semibold text-[#932F67]">
+                                        <div className="font-semibold pc">
                                             {app.applied_pet_name}
                                         </div>
                                         <div className="text-sm flex justify-between">
