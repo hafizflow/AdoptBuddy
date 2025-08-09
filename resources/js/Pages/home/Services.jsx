@@ -43,7 +43,7 @@ const Services = () => {
                     {services.map((service, idx) => (
                         <div
                             key={idx}
-                            className="bg-gradient-to-r from-[#932F67] to-[#D92C54] p-6 rounded-xl shadow-md hover:shadow-indigo-500/50 transition duration-300"
+                            className="bg-gradient-to-r from-[#07553B] to-[#CED46A] p-6 rounded-xl shadow-md hover:shadow-[#07553B] transition duration-300"
                         >
                             <div className="mb-4 flex justify-center">
                                 {service.icon}

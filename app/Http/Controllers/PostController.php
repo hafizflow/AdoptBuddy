@@ -13,7 +13,7 @@ class PostController extends Controller
 
     public function index()
     {
-        $pets = Post::with('images','likes')->latest()->get();
+        $pets = Post::with('images','likes')->latest()->where('isVisible', 'Visible')->get();
         return Inertia::render('adopt/Adopt', [
             'pets' => $pets,
         ]); 
@@ -25,8 +25,8 @@ class PostController extends Controller
     }
 
     public function store() {
-       
-
+         
+        
         $data = request()->validate([
             'name' => 'required',
             'age' => 'required',
@@ -37,6 +37,7 @@ class PostController extends Controller
             'lng'=> 'required|numeric',
             'breed' => 'required',
             'gender' => 'required',
+            'status' => 'in:Available,On Hold,Adopted',
             ]);
 
         $pet = Post::create([
@@ -48,6 +49,7 @@ class PostController extends Controller
             'gender' => $data['gender'],
             'lat' => $data['lat'],
             'lng' => $data['lng'],
+            'status' => $data['status'] ?? 'Available',
             'isVisible' => auth()->user()->role === 'admin' ? 'Visible' : 'Invisible',
         ]);
 
@@ -71,17 +73,15 @@ class PostController extends Controller
         return view('admin.edit-post', compact('post'));
     }
 
-    public function update(Post $post)
+    public function update($id)
     {
-        request()->validate([
-            'status' => 'required|in:Available,On Hold,Adopted',
+        $selectedPost = Post::findOrFail($id);
+
+        $selectedPost->update([
+            'status' => $selectedPost->status === 'Available' ? 'On Hold' : 'Available',
         ]);
 
-        $post->update([
-            'status' => request()->status,
-        ]);
-
-        return redirect()->route('pets.index')->with('success', 'Pet status updated!');
+        return redirect()->route('admin')->with('success', 'Pet status updated!');
     }
 
     public function destroy($id)

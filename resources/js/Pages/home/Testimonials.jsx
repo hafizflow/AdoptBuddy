@@ -39,12 +39,12 @@ const TestimonialSection = () => {
                 {testimonials.map((item) => (
                     <div
                         key={item.id}
-                        className="bg-[#932F67]/30 rounded-2xl shadow-sm border border-[#932F67] p-6 text-left hover:shadow-md transition-shadow duration-300"
+                        className="bg-[#07553B] text-[#CED46A]  rounded-2xl shadow-sm border border-[#07553B] p-6 text-left hover:shadow-md transition-shadow duration-300"
                     >
-                        <div className="text-[#D92C54] text-3xl mb-4 leading-none">
+                        <div className="sc text-3xl mb-4 leading-none">
                             <FaQuoteRight />
                         </div>
-                        <p className="text-gray-600 mb-6">{item.text}</p>
+                        <p className="sc mb-6">{item.text}</p>
                         <div className="flex items-center gap-4">
                             <img
                                 src={item.image}
@@ -52,10 +52,10 @@ const TestimonialSection = () => {
                                 className="w-12 h-12 rounded-full object-cover"
                             />
                             <div>
-                                <h4 className="font-bold text-black text-sm">
+                                <h4 className="font-bold sc text-sm">
                                     {item.name}
                                 </h4>
-                                <p className="text-[#D92C54] text-sm">
+                                <p className="sc text-sm">
                                     {item.country}
                                 </p>
                             </div>

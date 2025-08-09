@@ -8,6 +8,8 @@ use App\Http\Controllers\DetailsController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AdoptController;
 use App\Http\Middleware\IsAdmin;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Routing\Router;
@@ -30,7 +32,7 @@ Route::get("/adopt", function () {
 
 Route::get("/admin", [
     AdminController::class, 'index'
-])->middleware(IsAdmin::class);
+])->middleware(IsAdmin::class)->name("admin");
 
 Route::get("/details", function () {
     return Inertia::render('petDetails/petDetails');
@@ -39,9 +41,7 @@ Route::get("/details", function () {
 Route::get("/details/{id}", [DetailsController::class, 'index']);
 
 
-Route::get("/profile", function () {
-    return Inertia::render('userProfile/userProfile');
-});
+Route::get("/profile", [ProfileController::class, 'index'])->middleware('auth')->name('profile');
 Route::get("/favouritelist", function () {
     return Inertia::render('favouriteList/FavouriteList');
 });
@@ -63,6 +63,8 @@ Route::get('/logout', [SessionController::class, 'destroy']);
 Route::get('/register', [RegisterUserController::class, 'create']);
 Route::post('/register', [RegisterUserController::class, 'store']);
 
+// adopt request
+Route::post('/adopt/apply', [AdoptController::class, 'create']);
 
 // Adoption Form
 Route::get('/adopt/{post}', [PostUserController::class, 'create'])->name('adopt.create')->middleware('auth');
@@ -73,8 +75,9 @@ Route::post('/adopt/{post}', [PostUserController::class, 'store'])->name('adopt.
 Route::get('/requests', [PostUserController::class, 'index'])->middleware(IsAdmin::class);
 Route::patch('/requests/{postUser}', [PostUserController::class, 'update'])->name('requests.update')->middleware(IsAdmin::class);
 Route::delete('/requests/{postUser}', [PostUserController::class, 'destroy'])->middleware(IsAdmin::class);
+/// applications
 
-
+Route::patch('/applications/{action}', [AdoptController::class, 'update'])->name('applications.update')->middleware(IsAdmin::class);
 Route::get('/post', [PostController::class, 'create'])->middleware('auth');
 Route::post('/post', [PostController::class, 'store'])->middleware('auth');
 Route::get('/adopt', [PostController::class, 'index'])->name('pets.index');

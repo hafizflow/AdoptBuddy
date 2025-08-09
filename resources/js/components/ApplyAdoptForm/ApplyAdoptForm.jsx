@@ -1,27 +1,49 @@
-import { useState } from "react";
+import { useForm } from "@inertiajs/react";
+import { useEffect } from "react";
 
 const ApplyAdoptForm = () => {
-    const [formData, setFormData] = useState({
+    const { data, setData, post, processing, errors, reset } = useForm({
         name: "",
         email: "",
         phone: "",
         address: "",
-        nourishedBefore: "",
-        reason: "",
+        pet_before: false,
+        message: "",
+        applied_pet_name: "",
+        pet_id: 0,
     });
+
+    useEffect(() => {
+        localStorage.getItem("applied_pet_name") &&
+            setData(
+                "applied_pet_name",
+                localStorage.getItem("applied_pet_name")
+            );
+        localStorage.getItem("pet_id") &&
+            setData("pet_id", localStorage.getItem("pet_id"));
+    }, [
+        localStorage,
+        localStorage.getItem("applied_pet_name"),
+        localStorage.getItem("pet_id"),
+    ]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData((prev) => ({
+        setData((prev) => ({
             ...prev,
             [name]: value,
         }));
-        // console.log(formData);
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        document.getElementById("my_modal_5").close();
+        post("/adopt/apply", {
+            forceFormData: true,
+            onSuccess: () => {
+                document.getElementById("my_modal_5").close();
+                reset();
+            },
+        });
     };
 
     return (
@@ -31,14 +53,16 @@ const ApplyAdoptForm = () => {
                 className="modal modal-bottom sm:modal-middle"
             >
                 <div className="modal-box bg-indigo-50 text-black max-w-2xl">
-                    <h3 className="font-bold text-xl text-center mb-4">Apply To Adopt</h3>
+                    <h3 className="font-bold text-xl text-center mb-4">
+                        Apply To Adopt
+                    </h3>
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <input
                             type="text"
                             name="name"
                             placeholder="Name"
                             required
-                            value={formData.name}
+                            value={data.name}
                             onChange={handleChange}
                             className="input input-bordered w-full focus:outline-none focus:ring-0 focus:border-indigo-900"
                         />
@@ -48,7 +72,7 @@ const ApplyAdoptForm = () => {
                             name="email"
                             placeholder="Email"
                             required
-                            value={formData.email}
+                            value={data.email}
                             onChange={handleChange}
                             className="input input-bordered w-full focus:outline-none focus:ring-0 focus:border-indigo-900"
                         />
@@ -58,7 +82,7 @@ const ApplyAdoptForm = () => {
                             name="phone"
                             placeholder="Phone"
                             required
-                            value={formData.phone}
+                            value={data.phone}
                             onChange={handleChange}
                             className="input input-bordered w-full focus:outline-none focus:ring-0 focus:border-indigo-900"
                         />
@@ -68,7 +92,7 @@ const ApplyAdoptForm = () => {
                             placeholder="Address"
                             required
                             rows={2}
-                            value={formData.address}
+                            value={data.address}
                             onChange={handleChange}
                             className="textarea textarea-bordered w-full h-20 resize-none focus:outline-none focus:ring-0 focus:border-indigo-900"
                         />
@@ -81,12 +105,12 @@ const ApplyAdoptForm = () => {
                                 <label className="flex items-center gap-2">
                                     <input
                                         type="radio"
-                                        name="nourishedBefore"
-                                        value="Yes"
-                                        checked={
-                                            formData.nourishedBefore === "Yes"
+                                        name="pet_before"
+                                        value={true}
+                                        checked={data.pet_before === true}
+                                        onChange={() =>
+                                            setData("pet_before", true)
                                         }
-                                        onChange={handleChange}
                                         required
                                     />
                                     Yes
@@ -94,12 +118,12 @@ const ApplyAdoptForm = () => {
                                 <label className="flex items-center gap-2">
                                     <input
                                         type="radio"
-                                        name="nourishedBefore"
-                                        value="No"
-                                        checked={
-                                            formData.nourishedBefore === "No"
+                                        name="pet_before"
+                                        value={false}
+                                        checked={data.pet_before === false}
+                                        onChange={() =>
+                                            setData("pet_before", false)
                                         }
-                                        onChange={handleChange}
                                     />
                                     No
                                 </label>
@@ -107,10 +131,10 @@ const ApplyAdoptForm = () => {
                         </div>
 
                         <textarea
-                            name="reason"
+                            name="message"
                             placeholder="Why do you want to adopt?"
                             rows={3}
-                            value={formData.reason}
+                            value={data.message}
                             onChange={handleChange}
                             className="textarea textarea-bordered w-full h-20 resize-none focus:outline-none focus:ring-0 focus:border-indigo-900"
                             required

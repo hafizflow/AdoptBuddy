@@ -10,8 +10,9 @@ import { IoLocationOutline } from "react-icons/io5";
 import { IoMdInformationCircleOutline } from "react-icons/io";
 import { IoCallOutline } from "react-icons/io5";
 import LocationPickerLeaflet from "../../components/LocationPicker/LocationPicker";
+import { router } from "@inertiajs/react";
 
-const AdminProfile = ({ pets }) => {
+const AdminProfile = ({ pets, applications }) => {
     // preview application
     const [previewApplication, setPreviewApplication] = useState(null);
     // preview uploaded image
@@ -25,27 +26,25 @@ const AdminProfile = ({ pets }) => {
         gender: "",
         size: "",
         color: "",
-        status: "",
+        status: "Available",
         lat: 0,
         lng: 0,
         description: "",
         images: [],
     });
 
-    const [applications, setApplications] = useState([
-        { id: 1, name: "John Doe", petName: "Milo", status: "Available" },
-        { id: 2, name: "Jane Smith", petName: "Luna", status: "Available" },
-        { id: 2, name: "Jane Smith", petName: "Luna", status: "Available" },
-        { id: 2, name: "Jane Smith", petName: "Luna", status: "Available" },
-        { id: 2, name: "Jane Smith", petName: "Luna", status: "Available" },
-    ]);
-
     const handleApplicationAction = (id, action) => {
-        setApplications((prev) =>
-            prev.map((app) =>
-                app.id === id ? { ...app, status: action } : app
-            )
-        );
+        router.patch(`/applications/${id}`, {
+            action,
+            onSuccess: () => {
+                // Optionally, you can show a success message or update the UI
+                console.log(`Application ${id} ${action} successfully`);
+            },
+            onError: (error) => {
+                // Handle error
+                console.error(`Failed to ${action} application ${id}:`, error);
+            },
+        });
     };
 
     // Handling file drop
@@ -80,13 +79,13 @@ const AdminProfile = ({ pets }) => {
     return (
         <div className="min-h-screen mt-16 flex flex-col md:flex-row">
             {/* Sidebar */}
-            <aside className="bg-white shadow-md sticky top-0 z-10 flex md:flex-col justify-between md:justify-start p-3 md:p-5 md:w-64">
+            <aside className="bg-[#07553B]/10 shadow-md sticky top-0 z-10 flex md:flex-col justify-between md:justify-start p-3 md:p-5 md:w-64">
                 {/* Admin info - only visible on md+ */}
                 <div className="hidden md:block text-center mb-6">
-                    <h1 className="text-2xl font-bold text-[#932F67] mb-2">
+                    <h1 className="text-2xl font-bold pc mb-2">
                         Welcome back, Admin
                     </h1>
-                    <div className="bg-[#932F67]/20 text-[#932F67] p-3 rounded-xl">
+                    <div className="bg-[#07553B]/10 pc p-3 rounded-xl">
                         <p className="font-medium">Admin Name</p>
                         <p className="text-sm">admin@email.com</p>
                     </div>
@@ -99,7 +98,7 @@ const AdminProfile = ({ pets }) => {
                         onClick={() => setActiveSection("applications")}
                         className={`flex cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${
                             activeSection === "applications"
-                                ? "bg-[#932F67] text-white"
+                                ? "bg-[#07553B]/10 pc"
                                 : "hover:bg-gray-100"
                         }`}
                     >
@@ -112,7 +111,7 @@ const AdminProfile = ({ pets }) => {
                         onClick={() => setActiveSection("upload")}
                         className={`flex  cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${
                             activeSection === "upload"
-                                ? "bg-[#932F67] text-white"
+                                ? "bg-[#07553B]/10 pc"
                                 : "hover:bg-gray-100"
                         }`}
                     >
@@ -125,7 +124,7 @@ const AdminProfile = ({ pets }) => {
                         onClick={() => setActiveSection("manage")}
                         className={`flex cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${
                             activeSection === "manage"
-                                ? "bg-[#932F67] text-white"
+                                ? "bg-[#07553B]/10 pc"
                                 : "hover:bg-gray-100"
                         }`}
                     >
@@ -153,20 +152,20 @@ const AdminProfile = ({ pets }) => {
                             {applications.map((app) => (
                                 <li
                                     key={app.id}
-                                    className="border w-full border-indigo-100 rounded-lg p-2 flex flex-col items-center gap-5"
+                                    className="w-full border border-[#CED46A]  rounded-lg p-2 flex flex-col items-center gap-5"
                                 >
                                     <div className="md:text-xl">
                                         <p className="font-medium">
-                                            <span className="text-[#932F67]">
+                                            <span className="pc">
                                                 {app.name}
                                             </span>{" "}
                                             applied to adopt{" "}
-                                            <span className="text-[#D92C54]">
+                                            <span className="pc">
                                                 {app.petName}
                                             </span>
                                         </p>
                                         <p className="text-sm text-gray-500">
-                                            From: {app.status}
+                                            Status: {app.status}
                                         </p>
                                     </div>
 
@@ -176,7 +175,7 @@ const AdminProfile = ({ pets }) => {
                                             onClick={() =>
                                                 handleApplicationAction(
                                                     app.id,
-                                                    "Accepted"
+                                                    "accepted"
                                                 )
                                             }
                                         >
@@ -187,7 +186,7 @@ const AdminProfile = ({ pets }) => {
                                             onClick={() =>
                                                 handleApplicationAction(
                                                     app.id,
-                                                    "Rejected"
+                                                    "rejected"
                                                 )
                                             }
                                         >
@@ -212,7 +211,7 @@ const AdminProfile = ({ pets }) => {
                                             }
                                         >
                                             <div
-                                                className="bg-white rounded-xl shadow-lg p-6 w-11/12 max-w-2xl relative"
+                                                className="bg-sc rounded-xl shadow-lg p-6 w-11/12 max-w-2xl relative"
                                                 onClick={(e) =>
                                                     e.stopPropagation()
                                                 }
@@ -267,10 +266,10 @@ const AdminProfile = ({ pets }) => {
                                                                     01700610483
                                                                 </p>
                                                                 <div>
-                                                                    <p className="font-semibold text-gray-800">
+                                                                    <p className=" text-gray-800">
                                                                         Message:
                                                                     </p>
-                                                                    <span className="text-gray-700">
+                                                                    <span className="text-gray-700 font-semibold">
                                                                         Lorem
                                                                         ipsum
                                                                         dolor
@@ -290,38 +289,38 @@ const AdminProfile = ({ pets }) => {
                                                             <div className="grid grid-cols-2 gap-4 text-gray-700">
                                                                 <div>
                                                                     <p>
+                                                                        Name:{" "}
                                                                         <strong>
-                                                                            Name:
-                                                                        </strong>{" "}
-                                                                        {
-                                                                            previewApplication.petName
-                                                                        }
+                                                                            {
+                                                                                previewApplication.petName
+                                                                            }
+                                                                        </strong>
                                                                     </p>
                                                                     <p>
+                                                                        Breed:
                                                                         <strong>
-                                                                            Breed:
-                                                                        </strong>{" "}
-                                                                        {/* Replace with actual value */}
+                                                                            {" "}
+                                                                        </strong>
                                                                     </p>
                                                                     <p>
+                                                                        Age:
                                                                         <strong>
-                                                                            Age:
-                                                                        </strong>{" "}
-                                                                        {/* Replace with actual value */}
+                                                                            {" "}
+                                                                        </strong>
                                                                     </p>
                                                                 </div>
                                                                 <div>
                                                                     <p>
+                                                                        Gender:
                                                                         <strong>
-                                                                            Gender:
-                                                                        </strong>{" "}
-                                                                        {/* Replace with actual value */}
+                                                                            {" "}
+                                                                        </strong>
                                                                     </p>
                                                                     <p>
+                                                                        Size:
                                                                         <strong>
-                                                                            Size:
-                                                                        </strong>{" "}
-                                                                        {/* Replace with actual value */}
+                                                                            {" "}
+                                                                        </strong>
                                                                     </p>
                                                                 </div>
                                                             </div>
@@ -378,11 +377,11 @@ const AdminProfile = ({ pets }) => {
                             <div className="md:col-span-2">
                                 <label
                                     htmlFor="fileUpload"
-                                    className="flex flex-col items-center justify-center w-full border-2 border-dashed border-indigo-300 rounded-xl p-6 cursor-pointer hover:border-indigo-500 transition"
+                                    className="flex flex-col items-center justify-center w-full border-2 border-dashed border-[#07553B] rounded-xl p-6 cursor-pointer hover:border-[#CED46A] transition"
                                 >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
-                                        className="h-10 w-10 text-indigo-400 mb-2"
+                                        className="h-10 w-10 pc mb-2"
                                         fill="none"
                                         viewBox="0 0 24 24"
                                         stroke="currentColor"
@@ -396,13 +395,13 @@ const AdminProfile = ({ pets }) => {
                                     </svg>
                                     <p className="text-gray-600 text-sm mb-1">
                                         Drag & drop{" "}
-                                        <span className="text-indigo-600 font-medium">
+                                        <span className="pc font-medium">
                                             images or any file
                                         </span>
                                     </p>
                                     <p className="text-gray-400 text-xs">
                                         or{" "}
-                                        <span className="underline text-indigo-500">
+                                        <span className="underline pc">
                                             browse files
                                         </span>{" "}
                                         on your computer
@@ -435,7 +434,7 @@ const AdminProfile = ({ pets }) => {
                                 }
                                 type="text"
                                 placeholder="Name"
-                                className="input w-full col-start-1 col-end-3 input-bordered focus:outline-none focus:ring-0 focus:border-[#932F67]"
+                                className="input w-full col-start-1 col-end-3 input-bordered focus:outline-none focus:ring-0 focus:border-[#07553B]"
                             />
                             <input
                                 value={data.breed}
@@ -444,14 +443,14 @@ const AdminProfile = ({ pets }) => {
                                 }
                                 type="text"
                                 placeholder="Breed"
-                                className="input w-full input-bordered focus:outline-none focus:ring-0 focus:border-[#932F67]"
+                                className="input w-full input-bordered focus:outline-none focus:ring-0 focus:border-[#07553B]"
                             />
                             <input
                                 value={data.age}
                                 onChange={(e) => setData("age", e.target.value)}
                                 type="text"
                                 placeholder="Age"
-                                className="input w-full input-bordered focus:outline-none focus:ring-0 focus:border-[#932F67]"
+                                className="input w-full input-bordered focus:outline-none focus:ring-0 focus:border-[#07553B]"
                             />
                             <input
                                 value={data.gender}
@@ -460,7 +459,7 @@ const AdminProfile = ({ pets }) => {
                                 }
                                 type="text"
                                 placeholder="Gender"
-                                className="input w-full input-bordered focus:outline-none focus:ring-0 focus:border-[#932F67]"
+                                className="input w-full input-bordered focus:outline-none focus:ring-0 focus:border-[#07553B]"
                             />
                             <input
                                 value={data.size}
@@ -469,7 +468,7 @@ const AdminProfile = ({ pets }) => {
                                 }
                                 type="text"
                                 placeholder="Size"
-                                className="input w-full input-bordered focus:outline-none focus:ring-0 focus:border-[#932F67]"
+                                className="input w-full input-bordered focus:outline-none focus:ring-0 focus:border-[#07553B]"
                             />
                             <input
                                 value={data.color}
@@ -478,14 +477,14 @@ const AdminProfile = ({ pets }) => {
                                 }
                                 type="text"
                                 placeholder="Color"
-                                className="input w-full input-bordered focus:outline-none focus:ring-0 focus:border-[#932F67]"
+                                className="input w-full input-bordered focus:outline-none focus:ring-0 focus:border-[#07553B]"
                             />
                             <select
                                 value={data.status}
                                 onChange={(e) =>
                                     setData("status", e.target.value)
                                 }
-                                className="select w-full select-bordered focus:outline-none focus:ring-0 focus:border-[#932F67] cursor-pointer"
+                                className="select w-full select-bordered focus:outline-none focus:ring-0 focus:border-[#07553B] cursor-pointer"
                             >
                                 <option value="Available">Available</option>
                                 <option value="On Hold">On Hold</option>
@@ -507,7 +506,7 @@ const AdminProfile = ({ pets }) => {
                                     setData("description", e.target.value)
                                 }
                                 placeholder="Description"
-                                className="textarea w-full textarea-bordered md:col-span-2 focus:outline-none focus:ring-0 focus:border-[#932F67] resize-none"
+                                className="textarea w-full textarea-bordered md:col-span-2 focus:outline-none focus:ring-0 focus:border-[#07553B] resize-none"
                                 rows={3}
                             ></textarea>
                             <Button
@@ -526,10 +525,12 @@ const AdminProfile = ({ pets }) => {
                         <h2 className="text-xl text-center font-semibold mb-4">
                             Manage Pets
                         </h2>
-                        {Array.isArray(pets) &&
-                            pets.map((pet) => (
-                                <ManageCard key={pet.id} pet={pet} />
-                            ))}
+                        <div className="grid grid-cols-2 md:grid-cols-4">
+                            {Array.isArray(pets) &&
+                                pets.map((pet) => (
+                                    <ManageCard key={pet.id} pet={pet} />
+                                ))}
+                        </div>
                     </section>
                 )}
             </main>

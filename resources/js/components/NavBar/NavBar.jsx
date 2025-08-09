@@ -34,8 +34,9 @@ const Navbar = ({ user }) => {
             <li key={name}>
                 <a
                     href={path}
-                    className={`hover:underline hover:bg-transparent underline-offset-8 decoration-white transition ${isActive ? "underline" : ""
-                        } ${isShow ? "" : "hidden"}`}
+                    className={`hover:underline hover:bg-transparent underline-offset-8 decoration-white transition ${
+                        isActive ? "underline" : ""
+                    } ${isShow ? "" : "hidden"}`}
                 >
                     {name}
                 </a>
@@ -43,19 +44,22 @@ const Navbar = ({ user }) => {
         );
     });
 
-
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const dropdownRef = useRef();
 
     // Close dropdown on outside click
     useEffect(() => {
         const handleClickOutside = (event) => {
-            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+            if (
+                dropdownRef.current &&
+                !dropdownRef.current.contains(event.target)
+            ) {
                 setDropdownOpen(false);
             }
         };
         document.addEventListener("mousedown", handleClickOutside);
-        return () => document.removeEventListener("mousedown", handleClickOutside);
+        return () =>
+            document.removeEventListener("mousedown", handleClickOutside);
     }, []);
 
     const handleLogout = () => {
@@ -64,15 +68,16 @@ const Navbar = ({ user }) => {
 
     return (
         <div
-            className={`navbar bg-[#1b1a1b] fixed top-0 w-full z-50 md:px-20 mx-auto transition-all duration-300 ${isScrolled ? "bg-white/30 backdrop-blur-md shadow-md" : ""
-                }`}
+            className={`navbar bg-[#1b1a1b] fixed top-0 w-full z-50 md:px-20 mx-auto transition-all duration-300 ${
+                isScrolled ? "bg-white/30 backdrop-blur-md" : ""
+            }`}
         >
             <div className="navbar-start">
                 <div className="dropdown">
                     <div
                         tabIndex={0}
                         role="button"
-                        className="btn btn-ghost hover:bg-indigo-900 hover:border-none hover:shadow-none lg:hidden"
+                        className="btn btn-ghost hover:bg-[#07553B] hover:border-none hover:shadow-none lg:hidden"
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -94,7 +99,7 @@ const Navbar = ({ user }) => {
                         className="menu menu-sm dropdown-content rounded-box z-10 mt-3 w-36 p-2 bg-black/50 backdrop-blur-md text-white"
                     >
                         {links}
-                        { }
+                        {}
                     </ul>
                 </div>
                 <a
@@ -102,8 +107,9 @@ const Navbar = ({ user }) => {
                         window.scrollTo(0, 0);
                     }}
                     href="/"
-                    className={`${isScrolled ? "text-gray-700" : "text-white"
-                        } text-2xl font-semibold`}
+                    className={`${
+                        isScrolled ? "pc" : "text-white"
+                    } text-2xl font-semibold`}
                 >
                     AdoptBuddy
                 </a>
@@ -111,16 +117,18 @@ const Navbar = ({ user }) => {
 
             <div className="navbar-end hidden lg:flex">
                 <ul
-                    className={`${isScrolled ? "text-gray-700" : "text-white"
-                        } menu menu-horizontal px-1 font-semibold`}
+                    className={`${
+                        isScrolled ? "pc" : "text-white"
+                    } menu menu-horizontal px-1 font-semibold`}
                 >
                     {links}
                 </ul>
             </div>
 
             <div
-                className={`${isScrolled ? "text-gray-700" : "text-white"
-                    } navbar-end flex gap-6 items-center`}
+                className={`${
+                    isScrolled ? "pc" : "text-white"
+                } navbar-end flex gap-6 items-center`}
             >
                 <div className="relative group inline-block">
                     <a href="/likes">
@@ -181,7 +189,7 @@ const Navbar = ({ user }) => {
                     ) : (
                         <>
                             <button
-                                onClick={() => setDropdownOpen(prev => !prev)}
+                                onClick={() => setDropdownOpen((prev) => !prev)}
                                 className="flex items-center gap-2 px-3 py-1 rounded cursor-pointer border border-gray-600 text-sm font-medium"
                             >
                                 {auth.user.name}
@@ -203,7 +211,9 @@ const Navbar = ({ user }) => {
                             {dropdownOpen && (
                                 <div className="absolute right-0 mt-2 w-36 bg-white border border-gray-200 rounded shadow-lg z-50">
                                     <button
-                                        onClick={() => { window.location.href = '/profile' }}
+                                        onClick={() => {
+                                            window.location.href = "/profile";
+                                        }}
                                         className="flex items-center gap-2 w-full px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 cursor-pointer"
                                     >
                                         <CgProfile className="text-lg" />
@@ -211,7 +221,7 @@ const Navbar = ({ user }) => {
                                     </button>
                                     <button
                                         onClick={handleLogout}
-                                        className="flex items-center gap-2 w-full px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 cursor-pointer"
+                                        className="flex items-center gap-2 w-full px-4 py-2 text-sm text-red-600 hover:bg-indigo-50 cursor-pointer"
                                     >
                                         <MdLogout className="text-lg" />
                                         Logout
@@ -220,7 +230,6 @@ const Navbar = ({ user }) => {
                             )}
                         </>
                     )}
-
                 </div>
             </div>
         </div>

@@ -1,15 +1,25 @@
 import { useState } from "react";
 import { FaHeart } from "react-icons/fa";
 import { FaPaw } from "react-icons/fa";
-import { router } from '@inertiajs/react';
+import { router } from "@inertiajs/react";
+import { ToastContainer, toast } from "react-toastify";
 
-
-const PetCard = ({ pet }) => {
+const PetCard = ({ pet, user }) => {
+    console.log("Hi user :", user);
     const [liked, setLiked] = useState(pet.likes?.length > 0);
-
+    const notify = () => {
+        toast("Added to Favourite List!", {
+            toastId: `pet-like-${pet.id}`,
+            autoClose: 1000,
+            pauseOnHover: true,
+            closeOnClick: true,
+            draggable: true,
+        });
+    };
 
     const handlecardClick = () => {
-        window.location.href = `/details/${pet.id}`;
+        // window.location.href = `/details/${pet.id}`;
+        router.visit(`/details/${pet.id}`);
     };
 
     const handleLikeClick = () => {
@@ -22,6 +32,8 @@ const PetCard = ({ pet }) => {
         );
     };
 
+    const isAdmin = user?.role === "admin";
+
     return (
         // new card
         <div className="md:w-sm">
@@ -33,7 +45,9 @@ const PetCard = ({ pet }) => {
                 <div className="relative">
                     <div className="relative overflow-hidden">
                         <img
-                            src={`http://localhost:8000/storage/${pet.images?.[0]?.image || 'default.jpg'}`}
+                            src={`http://localhost:8000/storage/${
+                                pet.images?.[0]?.image || "default.jpg"
+                            }`}
                             alt={pet.name}
                             className="w-full relative h-[330px] object-cover transition-transform duration-500 transform hover:scale-105"
                         />
@@ -50,14 +64,29 @@ const PetCard = ({ pet }) => {
                     <button
                         onClick={(e) => {
                             e.stopPropagation();
+                            if (!user) {
+                                toast.error(
+                                    "You must be logged in to like a pet.",
+                                    {
+                                        toastId: `pet-like-error-${pet.id}`,
+                                        autoClose: 1500,
+                                    }
+                                );
+                                return;
+                            }
+                            if (!liked) {
+                                notify();
+                            }
                             handleLikeClick();
                             setLiked(!liked);
                         }}
-                        className={`absolute top-4 right-4 text-2xl ${liked ? "text-red-500" : "text-white"
-                            } hover:scale-110 transition-transform`}
+                        className={`absolute top-4 right-4 text-2xl ${
+                            liked ? "text-red-500" : "text-white"
+                        } hover:scale-110 transition-transform`}
                     >
                         <FaHeart className="drop-shadow-lg" />
                     </button>
+                    <ToastContainer />
                 </div>
 
                 {/* Content Section */}
@@ -65,12 +94,17 @@ const PetCard = ({ pet }) => {
                     {/* Breed and Age */}
                     <h2 className="text-xl font-bold text-gray-900 mb-2">
                         {pet?.breed}
-                        <span className="text-gray-600 font-normal"> - (Age: {pet?.age})</span>
+                        <span className="text-gray-600 font-normal">
+                            {" "}
+                            - (Age: {pet?.age})
+                        </span>
                     </h2>
 
                     {/* Description */}
                     <p className="text-gray-600 text-sm leading-relaxed mb-6">
-                        {pet?.description}
+                        {pet?.description?.length > 50
+                            ? pet.description.slice(0, 50) + "..."
+                            : pet?.description}
                     </p>
 
                     {/* Adopt Button */}
@@ -78,9 +112,20 @@ const PetCard = ({ pet }) => {
                     <button
                         onClick={(e) => {
                             e.stopPropagation();
-                            document.getElementById("my_modal_5").showModal();
+                            localStorage.setItem("applied_pet_name", pet.name);
+                            localStorage.setItem("pet_id", pet.id);
+                            if (!isAdmin) {
+                                document
+                                    .getElementById("my_modal_5")
+                                    .showModal();
+                            }
                         }}
-                        className=" text-white bg-[#E13452] hover:bg-[#8ABB6C] py-3 px-6 rounded-2xl font-semibold text-lg transition-colors duration-200 cursor-pointer"
+                        className={`text-white py-3 px-6 rounded-2xl font-semibold text-lg transition-colors duration-200 cursor-pointer ${
+                            isAdmin
+                                ? "bg-gray-400 cursor-not-allowed"
+                                : "bg-[#07553B] hover:bg-[#CED46A] hover:text-[#07553B]"
+                        }`}
+                        disabled={isAdmin}
                     >
                         Adopt Me
                     </button>

@@ -31,7 +31,7 @@ const About = () => {
         <div className="mt-14">
             <div className="min-h-screen px-5 lg:px-20 py-8 flex flex-col lg:flex-row items-center justify-center gap-10 ">
                 <div className="flex-1 max-w-xl">
-                    <p className="text-[#932F67] font-semibold mb-2">
+                    <p className="pc font-semibold mb-2">
                         How It Started
                     </p>
                     <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
@@ -60,7 +60,7 @@ const About = () => {
                     />
 
                     <div className="grid grid-cols-2 gap-4">
-                        <div className="bg-gradient-to-r from-[#932F67] to-[#D92C54] p-6 rounded-xl shadow">
+                        <div className="bg-gradient-to-r from-[#07553B] to-[#CED46A] p-6 rounded-xl shadow">
                             <p className="text-2xl font-bold text-white">
                                 4+
                             </p>
@@ -68,7 +68,7 @@ const About = () => {
                                 Years of Trusted Service
                             </p>
                         </div>
-                        <div className="bg-gradient-to-r from-[#932F67] to-[#D92C54] p-6 rounded-xl shadow">
+                        <div className="bg-gradient-to-r from-[#07553B] to-[#CED46A] p-6 rounded-xl shadow">
                             <p className="text-2xl font-bold text-white">
                                 5,200+
                             </p>
@@ -76,7 +76,7 @@ const About = () => {
                                 Pets Successfully Adopted
                             </p>
                         </div>
-                        <div className="bg-gradient-to-r from-[#932F67] to-[#D92C54] p-6 rounded-xl shadow">
+                        <div className="bg-gradient-to-r from-[#07553B] to-[#CED46A] p-6 rounded-xl shadow">
                             <p className="text-2xl font-bold text-white">
                                 2,800+
                             </p>
@@ -84,7 +84,7 @@ const About = () => {
                                 Happy Pet Parents
                             </p>
                         </div>
-                        <div className="bg-gradient-to-r from-[#932F67] to-[#D92C54] p-6 rounded-xl shadow">
+                        <div className="bg-gradient-to-r from-[#07553B] to-[#CED46A] p-6 rounded-xl shadow">
                             <p className="text-2xl font-bold text-white">
                                 300+
                             </p>

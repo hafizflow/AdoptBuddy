@@ -1,7 +1,6 @@
 import { router } from "@inertiajs/react";
 
 export default function ManageCard({ pet }) {
-    console.log("ManageCard Pet:", pet);
     const handleDelete = (post) => {
         router.delete(`/posts/${post}`, {
             onSuccess: () => {
@@ -13,23 +12,37 @@ export default function ManageCard({ pet }) {
         });
     };
 
+    const handleUpdate = (post) => {
+        router.put(`/posts/${post}`, {
+            onSuccess: () => {
+                console.log("Pet updated successfully");
+            },
+            onError: (error) => {
+                console.error("Error updating pet:", error);
+            },
+        });
+    };
+
     return (
-        <section className="bg-white my-2.5 shadow rounded-xl p-6">
-            <div className="space-y-4">
-                <div className="p-4 border border-indigo-100 rounded-xl flex justify-between items-center">
+        <section className=" my-2.5  rounded-xl p-2 md:p-6">
+            <div className="">
+                <div className="p-4 space-y-2 border border-[#07553B]/50  pc rounded-xl flex flex-col  justify-between">
                     <div>
                         <h3 className="font-bold">{pet.name}</h3>
                         <p className="text-sm">Breed: {pet.breed}</p>
                         <p className="text-sm">Status: {pet.status}</p>
                     </div>
                     <div className="flex gap-2">
-                        <button className="btn btn-sm bg-yellow-700 text-white">
+                        <button
+                            onClick={() => handleUpdate(pet.id)}
+                            className="px-2 py-1 rounded-md border border-gray-400 bg-yellow-700 text-white"
+                        >
                             Update
                         </button>
 
                         <button
                             onClick={() => handleDelete(pet.id)}
-                            className="btn btn-sm bg-red-700 text-white"
+                            className="px-2 py-1 rounded-md border border-gray-400 bg-red-700 text-white"
                         >
                             Delete
                         </button>
