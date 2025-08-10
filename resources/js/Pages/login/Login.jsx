@@ -40,6 +40,16 @@ const Login = () => {
                                     post("/login");
                                 }}
                             >
+                                {
+                                    errors.email && (
+                                        <div className="text-red-500 font-extrabold text-sm mb-2">{errors.email}</div>
+                                    )
+                                }
+                                {
+                                    errors.password && (
+                                        <div className="text-red-500 font-extrabold text-sm mb-2">{errors.password}</div>
+                                    )
+                                }
                                 <label className="label font-bold">Email</label>
                                 <input
                                     type="email"

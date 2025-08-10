@@ -13,8 +13,11 @@ import LocationPickerLeaflet from "../../components/LocationPicker/LocationPicke
 import { router } from "@inertiajs/react";
 
 const AdminProfile = ({ pets, applications }) => {
-    console.log("App", applications);
+    console.log("Applications:", applications);
     console.log("Pet", pets);
+    pets.map((pet) => {
+        console.log("Image Link : " + pet.images[0].image);
+    })
     // preview application
     const [previewApplication, setPreviewApplication] = useState(null);
     // preview uploaded image
@@ -161,7 +164,7 @@ const AdminProfile = ({ pets, applications }) => {
                         <ul className="space-y-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
                             {applications.map((app) => (
                                 <li
-                                    key={"Application" + applications.id}
+                                    key={"Application" + app.id}
                                     className="w-full border border-[#CED46A]  rounded-lg p-2 flex flex-col items-center gap-5"
                                 >
                                     <div className="md:text-xl">
@@ -195,7 +198,7 @@ const AdminProfile = ({ pets, applications }) => {
                                             className="text-xs px-3 py-1 rounded bg-red-500 hover:bg-red-600 text-white cursor-pointer"
                                             onClick={() =>
                                                 handleApplicationAction(
-                                                    applications.id,
+                                                    app.id,
                                                     "rejected"
                                                 )
                                             }
@@ -241,51 +244,50 @@ const AdminProfile = ({ pets, applications }) => {
                                                     Application Preview
                                                 </h3>
 
-                                                <div className="flex flex-col md:flex-row gap-6 items-start">
-                                                    {/* Pet Image */}
+                                                <div className="flex flex-col md:flex-row gap-6 md:items-start">
+
                                                     <img
                                                         className="w-40 h-40 md:w-48 md:h-48 rounded-2xl object-cover"
-                                                        src="https://i.guim.co.uk/img/media/327aa3f0c3b8e40ab03b4ae80319064e401c6fbc/377_133_3542_2834/master/3542.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=34d32522f47e4a67286f9894fc81c863"
-                                                        alt="pet"
+                                                        src={
+                                                            `http://localhost:8000/storage/${pets.find((pet) => app.pet_id === pet.id)?.images?.[0]?.image || "default.jpg"
+                                                            }`
+                                                        }
+
+
+                                                        alt={pets.find((pet) => app.pet_id === pet.id)?.name || "Unknown"}
                                                     />
+
 
                                                     {/* Info Section */}
                                                     <div className="flex flex-col gap-6 w-full">
                                                         {/* Applicant Info */}
-                                                        <div className="flex flex-col md:flex-row justify-between gap-4">
+                                                        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
                                                             <div className="flex flex-col gap-2">
-                                                                <h1 className="font-bold text-xl flex items-center gap-2">
+                                                                <h1 className="font-bold text-lg flex items-center gap-2">
                                                                     <FaRegUser className="text-gray-600" />
                                                                     {
-                                                                        previewApplication.name
+                                                                        app.name
                                                                     }
                                                                 </h1>
                                                                 <p className="flex items-center gap-2 text-gray-700">
                                                                     <MdOutlineEmail className="text-gray-600" />
-                                                                    anjumhossain@gmail.com
+                                                                    {app.email}
                                                                 </p>
                                                                 <p className="flex items-center gap-2 text-gray-700">
                                                                     <IoLocationOutline className="text-gray-600" />
-                                                                    Savar, Dhaka
+                                                                    {app.address}
                                                                 </p>
                                                             </div>
 
                                                             <div className="flex flex-col gap-2">
                                                                 <p className="flex items-center gap-2 text-gray-700">
                                                                     <IoCallOutline className="text-gray-600" />
-                                                                    01700610483
+                                                                    {app.phone}
                                                                 </p>
                                                                 <div>
                                                                     <p className=" text-gray-800">
-                                                                        Message:
+                                                                        Message: {app.message}
                                                                     </p>
-                                                                    <span className="text-gray-700 font-semibold">
-                                                                        Lorem
-                                                                        ipsum
-                                                                        dolor
-                                                                        sit amet
-                                                                        consectetur
-                                                                    </span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -296,26 +298,27 @@ const AdminProfile = ({ pets, applications }) => {
                                                                 <IoMdInformationCircleOutline className="text-gray-600 mr-2" />
                                                                 Pet Info
                                                             </h2>
-                                                            <div className="grid grid-cols-2 gap-4 text-gray-700">
+                                                            <div className="grid grid-cols-2 gap-4 text-gray-700 items-center">
                                                                 <div>
                                                                     <p>
                                                                         Name:{" "}
                                                                         <strong>
                                                                             {
-                                                                                previewApplication.petName
+                                                                                app.applied_pet_name
                                                                             }
                                                                         </strong>
                                                                     </p>
                                                                     <p>
-                                                                        Breed:
+                                                                        Breed:{" "}
                                                                         <strong>
-                                                                            {" "}
+                                                                            {pets.find((pet) => app.pet_id === pet.id)?.breed || "Unknown"}
                                                                         </strong>
                                                                     </p>
+
                                                                     <p>
                                                                         Age:
                                                                         <strong>
-                                                                            {" "}
+                                                                            {pets.find((pet) => app.pet_id === pet.id)?.age || "Unknown"}
                                                                         </strong>
                                                                     </p>
                                                                 </div>
@@ -323,13 +326,13 @@ const AdminProfile = ({ pets, applications }) => {
                                                                     <p>
                                                                         Gender:
                                                                         <strong>
-                                                                            {" "}
+                                                                            {pets.find((pet) => app.pet_id === pet.id)?.gender || "Unknown"}
                                                                         </strong>
                                                                     </p>
                                                                     <p>
                                                                         Size:
                                                                         <strong>
-                                                                            {" "}
+                                                                            {pets.find((pet) => app.pet_id === pet.id)?.size || "Unknown"}
                                                                         </strong>
                                                                     </p>
                                                                 </div>
