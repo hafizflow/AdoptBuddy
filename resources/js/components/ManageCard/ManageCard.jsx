@@ -28,7 +28,7 @@ export default function ManageCard({ pet, isManageCard = false }) {
             <div className="">
                 <div className="p-4 space-y-2 border border-[#07553B]/50  pc rounded-xl flex flex-col  justify-between">
                     <div>
-                        <h3 className="font-bold">{pet.name}</h3>
+                        <h3 className="font-bold">ID : {pet.id} 🐾 Pet Type : {pet.name}</h3>
                         <p className="text-sm">Breed: {pet.breed}</p>
                         {
                             isManageCard ? <p className="text-sm">Visibility: {pet.isVisible}</p> : <p className="text-sm">Status: {pet.status}</p>

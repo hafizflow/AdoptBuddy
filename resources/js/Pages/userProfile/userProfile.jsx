@@ -26,11 +26,11 @@ const UserProfile = ({ adoptionApplications = [], postApplications = [] }) => {
 
     const statusColor = (status) => {
         switch (status) {
-            case "Accepted":
+            case "accepted":
                 return "#22c55e";
-            case "Rejected":
+            case "rejected":
                 return "#ef4444";
-            case "Pending":
+            case "pending":
                 return "#eab308";
             default:
                 return "#6b7280";
@@ -113,7 +113,7 @@ const UserProfile = ({ adoptionApplications = [], postApplications = [] }) => {
                         <img
                             src={user.avatar}
                             alt="User Avatar"
-                            className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-2 border-[#07553B] shadow"
+                            className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-gray-400 shadow"
                         />
                         <div className="space-y-2">
                             <h2 className="text-2xl font-bold ">
@@ -171,7 +171,17 @@ const UserProfile = ({ adoptionApplications = [], postApplications = [] }) => {
                                                     {app.status}
                                                 </span>
                                             </span>
-                                            <span>{app.created_at}</span>
+                                            <span>
+                                                {new Date(app.created_at).toLocaleString("en-US", {
+                                                    year: "numeric",
+                                                    month: "2-digit",
+                                                    day: "2-digit",
+                                                    hour: "2-digit",
+                                                    minute: "2-digit",
+                                                    hour12: true,
+                                                })}
+                                            </span>
+
                                         </div>
                                     </li>
                                 ))}
@@ -187,7 +197,7 @@ const UserProfile = ({ adoptionApplications = [], postApplications = [] }) => {
                         </h2>
                         {postApplications.length === 0 ? (
                             <p className="text-gray-500 text-center">
-                                No one has applied yet.
+                                You have not applied for any pet
                             </p>
                         ) : (
                             <ul className="space-y-4">

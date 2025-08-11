@@ -52,9 +52,9 @@ const ApplyAdoptForm = () => {
                 id="my_modal_5"
                 className="modal modal-bottom sm:modal-middle"
             >
-                <div className="modal-box bg-indigo-50 text-black max-w-2xl">
+                <div className="modal-box bg-indigo-50 pc max-w-2xl">
                     <h3 className="font-bold text-xl text-center mb-4">
-                        Apply To Adopt
+                        Apply To Adopt The Pet
                     </h3>
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <input
@@ -64,7 +64,7 @@ const ApplyAdoptForm = () => {
                             required
                             value={data.name}
                             onChange={handleChange}
-                            className="input input-bordered w-full focus:outline-none focus:ring-0 focus:border-indigo-900"
+                            className="input input-bordered w-full focus:outline-none focus:ring-0 focus:border-[#07553B]"
                         />
 
                         <input
@@ -74,7 +74,7 @@ const ApplyAdoptForm = () => {
                             required
                             value={data.email}
                             onChange={handleChange}
-                            className="input input-bordered w-full focus:outline-none focus:ring-0 focus:border-indigo-900"
+                            className="input input-bordered w-full focus:outline-none focus:ring-0 focus:border-[#07553B]"
                         />
 
                         <input
@@ -84,7 +84,7 @@ const ApplyAdoptForm = () => {
                             required
                             value={data.phone}
                             onChange={handleChange}
-                            className="input input-bordered w-full focus:outline-none focus:ring-0 focus:border-indigo-900"
+                            className="input input-bordered w-full focus:outline-none focus:ring-0 focus:border-[#07553B]"
                         />
 
                         <textarea
@@ -94,7 +94,7 @@ const ApplyAdoptForm = () => {
                             rows={2}
                             value={data.address}
                             onChange={handleChange}
-                            className="textarea textarea-bordered w-full h-20 resize-none focus:outline-none focus:ring-0 focus:border-indigo-900"
+                            className="textarea textarea-bordered w-full h-20 resize-none focus:outline-none focus:ring-0 focus:border-[#07553B]"
                         />
 
                         <div>
@@ -136,7 +136,7 @@ const ApplyAdoptForm = () => {
                             rows={3}
                             value={data.message}
                             onChange={handleChange}
-                            className="textarea textarea-bordered w-full h-20 resize-none focus:outline-none focus:ring-0 focus:border-indigo-900"
+                            className="textarea textarea-bordered w-full h-20 resize-none focus:outline-none focus:ring-0 focus:border-[#07553B]"
                             required
                         />
 

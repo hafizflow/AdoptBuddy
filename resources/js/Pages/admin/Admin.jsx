@@ -285,7 +285,7 @@ const AdminProfile = ({ pets, applications }) => {
                                                                     {app.phone}
                                                                 </p>
                                                                 <div>
-                                                                    <p className=" text-gray-800">
+                                                                    <p className=" text-gray-600">
                                                                         Message: {app.message}
                                                                     </p>
                                                                 </div>
@@ -301,6 +301,14 @@ const AdminProfile = ({ pets, applications }) => {
                                                             <div className="grid grid-cols-2 gap-4 text-gray-700 items-center">
                                                                 <div>
                                                                     <p>
+                                                                        ID:{" "}
+                                                                        <strong>
+                                                                            {
+                                                                                app.pet_id
+                                                                            }
+                                                                        </strong>
+                                                                    </p>
+                                                                    <p>
                                                                         Name:{" "}
                                                                         <strong>
                                                                             {
@@ -315,22 +323,23 @@ const AdminProfile = ({ pets, applications }) => {
                                                                         </strong>
                                                                     </p>
 
+
+                                                                </div>
+                                                                <div>
                                                                     <p>
-                                                                        Age:
+                                                                        Age: {" "}
                                                                         <strong>
                                                                             {pets.find((pet) => app.pet_id === pet.id)?.age || "Unknown"}
                                                                         </strong>
                                                                     </p>
-                                                                </div>
-                                                                <div>
                                                                     <p>
-                                                                        Gender:
+                                                                        Gender:{" "}
                                                                         <strong>
                                                                             {pets.find((pet) => app.pet_id === pet.id)?.gender || "Unknown"}
                                                                         </strong>
                                                                     </p>
                                                                     <p>
-                                                                        Size:
+                                                                        Size:{" "}
                                                                         <strong>
                                                                             {pets.find((pet) => app.pet_id === pet.id)?.size || "Unknown"}
                                                                         </strong>
