@@ -4,7 +4,7 @@ import { MdLogin, MdLogout } from "react-icons/md";
 import { usePage } from "@inertiajs/react";
 import { CgProfile } from "react-icons/cg";
 
-const Navbar = ({ user }) => {
+const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const { auth } = usePage().props;
     useEffect(() => {
@@ -34,8 +34,9 @@ const Navbar = ({ user }) => {
             <li key={name}>
                 <a
                     href={path}
-                    className={`hover:underline hover:bg-transparent underline-offset-8 decoration-white transition ${isActive ? "underline" : ""
-                        } ${isShow ? "" : "hidden"}`}
+                    className={`hover:underline hover:bg-transparent underline-offset-8 decoration-white transition ${
+                        isActive ? "underline" : ""
+                    } ${isShow ? "" : "hidden"}`}
                 >
                     {name}
                 </a>
@@ -67,8 +68,9 @@ const Navbar = ({ user }) => {
 
     return (
         <div
-            className={`navbar bg-[#1b1a1b] fixed top-0 w-full z-50 md:px-20 mx-auto transition-all duration-300 ${isScrolled ? "bg-white/30 backdrop-blur-md" : ""
-                }`}
+            className={`navbar bg-[#1b1a1b] fixed top-0 w-full z-50 md:px-20 mx-auto transition-all duration-300 ${
+                isScrolled ? "bg-white/30 backdrop-blur-md" : ""
+            }`}
         >
             <div className="navbar-start">
                 <div className="dropdown">
@@ -97,7 +99,7 @@ const Navbar = ({ user }) => {
                         className="menu menu-sm dropdown-content rounded-box z-10 mt-3 w-36 p-2 bg-black/50 backdrop-blur-md text-white"
                     >
                         {links}
-                        { }
+                        {}
                     </ul>
                 </div>
                 <a
@@ -105,8 +107,9 @@ const Navbar = ({ user }) => {
                         window.scrollTo(0, 0);
                     }}
                     href="/"
-                    className={`${isScrolled ? "pc" : "text-white"
-                        } text-2xl font-semibold`}
+                    className={`${
+                        isScrolled ? "pc" : "text-white"
+                    } text-2xl font-semibold`}
                 >
                     AdoptBuddy
                 </a>
@@ -114,16 +117,18 @@ const Navbar = ({ user }) => {
 
             <div className="navbar-end hidden lg:flex">
                 <ul
-                    className={`${isScrolled ? "pc" : "text-white"
-                        } menu menu-horizontal px-1 font-semibold`}
+                    className={`${
+                        isScrolled ? "pc" : "text-white"
+                    } menu menu-horizontal px-1 font-semibold`}
                 >
                     {links}
                 </ul>
             </div>
 
             <div
-                className={`${isScrolled ? "pc" : "text-white"
-                    } navbar-end flex gap-6 items-center`}
+                className={`${
+                    isScrolled ? "pc" : "text-white"
+                } navbar-end flex gap-6 items-center`}
             >
                 <div className="relative group inline-block">
                     <a href="/likes">

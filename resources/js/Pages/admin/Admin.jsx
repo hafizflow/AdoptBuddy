@@ -13,11 +13,6 @@ import LocationPickerLeaflet from "../../components/LocationPicker/LocationPicke
 import { router } from "@inertiajs/react";
 
 const AdminProfile = ({ pets, applications }) => {
-    console.log("Applications:", applications);
-    console.log("Pet", pets);
-    pets.map((pet) => {
-        console.log("Image Link : " + pet.images[0].image);
-    })
     // preview application
     const [previewApplication, setPreviewApplication] = useState(null);
     // preview uploaded image
@@ -101,10 +96,11 @@ const AdminProfile = ({ pets, applications }) => {
                     {/* Applications */}
                     <button
                         onClick={() => setActiveSection("applications")}
-                        className={`flex cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "applications"
-                            ? "bg-[#07553B]/10 pc"
-                            : "hover:bg-gray-100"
-                            }`}
+                        className={`flex cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${
+                            activeSection === "applications"
+                                ? "bg-[#07553B]/10 pc"
+                                : "hover:bg-gray-100"
+                        }`}
                     >
                         <MdSettingsApplications size={24} />
                         <span className="hidden md:inline">Applications</span>
@@ -113,10 +109,11 @@ const AdminProfile = ({ pets, applications }) => {
                     {/* Upload */}
                     <button
                         onClick={() => setActiveSection("upload")}
-                        className={`flex  cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "upload"
-                            ? "bg-[#07553B]/10 pc"
-                            : "hover:bg-gray-100"
-                            }`}
+                        className={`flex  cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${
+                            activeSection === "upload"
+                                ? "bg-[#07553B]/10 pc"
+                                : "hover:bg-gray-100"
+                        }`}
                     >
                         <IoCloudUploadOutline size={24} />
                         <span className="hidden md:inline">Upload Pet</span>
@@ -125,10 +122,11 @@ const AdminProfile = ({ pets, applications }) => {
                     {/* Manage */}
                     <button
                         onClick={() => setActiveSection("manage")}
-                        className={`flex cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "manage"
-                            ? "bg-[#07553B]/10 pc"
-                            : "hover:bg-gray-100"
-                            }`}
+                        className={`flex cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${
+                            activeSection === "manage"
+                                ? "bg-[#07553B]/10 pc"
+                                : "hover:bg-gray-100"
+                        }`}
                     >
                         <MdManageHistory size={24} />
                         <span className="hidden md:inline">Manage Pets</span>
@@ -136,10 +134,11 @@ const AdminProfile = ({ pets, applications }) => {
                     {/* New */}
                     <button
                         onClick={() => setActiveSection("managerequest")}
-                        className={`flex cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "managerequest"
-                            ? "bg-[#07553B]/10 pc"
-                            : "hover:bg-gray-100"
-                            }`}
+                        className={`flex cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${
+                            activeSection === "managerequest"
+                                ? "bg-[#07553B]/10 pc"
+                                : "hover:bg-gray-100"
+                        }`}
                     >
                         <MdManageHistory size={24} />
                         <span className="hidden md:inline">Manage Request</span>
@@ -245,18 +244,25 @@ const AdminProfile = ({ pets, applications }) => {
                                                 </h3>
 
                                                 <div className="flex flex-col md:flex-row gap-6 md:items-start">
-
                                                     <img
                                                         className="w-40 h-40 md:w-48 md:h-48 rounded-2xl object-cover"
-                                                        src={
-                                                            `http://localhost:8000/storage/${pets.find((pet) => app.pet_id === pet.id)?.images?.[0]?.image || "default.jpg"
-                                                            }`
+                                                        src={`http://localhost:8000/storage/${
+                                                            pets.find(
+                                                                (pet) =>
+                                                                    app.pet_id ===
+                                                                    pet.id
+                                                            )?.images?.[0]
+                                                                ?.image ||
+                                                            "default.jpg"
+                                                        }`}
+                                                        alt={
+                                                            pets.find(
+                                                                (pet) =>
+                                                                    app.pet_id ===
+                                                                    pet.id
+                                                            )?.name || "Unknown"
                                                         }
-
-
-                                                        alt={pets.find((pet) => app.pet_id === pet.id)?.name || "Unknown"}
                                                     />
-
 
                                                     {/* Info Section */}
                                                     <div className="flex flex-col gap-6 w-full">
@@ -265,9 +271,7 @@ const AdminProfile = ({ pets, applications }) => {
                                                             <div className="flex flex-col gap-2">
                                                                 <h1 className="font-bold text-lg flex items-center gap-2">
                                                                     <FaRegUser className="text-gray-600" />
-                                                                    {
-                                                                        app.name
-                                                                    }
+                                                                    {app.name}
                                                                 </h1>
                                                                 <p className="flex items-center gap-2 text-gray-700">
                                                                     <MdOutlineEmail className="text-gray-600" />
@@ -275,7 +279,9 @@ const AdminProfile = ({ pets, applications }) => {
                                                                 </p>
                                                                 <p className="flex items-center gap-2 text-gray-700">
                                                                     <IoLocationOutline className="text-gray-600" />
-                                                                    {app.address}
+                                                                    {
+                                                                        app.address
+                                                                    }
                                                                 </p>
                                                             </div>
 
@@ -286,7 +292,10 @@ const AdminProfile = ({ pets, applications }) => {
                                                                 </p>
                                                                 <div>
                                                                     <p className=" text-gray-600">
-                                                                        Message: {app.message}
+                                                                        Message:{" "}
+                                                                        {
+                                                                            app.message
+                                                                        }
                                                                     </p>
                                                                 </div>
                                                             </div>
@@ -319,29 +328,59 @@ const AdminProfile = ({ pets, applications }) => {
                                                                     <p>
                                                                         Breed:{" "}
                                                                         <strong>
-                                                                            {pets.find((pet) => app.pet_id === pet.id)?.breed || "Unknown"}
+                                                                            {pets.find(
+                                                                                (
+                                                                                    pet
+                                                                                ) =>
+                                                                                    app.pet_id ===
+                                                                                    pet.id
+                                                                            )
+                                                                                ?.breed ||
+                                                                                "Unknown"}
                                                                         </strong>
                                                                     </p>
-
-
                                                                 </div>
                                                                 <div>
                                                                     <p>
-                                                                        Age: {" "}
+                                                                        Age:{" "}
                                                                         <strong>
-                                                                            {pets.find((pet) => app.pet_id === pet.id)?.age || "Unknown"}
+                                                                            {pets.find(
+                                                                                (
+                                                                                    pet
+                                                                                ) =>
+                                                                                    app.pet_id ===
+                                                                                    pet.id
+                                                                            )
+                                                                                ?.age ||
+                                                                                "Unknown"}
                                                                         </strong>
                                                                     </p>
                                                                     <p>
                                                                         Gender:{" "}
                                                                         <strong>
-                                                                            {pets.find((pet) => app.pet_id === pet.id)?.gender || "Unknown"}
+                                                                            {pets.find(
+                                                                                (
+                                                                                    pet
+                                                                                ) =>
+                                                                                    app.pet_id ===
+                                                                                    pet.id
+                                                                            )
+                                                                                ?.gender ||
+                                                                                "Unknown"}
                                                                         </strong>
                                                                     </p>
                                                                     <p>
                                                                         Size:{" "}
                                                                         <strong>
-                                                                            {pets.find((pet) => app.pet_id === pet.id)?.size || "Unknown"}
+                                                                            {pets.find(
+                                                                                (
+                                                                                    pet
+                                                                                ) =>
+                                                                                    app.pet_id ===
+                                                                                    pet.id
+                                                                            )
+                                                                                ?.size ||
+                                                                                "Unknown"}
                                                                         </strong>
                                                                     </p>
                                                                 </div>
@@ -564,7 +603,11 @@ const AdminProfile = ({ pets, applications }) => {
                         <div className="grid grid-cols-2 md:grid-cols-4">
                             {Array.isArray(pets) &&
                                 pets.map((pet) => (
-                                    <ManageCard isManageCard key={pet.id} pet={pet} />
+                                    <ManageCard
+                                        isManageCard
+                                        key={pet.id}
+                                        pet={pet}
+                                    />
                                 ))}
                         </div>
                     </section>

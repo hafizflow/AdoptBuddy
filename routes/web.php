@@ -22,6 +22,13 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get("/contact", function () {
     return Inertia::render('contact/Contact');
 });
+
+
+Route::get("/error", function () {
+    return Inertia::render('error/error');
+});
+
+
 Route::get("/about", function () {
     return Inertia::render('about/About');
 });

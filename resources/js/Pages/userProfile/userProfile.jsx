@@ -4,14 +4,17 @@ import { MdOutlineEmail, MdFavoriteBorder } from "react-icons/md";
 import { IoCallOutline, IoLocationOutline } from "react-icons/io5";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { FiLogOut } from "react-icons/fi";
-import { usePage, router } from "@inertiajs/react";
+import { usePage } from "@inertiajs/react";
 
-const UserProfile = ({ adoptionApplications = [], postApplications = [] }) => {
+const UserProfile = ({
+    adoptionApplications = [],
+    rescueApplications = [],
+}) => {
     const { auth } = usePage().props;
     const [activeSection, setActiveSection] = useState("profile");
     const [showLogoutModal, setShowLogoutModal] = useState(false);
 
-    console.log(adoptionApplications);
+    console.log(rescueApplications);
 
     const user = {
         name: "Anjum Hossain",
@@ -59,10 +62,11 @@ const UserProfile = ({ adoptionApplications = [], postApplications = [] }) => {
                     {/* Profile */}
                     <button
                         onClick={() => setActiveSection("profile")}
-                        className={`flex items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "profile"
-                            ? "bg-[#07553B]/10 pc"
-                            : "hover:bg-gray-100"
-                            }`}
+                        className={`flex items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${
+                            activeSection === "profile"
+                                ? "bg-[#07553B]/10 pc"
+                                : "hover:bg-gray-100"
+                        }`}
                     >
                         <FaRegUser size={20} />
                         <span className="hidden md:inline">My Profile</span>
@@ -71,10 +75,11 @@ const UserProfile = ({ adoptionApplications = [], postApplications = [] }) => {
                     {/* Adoptions */}
                     <button
                         onClick={() => setActiveSection("adoptions")}
-                        className={`flex items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "adoptions"
-                            ? "bg-[#07553B]/10 pc"
-                            : "hover:bg-gray-100"
-                            }`}
+                        className={`flex items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${
+                            activeSection === "adoptions"
+                                ? "bg-[#07553B]/10 pc"
+                                : "hover:bg-gray-100"
+                        }`}
                     >
                         <IoMdNotificationsOutline size={20} />
                         <span className="hidden md:inline">
@@ -85,10 +90,11 @@ const UserProfile = ({ adoptionApplications = [], postApplications = [] }) => {
                     {/* Posts */}
                     <button
                         onClick={() => setActiveSection("posts")}
-                        className={`flex items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "posts"
-                            ? "bg-[#07553B]/10 pc"
-                            : "hover:bg-gray-100"
-                            }`}
+                        className={`flex items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${
+                            activeSection === "posts"
+                                ? "bg-[#07553B]/10 pc"
+                                : "hover:bg-gray-100"
+                        }`}
                     >
                         <MdFavoriteBorder size={20} />
                         <span className="hidden md:inline">Post Requests</span>
@@ -172,7 +178,9 @@ const UserProfile = ({ adoptionApplications = [], postApplications = [] }) => {
                                                 </span>
                                             </span>
                                             <span>
-                                                {new Date(app.created_at).toLocaleString("en-US", {
+                                                {new Date(
+                                                    app.created_at
+                                                ).toLocaleString("en-US", {
                                                     year: "numeric",
                                                     month: "2-digit",
                                                     day: "2-digit",
@@ -181,7 +189,6 @@ const UserProfile = ({ adoptionApplications = [], postApplications = [] }) => {
                                                     hour12: true,
                                                 })}
                                             </span>
-
                                         </div>
                                     </li>
                                 ))}

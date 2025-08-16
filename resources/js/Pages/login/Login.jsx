@@ -23,9 +23,7 @@ const Login = () => {
                     transition={{ duration: 1 }}
                 >
                     <div className="text-center lg:text-left">
-                        <h1 className="text-5xl pc font-bold">
-                            Login now!
-                        </h1>
+                        <h1 className="text-5xl pc font-bold">Login now!</h1>
                     </div>
                     <div className="card bg-[#07553B]/20  w-full max-w-full shrink-0 shadow">
                         <div className="card-body">
@@ -33,23 +31,28 @@ const Login = () => {
                                 className="fieldset"
                                 onSubmit={(e) => {
                                     e.preventDefault();
-                                    if (!data.email.trim() || !data.password.trim()) {
-                                        alert("Please enter both email and password");
+                                    if (
+                                        !data.email.trim() ||
+                                        !data.password.trim()
+                                    ) {
+                                        alert(
+                                            "Please enter both email and password"
+                                        );
                                         return;
                                     }
                                     post("/login");
                                 }}
                             >
-                                {
-                                    errors.email && (
-                                        <div className="text-red-500 font-extrabold text-sm mb-2">{errors.email}</div>
-                                    )
-                                }
-                                {
-                                    errors.password && (
-                                        <div className="text-red-500 font-extrabold text-sm mb-2">{errors.password}</div>
-                                    )
-                                }
+                                {errors.email && (
+                                    <div className="text-red-500 font-extrabold text-sm mb-2">
+                                        {errors.email}
+                                    </div>
+                                )}
+                                {errors.password && (
+                                    <div className="text-red-500 font-extrabold text-sm mb-2">
+                                        {errors.password}
+                                    </div>
+                                )}
                                 <label className="label font-bold">Email</label>
                                 <input
                                     type="email"
@@ -89,11 +92,7 @@ const Login = () => {
                                         )}
                                     </button>
                                 </div>
-                                <div>
-                                    <a className="link link-hover">
-                                        Forgot password?
-                                    </a>
-                                </div>
+
                                 <Button type="submit" className="mt-3">
                                     Login
                                 </Button>

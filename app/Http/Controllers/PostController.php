@@ -41,6 +41,7 @@ class PostController extends Controller
             ]);
 
         $pet = Post::create([
+            'user_id' => auth()->user()->id,
             'name' => $data['name'],
             'age' => $data['age'],
             'description' => $data['description'],
@@ -73,12 +74,13 @@ class PostController extends Controller
         return view('admin.edit-post', compact('post'));
     }
 
-    public function update($id)
+    public function update($id, Request $request)
+    
     {
         $selectedPost = Post::findOrFail($id);
-
         $selectedPost->update([
-            'status' => $selectedPost->status === 'Available' ? 'On Hold' : 'Available',
+            'status' => $request->data['status'],
+            'isVisible' => $request->data['isVisible'],
         ]);
 
         return redirect()->route('admin')->with('success', 'Pet status updated!');
