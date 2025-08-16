@@ -67,10 +67,11 @@ const UserProfile = ({
                     {/* Profile */}
                     <button
                         onClick={() => setActiveSection("profile")}
-                        className={`flex items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "profile"
-                            ? "bg-[#07553B]/10 pc"
-                            : "hover:bg-gray-100"
-                            }`}
+                        className={`flex items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${
+                            activeSection === "profile"
+                                ? "bg-[#07553B]/10 pc"
+                                : "hover:bg-gray-100"
+                        }`}
                     >
                         <FaRegUser size={20} />
                         <span className="hidden md:inline">My Profile</span>
@@ -79,10 +80,11 @@ const UserProfile = ({
                     {/* Adoptions */}
                     <button
                         onClick={() => setActiveSection("adoptions")}
-                        className={`flex items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "adoptions"
-                            ? "bg-[#07553B]/10 pc"
-                            : "hover:bg-gray-100"
-                            }`}
+                        className={`flex items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${
+                            activeSection === "adoptions"
+                                ? "bg-[#07553B]/10 pc"
+                                : "hover:bg-gray-100"
+                        }`}
                     >
                         <IoMdNotificationsOutline size={20} />
                         <span className="hidden md:inline">
@@ -93,10 +95,11 @@ const UserProfile = ({
                     {/* Posts */}
                     <button
                         onClick={() => setActiveSection("posts")}
-                        className={`flex items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "posts"
-                            ? "bg-[#07553B]/10 pc"
-                            : "hover:bg-gray-100"
-                            }`}
+                        className={`flex items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${
+                            activeSection === "posts"
+                                ? "bg-[#07553B]/10 pc"
+                                : "hover:bg-gray-100"
+                        }`}
                     >
                         <MdFavoriteBorder size={20} />
                         <span className="hidden md:inline">Post Requests</span>
@@ -213,7 +216,7 @@ const UserProfile = ({
                                 {rescueApplications.map((app, idx) => (
                                     <li
                                         key={idx}
-                                        className="border-l-4 pl-4 py-2 bg-gray-50 rounded-md shadow-sm"
+                                        className="border-l-4 pl-4 py-2 bg-gray-50 mx-5 rounded-md shadow-sm"
                                         style={{
                                             borderColor: statusColor(
                                                 app.status
@@ -224,9 +227,7 @@ const UserProfile = ({
                                             {app.applicantName}
                                         </div>
                                         <div className="text-sm flex justify-between">
-                                            <span>
-                                                {app.name}
-                                            </span>
+                                            <span>{app.name}</span>
                                             <span>
                                                 Status:{" "}
                                                 <span
@@ -237,11 +238,14 @@ const UserProfile = ({
                                                         ),
                                                     }}
                                                 >
-                                                    {app.isVisible == "Invisible" ? "In review" : "Accepted"}
+                                                    {app.isVisible ==
+                                                    "Invisible"
+                                                        ? "In review"
+                                                        : "Accepted"}
                                                 </span>
                                             </span>
                                         </div>
-                                        <div className="text-xs text-gray-500 mt-1">
+                                        <div className="text-xs text-gray-500 mt-1 mr-2">
                                             {app.date}
                                         </div>
                                     </li>
