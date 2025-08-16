@@ -117,11 +117,11 @@ const UserProfile = ({
             <main className="flex-1 p-5 lg:px-10 space-y-8">
                 {/* All main sections (unchanged) */}
                 {activeSection === "profile" && (
-                    <section className="bg-white shadow rounded-xl p-6 flex flex-col md:flex-row gap-6 glow-border">
+                    <section className="bg-white shadow rounded-xl p-6 flex flex-col md:flex-row gap-6">
                         <img
                             src={user.avatar}
                             alt="User Avatar"
-                            className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-gray-400 shadow"
+                            className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover shadow"
                         />
                         <div className="space-y-2">
                             <h2 className="text-2xl font-bold ">
@@ -155,7 +155,7 @@ const UserProfile = ({
                                 {adoptionApplications.map((app, idx) => (
                                     <li
                                         key={idx}
-                                        className="border-l-4 pl-4 py-2 bg-gray-50 rounded-md shadow-sm"
+                                        className="border-l-4 px-4 py-2 bg-gray-50 rounded-md shadow-sm"
                                         style={{
                                             borderColor: statusColor(
                                                 app.status
@@ -213,7 +213,7 @@ const UserProfile = ({
                                 {rescueApplications.map((app, idx) => (
                                     <li
                                         key={idx}
-                                        className="border-l-4 pl-4 py-2 bg-gray-50 rounded-md shadow-sm"
+                                        className="border-l-4 px-4 py-2 bg-gray-50 rounded-md shadow-sm"
                                         style={{
                                             borderColor: statusColor(
                                                 app.status
@@ -241,9 +241,9 @@ const UserProfile = ({
                                                 </span>
                                             </span>
                                         </div>
-                                        <div className="text-xs text-gray-500 mt-1">
+                                        {/* <div className="text-xs text-gray-500 mt-1">
                                             {app.date}
-                                        </div>
+                                        </div> */}
                                     </li>
                                 ))}
                             </ul>

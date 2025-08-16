@@ -60,7 +60,7 @@ const About = () => {
                     />
 
                     <div className="grid grid-cols-2 gap-4">
-                        <div className="bg-gradient-to-r from-[#07553B] to-[#CED46A] p-6 rounded-xl shadow">
+                        <div className="bg-gradient-to-r from-[#07553B] to-[#0D9C6C] p-6 rounded-xl shadow">
                             <p className="text-2xl font-bold text-white">
                                 4+
                             </p>
@@ -68,7 +68,7 @@ const About = () => {
                                 Years of Trusted Service
                             </p>
                         </div>
-                        <div className="bg-gradient-to-r from-[#07553B] to-[#CED46A] p-6 rounded-xl shadow">
+                        <div className="bg-gradient-to-r from-[#07553B] to-[#0D9C6C] p-6 rounded-xl shadow">
                             <p className="text-2xl font-bold text-white">
                                 5,200+
                             </p>
@@ -76,7 +76,7 @@ const About = () => {
                                 Pets Successfully Adopted
                             </p>
                         </div>
-                        <div className="bg-gradient-to-r from-[#07553B] to-[#CED46A] p-6 rounded-xl shadow">
+                        <div className="bg-gradient-to-r from-[#07553B] to-[#0D9C6C] p-6 rounded-xl shadow">
                             <p className="text-2xl font-bold text-white">
                                 2,800+
                             </p>
@@ -84,7 +84,7 @@ const About = () => {
                                 Happy Pet Parents
                             </p>
                         </div>
-                        <div className="bg-gradient-to-r from-[#07553B] to-[#CED46A] p-6 rounded-xl shadow">
+                        <div className="bg-gradient-to-r from-[#07553B] to-[#0D9C6C] p-6 rounded-xl shadow">
                             <p className="text-2xl font-bold text-white">
                                 300+
                             </p>

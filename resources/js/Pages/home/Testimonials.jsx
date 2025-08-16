@@ -39,7 +39,7 @@ const TestimonialSection = () => {
                 {testimonials.map((item) => (
                     <div
                         key={item.id}
-                        className="bg-[#07553B] text-[#CED46A]  rounded-2xl shadow-sm border border-[#07553B] p-6 text-left hover:shadow-md transition-shadow duration-300"
+                        className="bg-gradient-to-r from-[#07553B] to-[#0D9C6C]  rounded-2xl shadow-sm border border-[#07553B] p-6 text-left hover:shadow-md transition-shadow duration-300"
                     >
                         <div className="sc text-3xl mb-4 leading-none">
                             <FaQuoteRight />

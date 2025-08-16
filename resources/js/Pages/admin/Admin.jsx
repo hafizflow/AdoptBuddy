@@ -96,11 +96,10 @@ const AdminProfile = ({ pets, applications }) => {
                     {/* Applications */}
                     <button
                         onClick={() => setActiveSection("applications")}
-                        className={`flex cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${
-                            activeSection === "applications"
-                                ? "bg-[#07553B]/10 pc"
-                                : "hover:bg-gray-100"
-                        }`}
+                        className={`flex cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "applications"
+                            ? "bg-[#07553B]/10 pc"
+                            : "hover:bg-gray-100"
+                            }`}
                     >
                         <MdSettingsApplications size={24} />
                         <span className="hidden md:inline">Applications</span>
@@ -109,11 +108,10 @@ const AdminProfile = ({ pets, applications }) => {
                     {/* Upload */}
                     <button
                         onClick={() => setActiveSection("upload")}
-                        className={`flex  cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${
-                            activeSection === "upload"
-                                ? "bg-[#07553B]/10 pc"
-                                : "hover:bg-gray-100"
-                        }`}
+                        className={`flex  cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "upload"
+                            ? "bg-[#07553B]/10 pc"
+                            : "hover:bg-gray-100"
+                            }`}
                     >
                         <IoCloudUploadOutline size={24} />
                         <span className="hidden md:inline">Upload Pet</span>
@@ -122,11 +120,10 @@ const AdminProfile = ({ pets, applications }) => {
                     {/* Manage */}
                     <button
                         onClick={() => setActiveSection("manage")}
-                        className={`flex cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${
-                            activeSection === "manage"
-                                ? "bg-[#07553B]/10 pc"
-                                : "hover:bg-gray-100"
-                        }`}
+                        className={`flex cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "manage"
+                            ? "bg-[#07553B]/10 pc"
+                            : "hover:bg-gray-100"
+                            }`}
                     >
                         <MdManageHistory size={24} />
                         <span className="hidden md:inline">Manage Pets</span>
@@ -134,11 +131,10 @@ const AdminProfile = ({ pets, applications }) => {
                     {/* New */}
                     <button
                         onClick={() => setActiveSection("managerequest")}
-                        className={`flex cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${
-                            activeSection === "managerequest"
-                                ? "bg-[#07553B]/10 pc"
-                                : "hover:bg-gray-100"
-                        }`}
+                        className={`flex cursor-pointer items-center justify-center md:justify-start gap-2 w-full px-4 py-2 rounded-lg font-medium transition ${activeSection === "managerequest"
+                            ? "bg-[#07553B]/10 pc"
+                            : "hover:bg-gray-100"
+                            }`}
                     >
                         <MdManageHistory size={24} />
                         <span className="hidden md:inline">Manage Request</span>
@@ -164,7 +160,7 @@ const AdminProfile = ({ pets, applications }) => {
                             {applications.map((app) => (
                                 <li
                                     key={"Application" + app.id}
-                                    className="w-full border border-[#CED46A]  rounded-lg p-2 flex flex-col items-center gap-5"
+                                    className="w-full h-full border border-[#07553B]/50  rounded-lg p-2 flex flex-col items-center gap-5"
                                 >
                                     <div className="md:text-xl">
                                         <p className="font-medium">
@@ -172,12 +168,12 @@ const AdminProfile = ({ pets, applications }) => {
                                                 {app.name}
                                             </span>{" "}
                                             applied to adopt{" "}
-                                            <span className="pc">
+                                            <span className="pc font-semibold">
                                                 {app.applied_pet_name}
                                             </span>
                                         </p>
                                         <p className="text-sm text-gray-500">
-                                            Status: {app.status}
+                                            Status: <span className="font-semibold">{app.status}</span>
                                         </p>
                                     </div>
 
@@ -223,7 +219,7 @@ const AdminProfile = ({ pets, applications }) => {
                                             }
                                         >
                                             <div
-                                                className="bg-sc rounded-xl shadow-lg p-6 w-11/12 max-w-2xl relative"
+                                                className="bg-white rounded-xl shadow-lg p-6 w-11/12 max-w-2xl relative"
                                                 onClick={(e) =>
                                                     e.stopPropagation()
                                                 }
@@ -246,15 +242,14 @@ const AdminProfile = ({ pets, applications }) => {
                                                 <div className="flex flex-col md:flex-row gap-6 md:items-start">
                                                     <img
                                                         className="w-40 h-40 md:w-48 md:h-48 rounded-2xl object-cover"
-                                                        src={`http://localhost:8000/storage/${
-                                                            pets.find(
-                                                                (pet) =>
-                                                                    app.pet_id ===
-                                                                    pet.id
-                                                            )?.images?.[0]
-                                                                ?.image ||
+                                                        src={`http://localhost:8000/storage/${pets.find(
+                                                            (pet) =>
+                                                                app.pet_id ===
+                                                                pet.id
+                                                        )?.images?.[0]
+                                                            ?.image ||
                                                             "default.jpg"
-                                                        }`}
+                                                            }`}
                                                         alt={
                                                             pets.find(
                                                                 (pet) =>

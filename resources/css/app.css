@@ -20,48 +20,50 @@
 
 
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 
 }
 
 body {
-    font-family: "Quicksand", sans-serif;
+  font-family: "Quicksand", sans-serif;
 }
 
 .custom-banner-font {
-    font-family: "Walter Turncoat", cursive !important;
+  font-family: "Walter Turncoat", cursive !important;
 }
 
 @keyframes appear {
-    from {
-        opacity: 0;
-        scale: 0.5;
-    }
+  from {
+    opacity: 0;
+    scale: 0.5;
+  }
 
-    to {
-        opacity: 1;
-        scale: 1;
-    }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
 }
 
 .block {
-    animation: appear 5s linear;
-    animation-timeline: view();
-    animation-range: entry 0% cover 40%;
+  animation: appear 5s linear;
+  animation-timeline: view();
+  animation-range: entry 0% cover 40%;
 }
 
 .pc {
-    color: #07553B;
+  color: #07553B;
 }
+
 .bg-pc {
-    background-color: #07553B;
+  background-color: #07553B;
 }
 
 .sc {
-    color: #CED46A;
+  color: #CED46A;
 }
+
 .bg-sc {
-    background-color: #CED46A;
+  background-color: #CED46A;
 }
 
 
@@ -69,25 +71,29 @@ body {
 
 @keyframes border-runner {
   0% {
-    border-image-source: linear-gradient(0deg, transparent, #07553B, transparent);
+    border-image-source: linear-gradient(0deg, #07553B, transparent);
   }
+
   25% {
-    border-image-source: linear-gradient(90deg, transparent, #07553B, transparent);
+    border-image-source: linear-gradient(90deg, #07553B, transparent);
   }
+
   50% {
-    border-image-source: linear-gradient(180deg, transparent, #07553B, transparent);
+    border-image-source: linear-gradient(180deg, #07553B, transparent);
   }
+
   75% {
-    border-image-source: linear-gradient(270deg, transparent, #07553B, transparent);
+    border-image-source: linear-gradient(270deg, #07553B, transparent);
   }
+
   100% {
-    border-image-source: linear-gradient(360deg, transparent, #07553B, transparent);
+    border-image-source: linear-gradient(360deg, #07553B, transparent);
   }
 }
 
 .glow-border {
-  border: 2px solid;
-  border-radius: 0.75rem; 
+  border: 1px solid;
+  border-radius: 0.75rem;
   border-image-slice: 1;
   animation: border-runner 5s linear infinite;
 }
@@ -97,6 +103,7 @@ body {
   0% {
     transform: scale(1.2);
   }
+
   100% {
     transform: scale(1);
   }
@@ -105,4 +112,3 @@ body {
 .bg-zoom-out {
   animation: bg-zoom-out 1.5s ease-out forwards;
 }
-

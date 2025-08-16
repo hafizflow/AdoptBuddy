@@ -6,6 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 
 const PetCard = ({ pet, user }) => {
     console.log("Hi user :", user);
+    console.log("Pet details : ", pet);
     const [liked, setLiked] = useState(pet.likes?.length > 0);
     const notify = () => {
         toast("Added to Favourite List!", {
@@ -119,8 +120,8 @@ const PetCard = ({ pet, user }) => {
                             }
                         }}
                         className={`text-white py-3 px-6 rounded-2xl font-semibold text-lg transition-colors duration-200 cursor-pointer ${isAdmin
-                                ? "bg-gray-400 cursor-not-allowed"
-                                : "bg-[#07553B] hover:bg-[#CED46A] hover:text-[#07553B]"
+                            ? "bg-gray-400 cursor-not-allowed"
+                            : "bg-[#07553B] hover:bg-[#CED46A] hover:text-[#07553B]"
                             }`}
                         disabled={isAdmin}
                     >
