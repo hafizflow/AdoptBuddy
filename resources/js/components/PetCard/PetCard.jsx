@@ -63,19 +63,6 @@ const PetCard = ({ pet, user }) => {
                     <button
                         onClick={(e) => {
                             e.stopPropagation();
-                            // if (!user) {
-                            //     toast.error(
-                            //         "You must be logged in to like a pet.",
-                            //         {
-                            //             toastId: `pet-like-error-${pet.id}`,
-                            //             autoClose: 1500,
-                            //         }
-                            //     );
-                            //     return;
-                            // }
-                            // if (!liked) {
-                            //     notify();
-                            // }
                             handleLikeClick();
                             setLiked(!liked);
                         }}

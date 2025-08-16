@@ -13,7 +13,6 @@ class AdminController extends Controller
 {
     public function index()
     {
-
         $pets = Post::with('images')->latest()->get();
         $applications = Application::latest()->get();
         return Inertia::render('admin/Admin', [

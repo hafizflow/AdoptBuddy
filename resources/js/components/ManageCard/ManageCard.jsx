@@ -47,8 +47,15 @@ export default function ManageCard({ pet, isManageCard = false }) {
 
     return (
         <section className=" my-2.5 max-w-[25rem] w-full rounded-xl p-2 ">
-            <div className="p-4 w-full h-full space-y-2 border border-[#07553B]/50  pc rounded-xl flex flex-col  justify-between">
-                <div>
+            <div className="p-6 w-full h-full space-y-2 border border-[#07553B]/50  pc rounded-xl flex flex-col  justify-between">
+                <div className="space-y-1">
+                    <img
+                        src={`http://localhost:8000/storage/${pet.images?.[0]?.image || "default.jpg"
+                        }`}
+                        alt={pet.name}
+                        className="w-full mb-4 rounded-xl relative h-[200px] object-cover "
+                    />
+
                     <h3 className="font-bold">
                         ID : {pet.id} 🐾 Pet Type : {pet.name}
                     </h3>
@@ -59,10 +66,10 @@ export default function ManageCard({ pet, isManageCard = false }) {
                         <p className="text-sm">Status: {pet.status}</p>
                     )}
                 </div>
-                <div className="flex gap-2">
+                <div className="flex gap-2 mt-2 justify-end">
                     <button
                         onClick={() => handleUpdate(pet.id)}
-                        className="px-2 py-1 rounded-md border border-gray-400 bg-yellow-700 text-white"
+                        className="px-2 py-1 w-full rounded-md border border-gray-400 bg-yellow-700 text-white"
                     >
                         Update
                     </button>
@@ -72,7 +79,7 @@ export default function ManageCard({ pet, isManageCard = false }) {
                     ) : (
                         <button
                             onClick={() => handleDelete(pet.id)}
-                            className="px-2 py-1 rounded-md border border-gray-400 bg-red-700 text-white"
+                            className="px-2 py-1 w-full rounded-md border border-gray-400 bg-red-700 text-white"
                         >
                             Delete
                         </button>

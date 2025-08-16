@@ -10,15 +10,17 @@ class Application extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'name',
-        'email',
-        'phone',
-        'address',
-        'pet_before', // boolean
-        'message',
-        'applied_pet_name',
-        'pet_id',
-        'user_id',
-    ];
+//    protected $fillable = [
+//        'name',
+//        'email',
+//        'phone',
+//        'address',
+//        'pet_before',
+//        'message',
+//        'applied_pet_name',
+//        'pet_id',
+//        'user_id',
+//    ];
+
+    protected $guarded = [];
 }

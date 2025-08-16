@@ -19,7 +19,6 @@ class LikeController extends Controller
             ->pluck('post')
             ->filter();
 
-
         return Inertia::render('favouriteList/FavouriteList', [
             'pets' => $likedPosts,
         ]);

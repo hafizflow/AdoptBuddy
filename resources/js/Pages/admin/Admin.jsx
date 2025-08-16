@@ -164,7 +164,7 @@ const AdminProfile = ({ pets, applications }) => {
                             {applications.map((app) => (
                                 <li
                                     key={"Application" + app.id}
-                                    className="w-full border border-[#CED46A]  rounded-lg p-2 flex flex-col items-center gap-5"
+                                    className="w-full border border-green-800 rounded-lg p-6 flex flex-col items-center gap-5 shadow-md"
                                 >
                                     <div className="md:text-xl">
                                         <p className="font-medium">
@@ -223,7 +223,7 @@ const AdminProfile = ({ pets, applications }) => {
                                             }
                                         >
                                             <div
-                                                className="bg-sc rounded-xl shadow-lg p-6 w-11/12 max-w-2xl relative"
+                                                className="bg-white rounded-xl shadow-lg p-6 w-11/12 max-w-2xl relative"
                                                 onClick={(e) =>
                                                     e.stopPropagation()
                                                 }
@@ -245,7 +245,7 @@ const AdminProfile = ({ pets, applications }) => {
 
                                                 <div className="flex flex-col md:flex-row gap-6 md:items-start">
                                                     <img
-                                                        className="w-40 h-40 md:w-48 md:h-48 rounded-2xl object-cover"
+                                                        className="w-40 h-40 md:w-48 md:h-50 rounded-2xl object-cover"
                                                         src={`http://localhost:8000/storage/${
                                                             pets.find(
                                                                 (pet) =>

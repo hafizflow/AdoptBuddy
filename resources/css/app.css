@@ -29,7 +29,7 @@ body {
 }
 
 .custom-banner-font {
-    font-family: "Walter Turncoat", cursive !important;
+    font-family: "Quicksand", sans-serif;
 }
 
 @keyframes appear {
@@ -87,7 +87,7 @@ body {
 
 .glow-border {
   border: 2px solid;
-  border-radius: 0.75rem; 
+  border-radius: 0.75rem;
   border-image-slice: 1;
   animation: border-runner 5s linear infinite;
 }

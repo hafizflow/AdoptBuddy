@@ -59,43 +59,15 @@ const PetDetails = ({ pet }) => {
                                 onClick={() => handleSwap(index)}
                             />
                         ))}
-                        {/* <img
-                            src={`http://localhost:8000/storage/${pet?.images?.[0]?.image || "default.jpg"
-                                }`}
-                            alt={pet?.name}
-                            className="w-32 h-32 rounded-2xl object-cover overflow-hidden"
-                        />
-                        <img
-                            src={`http://localhost:8000/storage/${pet?.images?.[1]?.image || "default.jpg"
-                                }`}
-                            alt={pet?.name}
-                            className="w-32 h-32 rounded-2xl object-cover overflow-hidden"
-                        />
-                        <img
-                            src={`http://localhost:8000/storage/${pet?.images?.[2]?.image || "default.jpg"
-                                }`}
-                            alt={pet?.name}
-                            className="w-32 h-32 rounded-2xl object-cover overflow-hidden"
-                        />
-                        <img
-                            src={`http://localhost:8000/storage/${pet?.images?.[3]?.image || "default.jpg"
-                                }`}
-                            alt={pet?.name}
-                            className="w-32 h-32 rounded-2xl object-cover overflow-hidden"
-                        /> */}
+
                     </div>
                     <div className="w-full h-full">
                         <img
                             src={`http://localhost:8000/storage/${bigImage}`}
                             alt={pet?.name}
-                            className="w-full rounded-2xl object-cover overflow-hidden"
+                            className="w-full h-147 rounded-2xl object-cover overflow-hidden"
                         />
-                        {/* <img
-                            src={`http://localhost:8000/storage/${pet?.images?.[0]?.image || "default.jpg"
-                                }`}
-                            alt={pet?.name}
-                            className="w-full rounded-2xl object-cover overflow-hidden"
-                        /> */}
+
                     </div>
                 </div>
 
@@ -103,7 +75,7 @@ const PetDetails = ({ pet }) => {
                     <h2 className="text-2xl text-center font-extrabold mb-1 pc">
                         {pet?.name}
                     </h2>
-                    <div className="w-full flex gap-3 bg-sc rounded-t-lg p-4 pc">
+                    <div className="w-full flex gap-3 bg-green-200 rounded-t-lg p-4 pc">
                         <div className="">
                             <p>Breed </p>
                             <p>Age </p>
@@ -124,31 +96,12 @@ const PetDetails = ({ pet }) => {
                         </div>
                     </div>
 
-                    <div className="w-full bg-pc sc rounded-b-lg mb-4 p-4">
+                    <div className="w-full bg-green-900 sc rounded-b-lg mb-4 p-4">
                         <span className="text-justify">
                             Description : {pet?.description}
                         </span>
                     </div>
 
-                    {/* Show map only if coords are ready */}
-                    {/* {coords && (
-                        <div className="w-full border border-indigo-500 p-2 h-64 mt-6 rounded-xl overflow-hidden shadow-lg z-10">
-                            <MapContainer
-                                center={[coords.lat, coords.lng]}
-                                zoom={13}
-                                scrollWheelZoom={false}
-                                style={{ height: "100%", width: "100%" }}
-                            >
-                                <TileLayer
-                                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-                                />
-                                <Marker position={[coords.lat, coords.lng]}>
-                                    <Popup>{pet.name} is here!</Popup>
-                                </Marker>
-                            </MapContainer>
-                        </div>
-                    )} */}
                     <div className="h-[18rem] mt-6 rounded-xl overflow-hidden shadow-lg z-10">
                         <MapViewer
                             currentLocation={userLocation}

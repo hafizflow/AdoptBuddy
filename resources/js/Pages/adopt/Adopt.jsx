@@ -2,7 +2,7 @@ import { useState } from "react";
 import ApplyAdoptForm from "../../components/ApplyAdoptForm/ApplyAdoptForm";
 import PetCard from "../../components/PetCard/PetCard";
 
-const AllPets = ({ pets }) => {
+const AllPets = ({ pets, user }) => {
     const [selectedType, setSelectedType] = useState("All");
     const filterOptions = ["All", "Bird", "Cat", "Dog", "Rabbit"];
 
@@ -38,7 +38,7 @@ const AllPets = ({ pets }) => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {filterPets.map((pet) => (
-                    <PetCard key={pet.id} pet={pet} />
+                    <PetCard key={pet.id} pet={pet} user={user} />
                 ))}
             </div>
             <ApplyAdoptForm></ApplyAdoptForm>

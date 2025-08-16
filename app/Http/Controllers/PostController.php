@@ -13,10 +13,13 @@ class PostController extends Controller
 
     public function index()
     {
-        $pets = Post::with('images','likes')->latest()->where('isVisible', 'Visible')->get();
+        $pets = Post::with(['images', 'likes' => function ($query) {
+            $query->where('user_id', auth()->user()->id);
+        }])->where("isVisible", "Visible")->latest()->get();
         return Inertia::render('adopt/Adopt', [
             'pets' => $pets,
-        ]); 
+            'user' => auth()->user()
+        ]);
         //return view('admin.all-post', compact('pets'));
     }
 
@@ -25,12 +28,12 @@ class PostController extends Controller
     }
 
     public function store() {
-         
-        
+
+
         $data = request()->validate([
             'name' => 'required',
             'age' => 'required',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:4096',
             'description' => 'required', 'max:255',
             'size' => 'required',
             'lat'=> 'required|numeric',
@@ -75,7 +78,6 @@ class PostController extends Controller
     }
 
     public function update($id, Request $request)
-    
     {
         $selectedPost = Post::findOrFail($id);
         $selectedPost->update([

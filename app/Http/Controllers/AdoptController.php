@@ -31,13 +31,10 @@ class AdoptController extends Controller
             'message' => 'Adoption request submitted successfully!',
         ]);
     }
-    
+
 
     public function update($action, Request $request)
     {
-        
-        
-
         $data = $request->validate([
             'action' => 'required|in:pending,accepted,rejected',
         ]);
@@ -49,7 +46,7 @@ class AdoptController extends Controller
 
         return redirect()->route('admin')->with('message', 'Application status updated successfully!');
     }
-    
-    
+
+
 
 }

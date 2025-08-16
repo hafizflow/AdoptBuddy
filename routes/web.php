@@ -11,8 +11,6 @@ use App\Http\Controllers\SessionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AdoptController;
 use App\Http\Middleware\IsAdmin;
-use Illuminate\Routing\Route as RoutingRoute;
-use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
