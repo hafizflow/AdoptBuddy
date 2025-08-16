@@ -8,6 +8,27 @@ import MapViewer from "../../components/MapViewer/MapViewer";
 const PetDetails = ({ pet }) => {
     const [userLocation, setUserLocation] = useState(null);
 
+    // for store images of swaping
+    const defaultImage = 'default.jpg';
+    const initialImages = [
+        pet?.images?.[0].image || defaultImage,
+        pet?.images?.[1]?.image || defaultImage,
+        pet?.images?.[2]?.image || defaultImage,
+        pet?.images?.[3]?.image || defaultImage,
+        pet?.images?.[4]?.image || defaultImage,
+    ];
+
+    const [bigImage, setBigImage] = useState(initialImages[0]);
+    const [thumbnails, setThumbnails] = useState(initialImages.slice(1));
+
+    const handleSwap = (index) => {
+        const clickedImage = thumbnails[index];
+        const newThumbnails = [...thumbnails];
+        newThumbnails[index] = bigImage;
+        setBigImage(clickedImage);
+        setThumbnails(newThumbnails);
+    }
+
     useEffect(() => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
@@ -29,43 +50,52 @@ const PetDetails = ({ pet }) => {
             <div className="flex flex-col-reverse md:flex-row gap-5 items-center p-2 md:p-10 w-full relative my-5">
                 <div className="flex-1 flex flex-col md:flex-row rounded-xl items-center gap-5 overflow-hidden">
                     <div className="flex md:flex-col justify-between gap-4">
-                        <img
-                            src={`http://localhost:8000/storage/${
-                                pet?.images?.[0]?.image || "default.jpg"
-                            }`}
+                        {thumbnails.map((img, index) => (
+                            <img
+                                key={index}
+                                src={`http://localhost:8000/storage/${img}`}
+                                alt={pet?.name}
+                                className="w-32 h-32 rounded-2xl object-cover overflow-hidden cursor-pointer"
+                                onClick={() => handleSwap(index)}
+                            />
+                        ))}
+                        {/* <img
+                            src={`http://localhost:8000/storage/${pet?.images?.[0]?.image || "default.jpg"
+                                }`}
                             alt={pet?.name}
                             className="w-32 h-32 rounded-2xl object-cover overflow-hidden"
                         />
                         <img
-                            src={`http://localhost:8000/storage/${
-                                pet?.images?.[0]?.image || "default.jpg"
-                            }`}
+                            src={`http://localhost:8000/storage/${pet?.images?.[1]?.image || "default.jpg"
+                                }`}
                             alt={pet?.name}
                             className="w-32 h-32 rounded-2xl object-cover overflow-hidden"
                         />
                         <img
-                            src={`http://localhost:8000/storage/${
-                                pet?.images?.[0]?.image || "default.jpg"
-                            }`}
+                            src={`http://localhost:8000/storage/${pet?.images?.[2]?.image || "default.jpg"
+                                }`}
                             alt={pet?.name}
                             className="w-32 h-32 rounded-2xl object-cover overflow-hidden"
                         />
                         <img
-                            src={`http://localhost:8000/storage/${
-                                pet?.images?.[0]?.image || "default.jpg"
-                            }`}
+                            src={`http://localhost:8000/storage/${pet?.images?.[3]?.image || "default.jpg"
+                                }`}
                             alt={pet?.name}
                             className="w-32 h-32 rounded-2xl object-cover overflow-hidden"
-                        />
+                        /> */}
                     </div>
                     <div className="w-full h-full">
                         <img
-                            src={`http://localhost:8000/storage/${
-                                pet?.images?.[0]?.image || "default.jpg"
-                            }`}
+                            src={`http://localhost:8000/storage/${bigImage}`}
                             alt={pet?.name}
                             className="w-full rounded-2xl object-cover overflow-hidden"
                         />
+                        {/* <img
+                            src={`http://localhost:8000/storage/${pet?.images?.[0]?.image || "default.jpg"
+                                }`}
+                            alt={pet?.name}
+                            className="w-full rounded-2xl object-cover overflow-hidden"
+                        /> */}
                     </div>
                 </div>
 

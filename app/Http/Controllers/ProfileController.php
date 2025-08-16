@@ -16,8 +16,10 @@ class ProfileController extends Controller
 
       $user = auth()->user();
         $applications = Application::latest()->where('user_id', $user->id)->get();
+        $rescueApplications = Post::latest()->where('user_id', $user->id)->get();
         return Inertia::render('userProfile/userProfile', [
             'adoptionApplications' => $applications,
+            'rescueApplications' => $rescueApplications,
         ]);
 
     }

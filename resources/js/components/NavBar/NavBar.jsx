@@ -4,7 +4,7 @@ import { MdLogin, MdLogout } from "react-icons/md";
 import { usePage } from "@inertiajs/react";
 import { CgProfile } from "react-icons/cg";
 
-const Navbar = ({ user }) => {
+const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const { auth } = usePage().props;
     useEffect(() => {
@@ -23,7 +23,7 @@ const Navbar = ({ user }) => {
         {
             name: "Be a saver",
             path: "/userupload",
-            isShow: !!auth?.user,
+            isShow: !!auth?.user && auth.user.role !== "admin",
         },
         { name: "Contact", path: "/contact", isShow: true },
     ];

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Http\Middleware\IsAdmin;
@@ -12,7 +13,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $pets = Post::with('images','likes')->latest()->take(4)->get();
+        $pets = Post::with('images', 'likes')->where("isVisible", "Visible")->latest()->take(4)->get();
         return Inertia::render('home/Home', [
             'pets' => $pets,
         ]);
@@ -26,7 +27,3 @@ class HomeController extends Controller
         ]);
     }
 }
-
-
-
-?>

@@ -4,33 +4,36 @@ import { MdOutlineEmail, MdFavoriteBorder } from "react-icons/md";
 import { IoCallOutline, IoLocationOutline } from "react-icons/io5";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { FiLogOut } from "react-icons/fi";
-import { usePage, router } from "@inertiajs/react";
+import { usePage } from "@inertiajs/react";
 
-const UserProfile = ({ adoptionApplications = [], postApplications = [] }) => {
+const UserProfile = ({
+    adoptionApplications = [],
+    rescueApplications = [],
+}) => {
     const { auth } = usePage().props;
     const [activeSection, setActiveSection] = useState("profile");
     const [showLogoutModal, setShowLogoutModal] = useState(false);
 
-    console.log(adoptionApplications);
+    console.log(rescueApplications);
 
     const user = {
         name: "Anjum Hossain",
         email: "anjum@example.com",
-        phone: "017XXXXXXXX",
+        phone: "01700610483",
         location: "Chahdra, Gazipur",
         bio: "Animal lover and pet adoption enthusiast.",
-        avatar: "https://scontent.fdac174-1.fna.fbcdn.net/v/t39.30808-6/475979620_1025661022931686_6539658198443314913_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=BVAiLzBo_dMQ7kNvwH3NqSN&_nc_oc=AdlKYXgtY94t75YN3MQmAZs9XX5W3tJu9OfqmK0zz_1jSDhARMPgXWk8ovxEcdJWjxk&_nc_zt=23&_nc_ht=scontent.fdac174-1.fna&_nc_gid=R6tX9-2YoLb7D2FXo0DOLA&oh=00_AfVFJZI15SpPA_t1v66RSaeSsyVhfVy_J3cWQXO4GiNsbA&oe=689BA359",
+        avatar: "https://i.pinimg.com/736x/53/26/39/5326390aa1af79e0e3644ef46e8b0589.jpg",
         adoptedPets: ["Charlie", "Milo", "Bella"],
         favourites: ["Golden Retriever", "Siamese Cat"],
     };
 
     const statusColor = (status) => {
         switch (status) {
-            case "Accepted":
+            case "accepted":
                 return "#22c55e";
-            case "Rejected":
+            case "rejected":
                 return "#ef4444";
-            case "Pending":
+            case "pending":
                 return "#eab308";
             default:
                 return "#6b7280";
@@ -116,7 +119,7 @@ const UserProfile = ({ adoptionApplications = [], postApplications = [] }) => {
                         <img
                             src={user.avatar}
                             alt="User Avatar"
-                            className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-[#07553B] shadow"
+                            className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-gray-400 shadow"
                         />
                         <div className="space-y-2">
                             <h2 className="text-2xl font-bold ">
@@ -157,7 +160,7 @@ const UserProfile = ({ adoptionApplications = [], postApplications = [] }) => {
                                             ),
                                         }}
                                     >
-                                        <div className="font-semibold text-[#932F67]">
+                                        <div className="font-semibold pc">
                                             {app.applied_pet_name}
                                         </div>
                                         <div className="text-sm flex justify-between">
@@ -174,7 +177,18 @@ const UserProfile = ({ adoptionApplications = [], postApplications = [] }) => {
                                                     {app.status}
                                                 </span>
                                             </span>
-                                            <span>{app.created_at}</span>
+                                            <span>
+                                                {new Date(
+                                                    app.created_at
+                                                ).toLocaleString("en-US", {
+                                                    year: "numeric",
+                                                    month: "2-digit",
+                                                    day: "2-digit",
+                                                    hour: "2-digit",
+                                                    minute: "2-digit",
+                                                    hour12: true,
+                                                })}
+                                            </span>
                                         </div>
                                     </li>
                                 ))}
@@ -190,7 +204,7 @@ const UserProfile = ({ adoptionApplications = [], postApplications = [] }) => {
                         </h2>
                         {postApplications.length === 0 ? (
                             <p className="text-gray-500 text-center">
-                                No one has applied yet.
+                                You have not applied for any pet
                             </p>
                         ) : (
                             <ul className="space-y-4">

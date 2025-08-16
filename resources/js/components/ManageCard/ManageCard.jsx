@@ -1,6 +1,6 @@
 import { router } from "@inertiajs/react";
 
-export default function ManageCard({ pet }) {
+export default function ManageCard({ pet, isManageCard = false }) {
     const handleDelete = (post) => {
         router.delete(`/posts/${post}`, {
             onSuccess: () => {
@@ -13,40 +13,70 @@ export default function ManageCard({ pet }) {
     };
 
     const handleUpdate = (post) => {
+        if (!isManageCard) {
+            router.put(`/posts/${post}`, {
+                data: {
+                    status:
+                        pet.status === "Available" ? "On Hold" : "Available",
+                    isVisible: pet.isVisible,
+                },
+                onSuccess: () => {
+                    console.log("Pet updated successfully");
+                },
+                onError: (error) => {
+                    console.error("Error updating pet:", error);
+                },
+            });
+            return;
+        }
+
         router.put(`/posts/${post}`, {
+            data: {
+                status: pet.status,
+                isVisible:
+                    pet.isVisible === "Visible" ? "Invisible" : "Visible",
+            },
             onSuccess: () => {
-                console.log("Pet updated successfully");
+                console.log("Application updated successfully");
             },
             onError: (error) => {
-                console.error("Error updating pet:", error);
+                console.error("Error updating application:", error);
             },
         });
     };
 
     return (
-        <section className=" my-2.5  rounded-xl p-2 md:p-6">
-            <div className="">
-                <div className="p-4 space-y-2 border border-[#07553B]/50  pc rounded-xl flex flex-col  justify-between">
-                    <div>
-                        <h3 className="font-bold">{pet.name}</h3>
-                        <p className="text-sm">Breed: {pet.breed}</p>
+        <section className=" my-2.5 max-w-[25rem] w-full rounded-xl p-2 ">
+            <div className="p-4 w-full h-full space-y-2 border border-[#07553B]/50  pc rounded-xl flex flex-col  justify-between">
+                <div>
+                    <h3 className="font-bold">
+                        ID : {pet.id} 🐾 Pet Type : {pet.name}
+                    </h3>
+                    <p className="text-sm">Breed: {pet.breed}</p>
+                    {isManageCard ? (
+                        <p className="text-sm">Visibility: {pet.isVisible}</p>
+                    ) : (
                         <p className="text-sm">Status: {pet.status}</p>
-                    </div>
-                    <div className="flex gap-2">
-                        <button
-                            onClick={() => handleUpdate(pet.id)}
-                            className="px-2 py-1 rounded-md border border-gray-400 bg-yellow-700 text-white"
-                        >
-                            Update
-                        </button>
+                    )}
+                </div>
+                <div className="flex gap-2">
+                    <button
+                        onClick={() => handleUpdate(pet.id)}
+                        className="px-2 py-1 rounded-md border border-gray-400 bg-yellow-700 text-white"
+                    >
+                        Update
+                    </button>
 
+                    {isManageCard ? (
+                        " "
+                    ) : (
                         <button
                             onClick={() => handleDelete(pet.id)}
                             className="px-2 py-1 rounded-md border border-gray-400 bg-red-700 text-white"
                         >
                             Delete
                         </button>
-                    </div>
+                    )}
                 </div>
             </div>
         </section>

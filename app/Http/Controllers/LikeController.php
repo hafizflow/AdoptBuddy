@@ -14,10 +14,10 @@ class LikeController extends Controller
     {
         $likedPosts = auth()->user()
             ->likes()
-            ->with('post.images') // eager load post and images
+            ->with('post.images')
             ->get()
-            ->pluck('post')       // get only the posts
-            ->filter();           // remove nulls in case post was deleted
+            ->pluck('post')
+            ->filter();
 
 
         return Inertia::render('favouriteList/FavouriteList', [
