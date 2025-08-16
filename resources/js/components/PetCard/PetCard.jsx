@@ -99,17 +99,17 @@ const PetCard = ({ pet, user }) => {
                             e.stopPropagation();
                             localStorage.setItem("applied_pet_name", pet.name);
                             localStorage.setItem("pet_id", pet.id);
-                            if (!isAdmin) {
+                            if (!isAdmin || !user) {
                                 document
                                     .getElementById("my_modal_5")
                                     .showModal();
                             }
                         }}
-                        className={`text-white py-3 px-6 rounded-2xl font-semibold text-lg transition-colors duration-200 cursor-pointer ${isAdmin
+                        className={`text-white py-3 px-6 rounded-2xl font-semibold text-lg transition-colors duration-200 cursor-pointer ${isAdmin || !user
                                 ? "bg-gray-400 cursor-not-allowed"
                                 : "bg-[#07553B] hover:bg-[#CED46A] hover:text-[#07553B]"
                             }`}
-                        disabled={isAdmin}
+                        disabled={!user || isAdmin}
                     >
                         Adopt Me
                     </button>

@@ -13,14 +13,21 @@ class PostController extends Controller
 
     public function index()
     {
-        $pets = Post::with(['images', 'likes' => function ($query) {
-            $query->where('user_id', auth()->user()->id);
-        }])->where("isVisible", "Visible")->latest()->get();
+        $pets = Post::with('images')
+            ->where("isVisible", "Visible")
+            ->latest()
+            ->get();
+
+        if (auth()->check()) {
+            $pets = Post::with(['images', 'likes' => function ($query) {
+                $query->where('user_id', auth()->user()->id);
+            }])->where("isVisible", "Visible")->latest()->get();
+        }
+
         return Inertia::render('adopt/Adopt', [
             'pets' => $pets,
             'user' => auth()->user()
         ]);
-        //return view('admin.all-post', compact('pets'));
     }
 
     public function create() {

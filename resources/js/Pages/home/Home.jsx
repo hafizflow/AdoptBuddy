@@ -11,7 +11,7 @@ import Testimonials from "./Testimonials";
 import CareAboutPets from "./CareAboutPet";
 import dog from "../../../assets/bannerDog.png";
 import { TypeAnimation } from "react-type-animation";
-const HomePage = ({ pets }) => {
+const HomePage = ({ pets, user }) => {
     const { auth } = usePage().props;
 
     console.log(auth);
@@ -77,7 +77,7 @@ const HomePage = ({ pets }) => {
                     )
                     .slice(0, 3)
                     .map((pet) => (
-                        <PetCard key={pet.id} pet={pet} />
+                        <PetCard key={pet.id} pet={pet} user={user} />
                     ))}
             </div>
             <div className="text-center">
