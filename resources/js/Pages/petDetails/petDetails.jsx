@@ -59,30 +59,7 @@ const PetDetails = ({ pet }) => {
                                 onClick={() => handleSwap(index)}
                             />
                         ))}
-                        {/* <img
-                            src={`http://localhost:8000/storage/${pet?.images?.[0]?.image || "default.jpg"
-                                }`}
-                            alt={pet?.name}
-                            className="w-32 h-32 rounded-2xl object-cover overflow-hidden"
-                        />
-                        <img
-                            src={`http://localhost:8000/storage/${pet?.images?.[1]?.image || "default.jpg"
-                                }`}
-                            alt={pet?.name}
-                            className="w-32 h-32 rounded-2xl object-cover overflow-hidden"
-                        />
-                        <img
-                            src={`http://localhost:8000/storage/${pet?.images?.[2]?.image || "default.jpg"
-                                }`}
-                            alt={pet?.name}
-                            className="w-32 h-32 rounded-2xl object-cover overflow-hidden"
-                        />
-                        <img
-                            src={`http://localhost:8000/storage/${pet?.images?.[3]?.image || "default.jpg"
-                                }`}
-                            alt={pet?.name}
-                            className="w-32 h-32 rounded-2xl object-cover overflow-hidden"
-                        /> */}
+
                     </div>
                     <div className="w-full h-full">
                         <img
@@ -90,12 +67,7 @@ const PetDetails = ({ pet }) => {
                             alt={pet?.name}
                             className="w-full rounded-2xl object-cover overflow-hidden"
                         />
-                        {/* <img
-                            src={`http://localhost:8000/storage/${pet?.images?.[0]?.image || "default.jpg"
-                                }`}
-                            alt={pet?.name}
-                            className="w-full rounded-2xl object-cover overflow-hidden"
-                        /> */}
+
                     </div>
                 </div>
 
@@ -106,6 +78,7 @@ const PetDetails = ({ pet }) => {
                     <div className="w-full flex gap-3 bg-sc rounded-t-lg p-4 pc">
                         <div className="">
                             <p>Breed </p>
+                            <p>Gender </p>
                             <p>Age </p>
                             <p>Size </p>
                             <p>Color </p>
@@ -115,9 +88,11 @@ const PetDetails = ({ pet }) => {
                             <p>: </p>
                             <p>: </p>
                             <p>: </p>
+                            <p>: </p>
                         </div>
                         <div className="font-semibold">
                             <p>{pet?.breed}</p>
+                            <p>{pet?.gender}</p>
                             <p>{pet?.age}</p>
                             <p>{pet?.size}</p>
                             <p>{pet.color ? color : "Missing"}</p>

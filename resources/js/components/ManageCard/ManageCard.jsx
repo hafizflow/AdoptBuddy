@@ -62,7 +62,7 @@ export default function ManageCard({ pet, isManageCard = false }) {
                 <div className="flex gap-2">
                     <button
                         onClick={() => handleUpdate(pet.id)}
-                        className="px-2 py-1 rounded-md border border-gray-400 bg-yellow-700 text-white"
+                        className="px-2 py-1 w-full rounded-md border border-gray-400 bg-yellow-700 text-white"
                     >
                         Update
                     </button>
@@ -72,7 +72,7 @@ export default function ManageCard({ pet, isManageCard = false }) {
                     ) : (
                         <button
                             onClick={() => handleDelete(pet.id)}
-                            className="px-2 py-1 rounded-md border border-gray-400 bg-red-700 text-white"
+                            className="px-2 py-1 w-full rounded-md border border-gray-400 bg-red-700 text-white"
                         >
                             Delete
                         </button>

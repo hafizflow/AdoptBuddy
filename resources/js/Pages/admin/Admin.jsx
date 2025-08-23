@@ -173,7 +173,7 @@ const AdminProfile = ({ pets, applications }) => {
                                             </span>
                                         </p>
                                         <p className="text-sm text-gray-500">
-                                            Status: <span className="font-semibold">{app.status}</span>
+                                            Status: <span className="font-semibold text-lg">{app.status}</span>
                                         </p>
                                     </div>
 
@@ -408,6 +408,27 @@ const AdminProfile = ({ pets, applications }) => {
                             className="grid h-full grid-cols-1 md:grid-cols-2 gap-4"
                             onSubmit={(e) => {
                                 e.preventDefault();
+
+                                // Validation
+                                if (
+                                    !data.name ||
+                                    !data.breed ||
+                                    !data.age ||
+                                    !data.gender ||
+                                    !data.size ||
+                                    !data.color ||
+                                    !data.status ||
+                                    !data.description
+                                ) {
+                                    alert("⚠️ Please fill out all fields before submitting!");
+                                    return;
+                                }
+
+                                if (isNaN(data.age) || Number(data.age) <= 0) {
+                                    alert("⚠️ Age must be a number greater than 0!");
+                                    return;
+                                }
+
                                 post("/post", {
                                     forceFormData: true,
                                 });
@@ -467,9 +488,6 @@ const AdminProfile = ({ pets, applications }) => {
                                         type="file"
                                         className="hidden"
                                         multiple
-                                        // onChange={(e) =>
-                                        //     setData("images", e.target.files)
-                                        // }
                                         onChange={handleChange}
                                     />
                                 </label>
